@@ -11,14 +11,14 @@ body {
 }
 
 /* Wrapper centrato */
-#wrapper {
-    background: white;
-    padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-    text-align: center;
-    width: 90%;
-    max-width: 500px;
+#wrapper { 
+    background: #fff;
+    min-width: 360px;
+    max-width: 660px;
+    width: 42%;
+    padding: 50px;
+    border-radius: 25px;
+    box-shadow: 0 0 100px;
 }
 
 /* Descrizione */
