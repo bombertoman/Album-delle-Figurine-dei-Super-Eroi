@@ -9,29 +9,39 @@ body, html {
 /* Navbar */
 .navbar {
     background-color: white;
-    color: #009dff;
+    color: black;
     text-align: center;
     padding: 20px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar h1 {
+.navbar .logo {
     font-size: 1.8rem;
-    margin: 0;
     font-weight: bold;
+    text-transform: uppercase;
 }
 
 /* Contenuto principale */
 #home-container {
     text-align: center;
-    margin: 50px auto;
-    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+    max-width: 800px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-.description {
-    margin-bottom: 30px;
+.content h1 {
+    font-size: 2rem;
+    color: #009dff;
+    margin-bottom: 20px;
+}
+
+.content p {
     font-size: 1.2rem;
     color: #555;
+    margin-bottom: 30px;
 }
 
 .btn-container {
@@ -41,9 +51,10 @@ body, html {
 }
 
 .btn {
+    display: inline-block;
     padding: 15px 30px;
     text-decoration: none;
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-weight: bold;
     color: white;
     background-color: #009dff;
