@@ -49,7 +49,7 @@ body {
 }
 
 #login-btn:hover, #signup-btn:hover {
-    filter: brightness(1.2);
+    filter: brightness(0.9);
 }
 
 /* Footer */
@@ -57,7 +57,7 @@ footer {
     background-color: rgba(255, 255, 255, 0.8);
     color: black;
     text-align: center;
-    padding: 10px;
+    padding: 6px;
     position: fixed;
     bottom: 0;
     width: 100%;
