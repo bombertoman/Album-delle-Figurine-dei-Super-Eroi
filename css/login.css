@@ -34,7 +34,10 @@ button {
     color: #009dff;
     border: none;
 }
-
+#home-btn {
+    background-color: transparent;
+    color: #009dff;
+}
 h1 {
     color: #71181f;
 }
