@@ -1,52 +1,37 @@
-/* Stile Generale */
+/* Reset di base */
 body, html {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f4;
 }
 
 /* Navbar */
 .navbar {
     background-color: white;
-    color: black;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #009dff;
     text-align: center;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.navbar .logo {
-    font-size: 1.5rem;
+.navbar h1 {
+    font-size: 1.8rem;
+    margin: 0;
     font-weight: bold;
-    text-transform: uppercase;
 }
 
 /* Contenuto principale */
 #home-container {
     text-align: center;
-    margin: 150px auto; /* Distanza dalla navbar */
-    padding: 20px;
+    margin: 50px auto;
     max-width: 600px;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
 
-#home-container h1 {
-    font-size: 2rem;
-    color: #009dff;
-    margin-bottom: 20px;
-}
-
-#home-container p {
+.description {
+    margin-bottom: 30px;
     font-size: 1.2rem;
     color: #555;
-    margin-bottom: 30px;
 }
 
 .btn-container {
@@ -56,10 +41,9 @@ body, html {
 }
 
 .btn {
-    display: inline-block;
     padding: 15px 30px;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-weight: bold;
     color: white;
     background-color: #009dff;
