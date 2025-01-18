@@ -47,22 +47,19 @@ button:hover {
     background-color: #d5d5d5;
 }
 #back-to-home {
-    height: 30px;
     width: 150px;
     padding: 10px;
-    font-size: 1rem;
     font-weight: bold;
     color: #fff;
     background-color: #009dff;
     border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Animazione morbida */
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Animazione */
 }
 
 #back-to-home:hover {
-    background-color: #006bbf; /* Cambia colore dello sfondo */
-    color: #ffffff; /* Cambia colore del testo */
+    background-color: #006bbf; 
+    color: #ffffff; 
 }
 #signupbttn {
     background-color: #009dff;
