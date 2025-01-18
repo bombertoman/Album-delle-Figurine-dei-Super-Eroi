@@ -1,0 +1,56 @@
+/* Stile per la pagina di modifica del profilo */
+
+#wrapper {
+    background: #fff;
+    min-width: 360px;
+    max-width: 660px;
+    width: 42%;
+    padding: 70px;
+    border-radius: 25px;
+    box-shadow: 0 0 100px;
+    margin: 50px auto;
+    font-family: 'Roboto', sans-serif;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.form-item {
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #888;
+    font-size: 16px;
+}
+
+button {
+    cursor: pointer;
+    font-size: 16px;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    transition: background-color 0.3s, filter 0.3s;
+}
+
+#save-btn {
+    background-color: #009dff;
+    color: #fff;
+}
+
+#save-btn:hover {
+    filter: brightness(1.15);
+}
+
+h1 {
+    color: #71181f;
+    text-align: center;
+}
+
+h2 {
+    color: #333;
+    text-align: center;
+    margin-bottom: 20px;
+}

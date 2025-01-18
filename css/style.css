@@ -1,0 +1,25 @@
+/* foglio di stile caricato in tutte le pagine */
+
+/* selettore: a cosa applicare le regole che seguono. */
+/* in questo caso il tag <body> */ 
+body {
+    /* regola: un aspetto grafico stilizzato */
+    /* in questo caso lo sfondo del <body> */
+    background-image: url(../img/marvelbkg.jpg);
+    /* regola la dimensione dello sfondo relativamente al dispositivo senza distorcerlo */
+    background-size: contain;
+    background-repeat: round;
+    /* flexbox: serve a disporre in riga e colonna gli elementi figli (in questo caso figli di body) */
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+
+}

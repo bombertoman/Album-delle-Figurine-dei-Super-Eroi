@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modifica Profilo</title>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link rel="stylesheet" href="../css/login.css" />
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Album delle Figurine dei Super Eroi</h1>
+        <h2>Modifica Profilo</h2>
+        <form id="profile-form">
+            <input class="form-item" type="text" id="username" placeholder="Nome utente" value="" required />
+            <input class="form-item" type="email" id="email" placeholder="E-mail" value="" required />
+            <input class="form-item" type="password" id="password" placeholder="Nuova Password" />
+            <input class="form-item" type="password" id="confirm-password" placeholder="Conferma Password" />
+            <button class="form-item" id="save-btn" type="submit">Salva Modifiche</button>
+        </form>
+    </div>
+    <script src="../js/login.js"></script>
+    <script>
+        document.getElementById('profile-form').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value.trim();
+            const confirmPassword = document.getElementById('confirm-password').value.trim();
+
+            if (password && password !== confirmPassword) {
+                alert('Le password non coincidono!');
+                return;
+            }
+
+            // Simulazione di salvataggio (aggiungi qui la logica per inviare i dati al server)
+            console.log('Dati aggiornati:', { username, email, password });
+            alert('Profilo aggiornato con successo!');
+        });
+    </script>
+</body>
+</html>

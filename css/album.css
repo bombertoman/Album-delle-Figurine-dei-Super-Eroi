@@ -1,0 +1,79 @@
+/* Reset di base */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Navbar */
+.navbar {
+    background-color: white; /* Colore bianco */
+    color: black; /* Testo nero */
+    position: absolute; /* Posizionamento assoluto */
+    top: 0; /* Allinea in alto */
+    left: 0; /* Allinea a sinistra */
+    width: 100%; /* Copre tutta la larghezza */
+    display: flex;
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 20px; /* Spazio tra logo e link */
+    text-transform: uppercase;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 20px; /* Spaziatura tra i link */
+}
+
+.navbar nav a {
+    color: black; /* Testo nero */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: #009dff; /* Cambia colore al passaggio del mouse */
+}
+
+/* Contenuto principale */
+#album-container {
+    margin: 100px auto; /* Aggiunge margine superiore per lasciare spazio alla navbar */
+    max-width: 800px;
+    text-align: center;
+    padding: 20px;
+}
+
+#figurine-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.figurina {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 10px;
+    background: #fff;
+    text-align: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Footer */
+footer {
+    background: white; /* Colore bianco */
+    color: black; /* Testo nero */
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
