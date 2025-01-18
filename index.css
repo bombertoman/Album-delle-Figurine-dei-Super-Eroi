@@ -1,6 +1,6 @@
 /* Aggiungi uno sfondo  */
 body {
-    background: url('../img/marvelbkg.jpg') no-repeat center center fixed;
+    background: url('./img/marvelbkg.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     font-family: 'Roboto', sans-serif;
