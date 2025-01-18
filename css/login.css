@@ -55,7 +55,7 @@ button:hover {
     color: #fff;
     background-color: #009dff;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease; /* Animazione morbida */
 }
