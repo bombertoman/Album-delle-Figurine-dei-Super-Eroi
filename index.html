@@ -4,29 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home - Album Figurine Supereroi</title>
-    <link rel="stylesheet" href="./css/style.css"> 
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/login.css"> <!-- Riutilizzo lo stile di login -->
 </head>
 <body>
-    <header>
-        <div class="navbar">
-            <div class="logo">Album Supereroi</div>
+    <div id="wrapper">
+        <h1>Benvenuto nell'Album delle Figurine dei Supereroi</h1>
+        <p class="description">Raccogli, scambia e colleziona le figurine dei tuoi supereroi preferiti!</p>
+        <div class="btn-container">
+            <button id="login-btn" onclick="location.href='./html/login.html'">Accedi</button>
+            <button id="signup-btn" onclick="location.href='./html/signup.html'">Registrati</button>
         </div>
-    </header>
-
-    <main id="home-container">
-        <div class="content">
-            <h1>Benvenuto nell'Album delle Figurine dei Supereroi</h1>
-            <p>Raccogli, scambia e colleziona le figurine dei tuoi supereroi preferiti!</p>
-            <div class="btn-container">
-                <a href="./html/login.html" class="btn">Accedi</a>
-                <a href="./html/signup.html" class="btn">Registrati</a>
-            </div>
-        </div>
-    </main>
-
+    </div>
     <footer>
-        <p>©️ 2025 Album Figurine Supereroi</p>
+        <p>©️ 2025 Album Figurine SuperEroi</p>
     </footer>
 </body>
 </html>
