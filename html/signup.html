@@ -11,8 +11,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
-    
-
 </head>
 <body>
     <div id="wrapper">
@@ -21,11 +19,13 @@
             <input id="signup-username" class="form-item" type="text" placeholder="Nome Utente" required />
             <input id="signup-email" class="form-item" type="email" placeholder="E-mail" required />
             <input id="signup-password" class="form-item" type="password" placeholder="Password" required />
+            <small id="password-requirements" class="pwd-alert">La password deve essere lunga almeno 8 caratteri.</small>
             <button type="submit" id="signupbttn" class="form-item">Registrati</button>
             <button type="button" id="back-to-login" class="form-item">Torna al Login</button>
             <div id="homepage-button">
                 <button type="button" id="back-to-home" class="form-item" onclick="location.href='../index.html'">Torna alla Home</button>
             </div>
+        </form>
     </div>
     <script src="../js/signup.js" defer></script>
 </body>

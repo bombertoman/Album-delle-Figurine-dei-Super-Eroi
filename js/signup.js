@@ -11,7 +11,7 @@ window.onload = function() {
     // Gestione del pulsante "Torna al Login"
     backToLoginBtn.addEventListener("click", function() {
         console.log("Pulsante 'Torna al Login' cliccato");
-        window.location.href = "login.html"; // Cambia il percorso se necessario
+        window.location.href = "login.html"; // rimanda alla pagina di login
     });
 
     // Gestione della registrazione
@@ -24,24 +24,24 @@ window.onload = function() {
 
         // Recupera la lista degli utenti dal localStorage
         const users = JSON.parse(localStorage.getItem("users")) || [];
-        try 
-        {
+        try {
             // Controlla che tutti i campi siano popolati
-            if (!username || !email || !password) 
-            {
-                throw "Per favore, compila tutti i campi.";   
+            if (!username || !email || !password) {
+                throw "Per favore, compila tutti i campi.";
             }
+
             // Controlla se l'utente esiste già (email unica)
             const userExists = users.some(user => user.email === email);
-            if (userExists) 
-            {
+            if (userExists) {
                 throw "Email già registrata. Prova a fare il login.";
             }
-            // Controllo della password
-            
 
-        } catch (errormsg)
-        {
+            // Controllo della password
+            if (!isValidPassword(password)) {
+                throw "La password deve essere lunga almeno 8 caratteri.";
+            }
+
+        } catch (errormsg) {
             alert(errormsg);
             return;
         }
@@ -63,3 +63,9 @@ window.onload = function() {
         window.location.href = "login.html"; // Reindirizza al login
     });
 };
+
+// Funzione per verificare la validità della password
+function isValidPassword(password) {
+    const minLength = 8;
+    return password.length >= minLength;
+}

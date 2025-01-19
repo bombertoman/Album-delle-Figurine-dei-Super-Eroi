@@ -20,7 +20,12 @@ form {
     border-radius: 10px;
     border: 1px solid #888;
 }
-
+.pwd-alert {
+    font-size: 0.9rem;
+    color: gray;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
 button {
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease; /* Animazione */
