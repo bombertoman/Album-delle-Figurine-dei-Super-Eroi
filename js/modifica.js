@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Recupero dati dell'utente loggato
     const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) {
         alert('Errore: nessun utente autenticato. Reindirizzamento al login.');
@@ -9,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const user = JSON.parse(currentUser);
 
-    // campi precompilati (no pwd)
+    // Precompila i campi del modulo
     const usernameField = document.getElementById('username');
     const emailField = document.getElementById('email');
 
@@ -20,7 +19,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Uno o più elementi non trovati nel DOM.');
     }
 
-    // salvataggio delle modifiche
+    // Gestisce il salvataggio delle modifiche
     document.getElementById('profile-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
@@ -35,24 +34,39 @@ document.addEventListener('DOMContentLoaded', function () {
         }
 
         const updatedUser = {
-            ...user, // tiene i dati esistenti
+            ...user,
             username: updatedUsername,
             email: updatedEmail,
-            password: updatedPassword || user.password, // tiene la password precedente se non è stata modifiata
+            password: updatedPassword || user.password,
         };
 
         // Salva i dati aggiornati nel localStorage
         localStorage.setItem('currentUser', JSON.stringify(updatedUser));
 
-        // Aggiorna l'elenco degli utenti
         const users = JSON.parse(localStorage.getItem('users')) || [];
         const userIndex = users.findIndex(u => u.email === user.email);
         if (userIndex !== -1) {
-            users[userIndex] = updatedUser; // Aggiorna l'utente già esistente
+            users[userIndex] = updatedUser;
             localStorage.setItem('users', JSON.stringify(users));
         }
 
         alert('Profilo aggiornato con successo!');
-        window.location.href = '../html/login.html'; 
+        window.location.href = '../html/login.html';
+    });
+
+    // Gestisce l'eliminazione dell'account
+    document.getElementById('delete-account-btn').addEventListener('click', function () {
+        if (confirm('Sei sicuro di voler eliminare il tuo account?')) {
+            // Rimuove l'utente dalla lista degli utenti
+            const users = JSON.parse(localStorage.getItem('users')) || [];
+            const updatedUsers = users.filter(u => u.email !== user.email);
+            localStorage.setItem('users', JSON.stringify(updatedUsers));
+
+            // Rimuove l'utente attualmente loggato
+            localStorage.removeItem('currentUser');
+
+            alert('Account eliminato con successo!');
+            window.location.href = '../html/login.html'; // Reindirizza al login
+        }
     });
 });

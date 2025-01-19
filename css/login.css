@@ -23,6 +23,7 @@ form {
 
 button {
     cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease; /* Animazione */
 }
 #login-btn {
     background-color: #009dff;
@@ -34,7 +35,13 @@ button {
     color: #009dff;
     border: none;
 }
-
+#delete-account-btn {
+    background-color: #71181f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
 h1 {
     color: #71181f;
 }
@@ -54,7 +61,7 @@ button:hover {
     background-color: #009dff;
     border: none;
     border-radius: 8px;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Animazione */
+    
 }
 
 #back-to-home:hover {
