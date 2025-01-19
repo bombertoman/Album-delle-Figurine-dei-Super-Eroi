@@ -1,55 +1,65 @@
-document.getElementById('signup-form').addEventListener('submit', function (event) {
-    event.preventDefault();
+window.onload = function() {
+    const signupForm = document.getElementById("signup-form");
+    const backToLoginBtn = document.getElementById("back-to-login");
 
-    const username = document.getElementById('username').value.trim();
-    const email = document.getElementById('email').value.trim();
-    const password = document.getElementById('password').value.trim();
-    const confirmPassword = document.getElementById('confirm-password').value.trim();
-
-    // Validazione base
-    if (!username || !email || !password) {
-        alert('Per favore, compila tutti i campi.');
+    // Controllo elementi esistenti
+    if (!signupForm || !backToLoginBtn) {
+        console.error("Uno o più elementi non trovati nel DOM.");
         return;
     }
 
-    // Validazione password
-    if (!isValidPassword(password)) {
-        alert('La password deve essere lunga almeno 8 caratteri e contenere almeno un numero.');
-        return;
-    }
+    // Gestione del pulsante "Torna al Login"
+    backToLoginBtn.addEventListener("click", function() {
+        console.log("Pulsante 'Torna al Login' cliccato");
+        window.location.href = "login.html"; // Cambia il percorso se necessario
+    });
 
-    // Verifica che le password coincidano
-    if (password !== confirmPassword) {
-        alert('Le password non coincidono!');
-        return;
-    }
+    // Gestione della registrazione
+    signupForm.addEventListener("submit", function(event) {
+        event.preventDefault(); // Evita il ricaricamento della pagina
 
-    // Recupera la lista degli utenti dal localStorage
-    const users = JSON.parse(localStorage.getItem('users')) || [];
+        const username = document.getElementById("signup-username").value.trim();
+        const email = document.getElementById("signup-email").value.trim();
+        const password = document.getElementById("signup-password").value.trim();
 
-    // Controlla se l'email è già registrata
-    const existingUser = users.find(user => user.email === email);
-    if (existingUser) {
-        alert('Esiste già un account con questa email.');
-        return;
-    }
+        // Recupera la lista degli utenti dal localStorage
+        const users = JSON.parse(localStorage.getItem("users")) || [];
+        try 
+        {
+            // Controlla che tutti i campi siano popolati
+            if (!username || !email || !password) 
+            {
+                throw "Per favore, compila tutti i campi.";   
+            }
+            // Controlla se l'utente esiste già (email unica)
+            const userExists = users.some(user => user.email === email);
+            if (userExists) 
+            {
+                throw "Email già registrata. Prova a fare il login.";
+            }
+            // Controllo della password
+            
 
-    // Crea un nuovo utente
-    const newUser = { username, email, password };
+        } catch (errormsg)
+        {
+            alert(errormsg);
+            return;
+        }
 
-    // Aggiungi il nuovo utente alla lista
-    users.push(newUser);
+        // Crea un nuovo utente
+        const newUser = {
+            username,
+            email,
+            password
+        };
 
-    // Salva la lista aggiornata nel localStorage
-    localStorage.setItem('users', JSON.stringify(users));
+        // Aggiungi il nuovo utente alla lista
+        users.push(newUser);
 
-    alert('Registrazione completata con successo!');
-    window.location.href = 'login.html'; // Reindirizza alla pagina di login
-});
+        // Salva la lista aggiornata nel localStorage
+        localStorage.setItem("users", JSON.stringify(users));
 
-// verificare la validità della password
-function isValidPassword(password) {
-    const minLength = 8;
-    const hasNumber = /\d/; // Verifica se contiene almeno un numero
-    return password.length >= minLength && hasNumber.test(password);
-}
+        alert("Registrazione avvenuta con successo!");
+        window.location.href = "login.html"; // Reindirizza al login
+    });
+};
