@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    // Recupera i dati dell'utente loggato
+    // Recupero dati dell'utente loggato
     const currentUser = localStorage.getItem('currentUser');
     if (!currentUser) {
         alert('Errore: nessun utente autenticato. Reindirizzamento al login.');
@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     const user = JSON.parse(currentUser);
 
-    // Precompila i campi del modulo
+    // campi precompilati (no pwd)
     const usernameField = document.getElementById('username');
     const emailField = document.getElementById('email');
 
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.error('Uno o più elementi non trovati nel DOM.');
     }
 
-    // Gestisce il salvataggio delle modifiche
+    // salvataggio delle modifiche
     document.getElementById('profile-form').addEventListener('submit', function (event) {
         event.preventDefault();
 
