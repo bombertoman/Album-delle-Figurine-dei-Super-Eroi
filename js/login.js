@@ -13,7 +13,7 @@ window.onload = function() {
     // Gestione del pulsante "Crea nuovo account"
     signupBtn.addEventListener("click", function() {
         console.log("Pulsante 'Crea nuovo account' cliccato");
-        window.location.href = "signup.html"; // Cambia il percorso se necessario
+        window.location.href = "signup.html"; // Cambia il percorso
     });
 
     // Gestione del login
@@ -23,25 +23,31 @@ window.onload = function() {
         const email = emailInput.value.trim();
         const password = passwordInput.value.trim();
 
-        // Semplice validazione
+        // Validazione 
         if (!email || !password) {
             alert("Per favore inserisci tutti i campi.");
             return;
         }
 
-        // Recupera la lista degli utenti dal localStorage
-        const users = JSON.parse(localStorage.getItem("users")) || [];
+        try {
+            // try-catch per gestire errori durante il recupero dei dati in local storage
+            // Recupera la lista degli utenti dal localStorage
+            const users = JSON.parse(localStorage.getItem("users")) || [];
 
-        // Controlla se esiste un utente con email e password corrispondenti
-        const user = users.find(user => user.email === email && user.password === password);
+            // Controlla se esiste un utente con email e password corrispondenti
+            const user = users.find(user => user.email === email && user.password === password);
 
-        if (user) {
-            alert(`Benvenuto, ${user.username}!`);
-            // Salva l'utente attivo nel localStorage (opzionale)
-            localStorage.setItem("currentUser", JSON.stringify(user));
-            window.location.href = "album.html"; // Cambia il percorso se necessario
-        } else {
-            alert("Credenziali non valide.");
+            if (user) {
+                alert(`Benvenuto, ${user.username}!`);
+                // Salva l'utente attivo nel localStorage
+                localStorage.setItem("currentUser", JSON.stringify(user));
+                window.location.href = "album.html"; // Cambia il percorso
+            } else {
+                alert("Credenziali non valide.");
+            }
+        } catch (error) {
+            console.error("Errore durante il login:", error);
+            alert("Si è verificato un problema. Per favore riprova.");
         }
     });
 };

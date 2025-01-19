@@ -37,7 +37,7 @@ window.onload = function() {
             {
                 throw "Email già registrata. Prova a fare il login.";
             }
-            // Controllo formale della password
+            // Controllo della password
             
 
         } catch (errormsg)
