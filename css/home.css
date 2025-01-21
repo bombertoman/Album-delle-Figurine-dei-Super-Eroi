@@ -8,7 +8,10 @@
     font-family: 'Roboto', sans-serif;
     border-bottom: 2px solid #005fa3; /* Linea separazione */
     height: 60px; /* Altezza ottimizzata */
-    position: relative; /* Posizionamento per il dropdown */
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 1000; /* Assicura che la navbar sia sopra gli altri contenuti */
 }
 
