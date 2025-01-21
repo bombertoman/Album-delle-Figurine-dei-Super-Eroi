@@ -22,19 +22,10 @@ form {
     color: #fff;
 }
 
-#signup-btn {
-    background-color: transparent;
-    color: #009dff;
-    border: none;
-}
-
 h1 {
     color: #71181f;
 }
 
-#signup-btn:hover {
-    background-color: #d5d5d5;
-}
 #back-to-home {
     width: 150px;
     padding: 10px;
@@ -49,8 +40,4 @@ h1 {
 #back-to-home:hover {
     background-color: #006bbf; 
     color: #ffffff; 
-}
-#signupbttn {
-    background-color: #009dff;
-    color: #fff;
 }

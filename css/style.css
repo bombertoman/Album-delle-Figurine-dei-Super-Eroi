@@ -26,6 +26,14 @@ button {
 button:hover {
     filter: brightness(1.15);
 }
+.main-btn {
+    background-color: transparent;
+    color: #009dff;
+    border: none;
+}
+.main-btn:hover {
+    background-color: #d5d5d5;
+}
 * {
     box-sizing: border-box;
 
