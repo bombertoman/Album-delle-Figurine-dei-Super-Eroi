@@ -56,7 +56,7 @@
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: url('./marvelbkg.jpg') no-repeat center center fixed;
+    background: url('./img/marvelbkg.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
 }
