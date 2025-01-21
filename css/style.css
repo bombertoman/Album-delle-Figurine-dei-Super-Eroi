@@ -38,6 +38,18 @@ button:hover {
     background-color: #009dff;
     color: #fff;
 }
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-item {
+    height: 40px;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #888;
+}
 * {
     box-sizing: border-box;
 
