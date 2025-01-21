@@ -1,13 +1,15 @@
 /* Navbar */
 .navbar {
     background-color: #009dff;
-    overflow: hidden;
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     font-family: 'Roboto', sans-serif;
     border-bottom: 2px solid #005fa3; /* Linea separazione */
+    height: 60px; /* Altezza ottimizzata */
+    position: relative; /* Posizionamento per il dropdown */
+    z-index: 1000; /* Assicura che la navbar sia sopra gli altri contenuti */
 }
 
 .navbar a {
@@ -16,6 +18,7 @@
     padding: 10px 15px;
     font-weight: bold;
     font-size: 1rem;
+    line-height: 1.5;
 }
 
 .navbar a:hover {
@@ -24,17 +27,20 @@
 }
 
 .dropdown {
-    position: relative;
+    position: relative; /* Permette il posizionamento assoluto dei contenuti */
 }
 
 .dropdown-content {
     display: none;
     position: absolute;
+    top: 60px; /* Posiziona il menu sotto la navbar */
+    left: 0;
     background-color: #007acc;
     min-width: 160px;
     box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
     border-radius: 5px;
-    z-index: 1000;
+    z-index: 999; /* Assicura che il menu sia visibile */
+    overflow: visible; /* Evita che il menu venga tagliato */
 }
 
 .dropdown-content a {
@@ -49,36 +55,41 @@
 }
 
 .dropdown:hover .dropdown-content {
-    display: block;
+    display: block; /* Mostra il menu a tendina quando si passa il mouse */
 }
 
-/* Layout */
+/* Body layout */
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    background: url('./img/marvelbkg.jpg') no-repeat center center fixed;
+    background: url('./marvelbkg.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
-    min-height: 100vh; /* Garantisce che il corpo della pagina occupi tutta l'altezza */
+    min-height: 100vh;
+    overflow-x: hidden; /* Evita lo scrolling orizzontale */
 }
 
+/* Wrapper */
 #wrapper {
     text-align: center;
     padding: 50px 20px;
     margin-top: 80px; /* Sposta il contenuto sotto la navbar */
 }
 
+/* Titolo principale */
 h1 {
     font-size: 2.5rem;
     margin-bottom: 20px;
     color: #fff;
 }
 
+/* Paragrafo descrittivo */
 p {
     font-size: 1.2rem;
     margin-bottom: 30px;
 }
 
+/* Pulsanti */
 button {
     padding: 15px 30px;
     margin: 10px;
