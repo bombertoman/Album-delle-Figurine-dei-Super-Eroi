@@ -16,10 +16,7 @@ form {
     margin-top: -10px;
     margin-bottom: 10px;
 }
-button {
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease; /* Animazione */
-}
+
 #login-btn {
     background-color: #009dff;
     color: #fff;
@@ -33,10 +30,6 @@ button {
 
 h1 {
     color: #71181f;
-}
-
-button:hover {
-    filter: brightness(1.15);
 }
 
 #signup-btn:hover {
