@@ -58,13 +58,6 @@
     display: block; /* Mostra il menu a tendina quando si passa il mouse */
 }
 
-/* Wrapper */
-#wrapper {
-    text-align: center;
-    padding: 50px 20px;
-    margin-top: 80px; /* Sposta il contenuto sotto la navbar */
-}
-
 /* Titolo principale */
 h1 {
     font-size: 2.5rem;

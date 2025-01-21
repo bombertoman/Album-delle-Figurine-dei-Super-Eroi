@@ -1,15 +1,4 @@
 /* Stile per la pagina di modifica del profilo decisione di tenerla separata da login.css*/
-
-#wrapper { 
-    background: rgba(255, 255, 255, 0.8);
-    min-width: 360px;
-    max-width: 660px;
-    width: 42%;
-    padding: 50px;
-    border-radius: 25px;
-    box-shadow: 0 0 100px;
-}
-
 form {
     display: flex;
     flex-direction: column;
