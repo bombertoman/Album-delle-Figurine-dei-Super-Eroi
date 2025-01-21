@@ -58,17 +58,6 @@
     display: block; /* Mostra il menu a tendina quando si passa il mouse */
 }
 
-/* Body layout */
-body {
-    margin: 0;
-    font-family: 'Roboto', sans-serif;
-    background: url('./marvelbkg.jpg') no-repeat center center fixed;
-    background-size: cover;
-    color: white;
-    min-height: 100vh;
-    overflow-x: hidden; /* Evita lo scrolling orizzontale */
-}
-
 /* Wrapper */
 #wrapper {
     text-align: center;
