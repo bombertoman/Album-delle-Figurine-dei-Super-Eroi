@@ -59,6 +59,7 @@ body {
     background: url('./img/marvelbkg.jpg') no-repeat center center fixed;
     background-size: cover;
     color: white;
+    min-height: 100vh; /* Garantisce che il corpo della pagina occupi tutta l'altezza */
 }
 
 #wrapper {
