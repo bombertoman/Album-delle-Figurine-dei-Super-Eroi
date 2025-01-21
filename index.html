@@ -3,21 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Album Figurine Supereroi</title>
-    <link rel="stylesheet" href="./css/login.css">
-    <link rel="stylesheet" href="./index.css"> <!-- Stile personalizzato per la Home -->
+    <title>Album delle Figurine</title>
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
-        <h1>Benvenuto nell'Album delle Figurine dei Supereroi</h1>
-        <p class="description">Raccogli, scambia e colleziona le figurine dei tuoi supereroi preferiti!</p>
-        <div class="btn-container">
-            <button id="login-btn" onclick="location.href='./html/login.html'">Accedi</button>
-            <button id="signup-btn" onclick="location.href='./html/signup.html'">Registrati</button>
+    <!-- Navbar -->
+    <div class="navbar">
+        <a href="./index.html">Home</a>
+        <a href="./html/login.html">Login</a>
+        <a href="./html/signup.html">Registrati</a>
+        <div class="dropdown">
+            <a href="javascript:void(0)">Altro</a>
+            <div class="dropdown-content">
+                <a href="./html/album.html">Album</a>
+                <a href="./html/modifica.html">Modifica Profilo</a>
+                <a href="./html/crediti.html">Crediti</a>
+            </div>
         </div>
     </div>
-    <footer>
-        <p>©️ 2025 Album Figurine SuperEroi</p>
-    </footer>
+
+    <!-- Contenuto principale -->
+    <div id="wrapper">
+        <h1>Benvenuto nell'Album delle Figurine</h1>
+        <p>Raccogli, colleziona e scambia le figurine dei tuoi supereroi preferiti!</p>
+        <button onclick="location.href='./html/login.html'">Accedi</button>
+        <button onclick="location.href='./html/signup.html'">Registrati</button>
+    </div>
 </body>
 </html>

@@ -1,4 +1,4 @@
-/* Stile per la pagina di modifica del profilo */
+/* Stile per la pagina di modifica del profilo decisione di tenerla separata da login.css*/
 
 #wrapper { 
     background: rgba(255, 255, 255, 0.8);
@@ -41,7 +41,16 @@ button {
 #save-btn:hover {
     filter: brightness(1.15);
 }
-
+#delete-account-btn {
+    background-color: #71181f;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+#delete-account-btn:hover {
+    filter: brightness(1.15);
+}
 h1 {
     color: #71181f;
     text-align: center;

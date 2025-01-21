@@ -1,65 +1,91 @@
-/* Aggiungi uno sfondo  */
+/* Navbar */
+.navbar {
+    background-color: #009dff; 
+    overflow: hidden;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.navbar a:hover {
+    background-color: #007acc;
+    border-radius: 5px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #009dff;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.dropdown-content a {
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #007acc;
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Layout */
 body {
-    background: url('./img/marvelbkg.jpg') no-repeat center center fixed;
-    background-size: cover;
     margin: 0;
     font-family: 'Roboto', sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    background: url('../img/marvelbkg.jpg') no-repeat center center fixed;
+    background-size: cover;
+    color: white;
 }
 
-/* Wrapper centrato */
-#wrapper { 
-    background: rgba(255, 255, 255, 0.8);
-    min-width: 360px;
-    max-width: 660px;
-    width: 42%;
-    padding: 50px;
-    border-radius: 25px;
-    box-shadow: 0 0 100px;
+#wrapper {
+    text-align: center;
+    padding: 50px 20px;
 }
 
-/* Descrizione */
-.description {
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    color: #fff;
+}
+
+p {
     font-size: 1.2rem;
-    color: #555;
     margin-bottom: 30px;
 }
 
-/* Pulsanti */
-.btn-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-}
-
-#login-btn, #signup-btn {
-    width: 150px;
-    padding: 10px;
-    font-size: 1rem;
-    font-weight: bold;
-    color: #fff;
-    background-color: #009dff;
+button {
+    padding: 10px 20px;
+    margin: 10px;
     border: none;
-    border-radius: 8px;
+    background-color: #007acc; /* Colore pulsanti coerente */
+    color: white;
+    font-size: 1rem;
+    border-radius: 5px;
     cursor: pointer;
-    transition: filter 0.3s ease;
+    transition: background-color 0.3s ease;
 }
 
-#login-btn:hover, #signup-btn:hover {
-    filter: brightness(0.9);
-}
-
-/* Footer */
-footer {
-    background-color: rgba(255, 255, 255, 0.8);
-    color: black;
-    text-align: center;
-    padding: 6px;
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+button:hover {
+    background-color: #005fa3;
 }

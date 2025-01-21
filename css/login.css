@@ -1,3 +1,4 @@
+/* css non solo della pagina di login, ma di tutto ciò che riguarda la gestione di lg
 #wrapper { 
     background: rgba(255, 255, 255, 0.8);
     min-width: 360px;
@@ -40,13 +41,7 @@ button {
     color: #009dff;
     border: none;
 }
-#delete-account-btn {
-    background-color: #71181f;
-    color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
+
 h1 {
     color: #71181f;
 }
