@@ -17,11 +17,6 @@ form {
     margin-bottom: 10px;
 }
 
-#login-btn {
-    background-color: #009dff;
-    color: #fff;
-}
-
 h1 {
     color: #71181f;
 }
@@ -30,14 +25,7 @@ h1 {
     width: 150px;
     padding: 10px;
     font-weight: bold;
-    color: #fff;
-    background-color: #009dff;
     border: none;
     border-radius: 8px;
     
-}
-
-#back-to-home:hover {
-    background-color: #006bbf; 
-    color: #ffffff; 
 }
