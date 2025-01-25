@@ -1,9 +1,8 @@
 /* popolazione dinamica del numero dei crediti presente nella navbar */
-document.onload(
-    function() {
-        alert("Pagina Caricata")
-    }
-)
+document.onload = function() {
+    alert("Pagina Caricata")
+}
+
 
 
 
