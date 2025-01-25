@@ -19,7 +19,8 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("crediti-form").addEventListener("submit", (e) => {
         e.preventDefault();
         const crediti = parseInt(document.getElementById("custom-crediti").value);
-
+        const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+        
     //controllo se è inserito un numero valido
         if (isNaN(crediti) || crediti <= 0) {
             alert("Inserisci un numero valido!");
