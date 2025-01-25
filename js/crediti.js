@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Gestione click sui pacchetti predefiniti
-    document.querySelectorAll("".package-btn").forEach(btn => {
+    document.querySelectorAll("".package-btn,").forEach(btn => {
         btn.addEventListener("click", (e) => {
             // Imposta il valore personalizzato con il dato del pacchetto
             document.getElementById("custom-crediti").value = e.target.dataset.crediti;
@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //controllo limite massimo cr
         const newTotal = currentUser.numberCredits + crediti;
         if (newTotal > maxCredits) {
-            alert("Superato il limite massimo di" ${maxCredits} "crediti!")
+            alert("Superato il limite massimo di ${maxCredits} crediti!")
             return;
         }
 
@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
             localStorage.setItem("users", JSON.stringify(users));
         }
 
-        alert(${crediti} "crediti acquistati con successo!");
+        alert("${crediti} crediti acquistati con successo!");
         window.location.href = "album.html"; // Torna all'album
     });
 });
