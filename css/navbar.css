@@ -1,0 +1,39 @@
+
+/* Navbar */
+.navbar {
+    background-color: #71181f;
+    color: whitesmoke; /* Testo*/
+    position: absolute; /* Posizionamento assoluto */
+    top: 0; /* Allinea in alto */
+    left: 0; /* Allinea a sinistra */
+    width: 100%; /* Copre tutta la larghezza */
+    display: flex;
+    justify-content: space-between; /*ripartizione orizzontale lasciando lo spazio in mezzo */
+    align-items: center;
+    padding: 10px 20px;
+    box-shadow: 0 4px 6px whitesmoke;
+
+}
+
+.navbar .logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 20px; /* Spazio tra logo e link */
+    text-transform: uppercase;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 20px; /* Spaziatura tra i link */
+}
+
+.navbar nav a {
+    color: whitesmoke; /* Testo profilo, logout */
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.navbar nav a:hover {
+    color: #009dff; /* Cambia colore al passaggio del mouse */
+}
