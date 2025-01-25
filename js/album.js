@@ -8,3 +8,5 @@ function logout() {
     localStorage.removeItem("currentUser");
     location.href = "login.html";
 }
+
+//file da chiamare auth.js e caricarlo su tutte le pagine che hanno bisogno del controllo dell'utente loggato e per fare funzionare il tasto logout con la funzione logout
