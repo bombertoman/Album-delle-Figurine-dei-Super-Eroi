@@ -8,7 +8,7 @@ body, html {
 /* Navbar */
 .navbar {
     background-color: #71181f;
-    color: black; /* Testo nero */
+    color: whitesmoke; /* Testo*/
     position: absolute; /* Posizionamento assoluto */
     top: 0; /* Allinea in alto */
     left: 0; /* Allinea a sinistra */
