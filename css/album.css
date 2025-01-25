@@ -7,7 +7,7 @@ body, html {
 
 /* Navbar */
 .navbar {
-    background-color: white; /* Colore bianco */
+    background-color: #71181f;
     color: black; /* Testo nero */
     position: absolute; /* Posizionamento assoluto */
     top: 0; /* Allinea in alto */
@@ -70,7 +70,7 @@ body, html {
 
 /* Footer */
 footer {
-    background: white; /* Colore bianco */
+    background: #71181f; /* Colore rosso */
     color: black; /* Testo nero */
     text-align: center;
     padding: 10px;
