@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     //controllo limite massimo cr
         const newTotal = currentUser.numberCredits + crediti;
         if (newTotal > maxCredits) {
-            alert("Superato il limite massimo di ${maxCredits} crediti!")
+            alert("Superato il limite massimo di ${maxCredits} crediti!");
             return;
         }
 
