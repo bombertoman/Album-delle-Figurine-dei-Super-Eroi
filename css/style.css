@@ -78,13 +78,23 @@ form {
 .coin-icon {
     color: greenyellow;
 }
-/* Footer */
+
 footer {
-    background: white; /* Colore */
-    color: black; /* Testo nero */
+    background: white;
+    color: #2f0000; /* Colore testo rosso scuro */
     text-align: center;
+    padding: 15px;
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -4px 2px whitesmoke;
+    box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1); /* Ombra leggera */
+    border-top: 2px solid #009dff; /* Linea decorativa blu */
+    font-family: 'Roboto', sans-serif;
+    font-weight: 500; /* Testo un po' più spesso */
+    font-size: 1rem;
+}
+
+footer p {
+    margin: 0;
+    letter-spacing: 0.3px; /* Leggera spaziatura tra lettere */
 }
