@@ -80,11 +80,11 @@ form {
 }
 /* Footer */
 footer {
-    background: white; /* Colore */
+    background: azure; /* Colore */
     color: black; /* Testo nero */
     text-align: center;
     position: fixed;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -19px 2px whitesmoke;
+    box-shadow: 0 -10px 2px whitesmoke;
 }
