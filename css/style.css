@@ -68,5 +68,9 @@ form {
 }
 .buy-icon {
     font-size: 1rem;
-    color: gold;
+    color: #009dff;
+}
+
+.coin-icon {
+    color: greenyellow;
 }
