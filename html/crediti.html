@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <script src="../js/auth.js"></script> <!-- Controllo autenticazione -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acquista Crediti</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../css/wrapper.css">
+    <link rel="stylesheet" href="../css/crediti.css"> <!-- Stile specifico -->
+</head>
+<body>
+    <div id="wrapper">
+        <h1>Acquista Crediti</h1>
+        <form id="crediti-form">
+            <!-- Selezione pacchetto -->
+            <div class="package-container">
+                <button type="button" class="package-btn" data-crediti="50">50 crediti - 5€</button>
+                <button type="button" class="package-btn" data-crediti="100">100 crediti - 9€</button>
+                <button type="button" class="package-btn" data-crediti="200">200 crediti - 15€</button>
+            </div>
+
+            <!-- Oppure input manuale -->
+            <input type="number" class="form-item" id="custom-crediti" placeholder="Crediti personalizzati" min="1">
+            <button type="submit" class="form-item main-btn">Acquista</button>
+        </form>
+        <button class="form-item sec-btn" onclick="location.href='album.html'">Torna all'Album</button>
+    </div>
+
+    <script src="../js/crediti.js"></script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+/* crediti.css */
+.package-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.package-btn {
+    padding: 15px;
+    border: 2px solid #009dff;
+    border-radius: 10px;
+    background: transparent;
+    color: #009dff;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.package-btn:hover {
+    background: #009dff;
+    color: white;
+}
+
+#custom-crediti {
+    width: 100%;
+    margin: 15px 0;
+}
