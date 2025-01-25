@@ -54,3 +54,10 @@ form {
     box-sizing: border-box;
 
 }
+.credit-container {
+    display: flex;
+    flex-direction: column;
+}
+.credit-subcontainer {
+    display: flex;
+}
