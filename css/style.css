@@ -67,10 +67,14 @@ form {
     align-items: center;
 }
 .buy-icon {
+    cursor: pointer;
+    transition: 0.3 ease;
     font-size: 1rem;
     color: #009dff;
 }
-
+.buy-icon:hover {
+    color: #009dff !important;
+}
 .coin-icon {
     color: greenyellow;
 }
