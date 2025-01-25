@@ -50,13 +50,14 @@ window.onload = function() {
         const newUser = {
             username,
             email,
-            password
+            password,
+            numberCredits: 0 //inizializzato il numero dei crediti disponibili al signup
         };
 
         // Aggiungi il nuovo utente alla lista
         users.push(newUser);
 
-        // Salva la lista aggiornata nel localStorage
+        // Salva la lista degli utenti aggiornata nel localStorage
         localStorage.setItem("users", JSON.stringify(users));
 
         alert("Registrazione avvenuta con successo!");

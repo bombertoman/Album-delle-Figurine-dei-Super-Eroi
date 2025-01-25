@@ -1,9 +1,7 @@
 /* popolazione dinamica del numero dei crediti presente nella navbar */
-window.onload = function() {
-    alert("Pagina Caricata")
+window.onload = () => { 
+    const currentUser = JSON.parse(localStorage.getItem("currentUser")); //recupero dei dati dell'utente corrente
+    const numberCredits = currentUser.numberCredits // quanti crediti il currentUser ha a disposizione
+    const divCrediti = document.getElementById("ncrediti"); //div che contiene il numero dei cr
+    divCrediti.innerText = numberCredits
 }
-
-
-
-
-alert("Sotto ma fuori dalla funz")
