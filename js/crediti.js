@@ -8,15 +8,14 @@ document.addEventListener("DOMContentLoaded", () => {
         return;
     }
 
-    // Correzione sintassi selector
     document.querySelectorAll(".package-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
+        btn.addEventListener("click", (event) => {
             document.getElementById("custom-crediti").value = e.target.dataset.crediti;
         });
     });
 
-    document.getElementById("crediti-form").addEventListener("submit", (e) => {
-        e.preventDefault();
+    document.getElementById("crediti-form").addEventListener("submit", (event) => {
+        event.preventDefault(); // blocca il ricaricamento
         const crediti = parseInt(document.getElementById("custom-crediti").value);
         const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
