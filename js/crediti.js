@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.querySelectorAll(".package-btn").forEach(btn => {
         btn.addEventListener("click", (event) => {
-            document.getElementById("custom-crediti").value = e.target.dataset.crediti;
+            document.getElementById("custom-crediti").value = event.target.dataset.crediti;
         });
     });
 
