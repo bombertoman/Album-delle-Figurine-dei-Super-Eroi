@@ -1,4 +1,4 @@
-window.onload = () => {
+window.addEventListener("load", () => {
     var modal = document.getElementById("modale-acquistopack");
     var btn = document.getElementById("btn-acquistopack");
     var span = document.getElementsByClassName("close")[0];
@@ -16,4 +16,4 @@ window.onload = () => {
             modal.style.display = "none";
         }
     };
-}
+})
