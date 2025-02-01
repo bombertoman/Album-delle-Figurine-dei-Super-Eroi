@@ -1,5 +1,5 @@
 /* Background modale */
-.modal {
+.modale {
     display: none;
     position: fixed;
     z-index: 1;
