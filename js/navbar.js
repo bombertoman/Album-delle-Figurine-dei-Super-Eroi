@@ -1,5 +1,7 @@
 /* popolazione dinamica del numero dei crediti presente nella navbar */
+console.log("caricamento js")
 window.onload = () => { 
+    console.log("window.onload funzia")
     const currentUser = JSON.parse(localStorage.getItem("currentUser")); //recupero dei dati dell'utente corrente
     const numberCredits = currentUser.numberCredits // quanti crediti il currentUser ha a disposizione
     const divCrediti = document.getElementById("ncrediti"); //div che contiene il numero dei cr
@@ -12,4 +14,6 @@ window.onload = () => {
             window.location.href = "crediti.html";
         })
     }
+    console.log("fine funzio funzia")
+
 }
