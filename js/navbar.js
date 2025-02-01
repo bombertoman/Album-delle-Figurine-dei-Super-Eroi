@@ -5,7 +5,7 @@ window.addEventListener("load", () => {
     const currentUser = JSON.parse(localStorage.getItem("currentUser")); //recupero dei dati dell'utente corrente
     const numberCredits = currentUser.numberCredits // quanti crediti il currentUser ha a disposizione
     const divCrediti = document.getElementsByClassName("ncrediti"); //div che contiene il numero dei cr
-    divCrediti.forEach(element => {
+    Array.prototype.forEach.call(divCrediti, element => {
         element.innerText = numberCredits     
     });
     
