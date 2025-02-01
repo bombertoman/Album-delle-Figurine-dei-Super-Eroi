@@ -51,8 +51,9 @@ window.onload = function() {
             username,
             email,
             password,
-            numberCredits: 0 //inizializzato il numero dei crediti disponibili al signup
-        };
+            numberCredits: 0, //inizializzato il numero dei crediti disponibili al signup
+            figurines: [] //inzializziamo l'array vuoto che conterrà le figurine
+        }
 
         // Aggiungi il nuovo utente alla lista
         users.push(newUser);
