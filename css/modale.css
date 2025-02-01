@@ -25,7 +25,11 @@
     flex-direction: column;
 }
 .modal-credit-container{
-    display: flex;
+    flex-direction: row;
+    height: 25px;
+}
+.modal-credit-container .ncrediti {
+    font-size: normal;
 }
 /* tasto chiudi */
 .close {
