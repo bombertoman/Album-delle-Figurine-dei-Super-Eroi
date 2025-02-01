@@ -24,6 +24,9 @@
     display: flex;
     flex-direction: column;
 }
+.modal-credit-container{
+    display: flex;
+}
 /* tasto chiudi */
 .close {
     color: #aaa;
