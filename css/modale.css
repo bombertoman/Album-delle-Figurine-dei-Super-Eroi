@@ -22,7 +22,7 @@
 }
 .modal-header {
     display: flex;
-    direction: column;
+    flex-direction: column;
 }
 /* tasto chiudi */
 .close {
