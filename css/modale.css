@@ -20,7 +20,10 @@
     border: 1px solid #888;
     width: 80%;
 }
-
+.modal-header {
+    display: flex;
+    direction: column;
+}
 /* tasto chiudi */
 .close {
     color: #aaa;
