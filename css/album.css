@@ -28,3 +28,23 @@ body, html {
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
+#btn-acquista-figurine {
+    background-color: #4a90e2; 
+    color: white; 
+    padding: 12px 24px;
+    border: none; 
+    border-radius: 8px; 
+    font-size: 16px;
+    cursor: pointer; 
+    transition: background-color 0.3s ease; 
+    margin: 10px 0; 
+}
+
+#btn-acquista-figurine:hover {
+    background-color: #357abd;
+}
+
+#btn-acquista-figurine:focus {
+    outline: none; 
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+}
