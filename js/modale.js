@@ -1,12 +1,3 @@
-/**
- * Updated modale.js
- * 
- * This version demonstrates how to call the Marvel API using their required
- * time stamp (ts), public key, and md5-generated hash. You may need to include
- * or import the MD5 function (for example, from CryptoJS) if it's not already
- * available in your environment.
- */
-
 window.addEventListener("load", () => {
     const modal = document.getElementById("modale-acquistopack");
     const btn = document.getElementById("btn-acquistopack");
@@ -27,10 +18,17 @@ window.addEventListener("load", () => {
             modal.style.display = "none";
         }
     };
-    
-    function generateMarvelHash(ts, privateKey, publicKey) {
 
-        return md5(ts + privateKey + publicKey);
+    /**
+     * Generates the MD5 hash required by the Marvel API:
+     * MD5(ts + privateKey + publicKey).
+     * We rely on CryptoJS being globally available.
+     */
+    function generateMarvelHash(ts, privateKey, publicKey) {
+        // Ensure crypto-js is loaded in your HTML:
+        // <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+        // For example:
+        return CryptoJS.MD5(ts + privateKey + publicKey).toString();
     }
 
     /**
@@ -78,7 +76,7 @@ window.addEventListener("load", () => {
                 creditiElem.textContent = (crediti - 1).toString();
 
                 // Fetch with required query parameters: ts, apikey, hash
-                // For example: https://gateway.marvel.com/v1/public/characters?ts=1&apikey=1234&hash=...
+                // Example: https://gateway.marvel.com/v1/public/characters?ts=1&apikey=1234&hash=ffd275c5130566a2916217b101f26150
                 const marvelUrl = `https://gateway.marvel.com/v1/public/characters?ts=${ts}&apikey=${publicKey}&hash=${hash}`;
                 const response = await fetch(marvelUrl);
 
