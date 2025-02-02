@@ -49,8 +49,7 @@ window.addEventListener("load", () => {
             album.appendChild(card);
         });
     }
-
-    // Purchase management: remove any inline onclicks and rely on addEventListener
+    
     if (btnAcquista) {
         btnAcquista.addEventListener("click", async function () {
             this.disabled = true;
