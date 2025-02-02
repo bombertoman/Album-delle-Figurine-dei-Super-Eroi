@@ -15,21 +15,34 @@
 .modal-button-container {
     margin-top: 20px;
     text-align: center;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 #btn-acquista-figurine {
-    padding: 10px 20px;
-    background-color: #4CAF50;
+    padding: 12px 24px;
+    background-color: #4a90e2;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    transition: all 0.3s ease;
+    max-width: 300px;
+    flex-shrink: 0;
 }
 
 #btn-acquista-figurine:hover {
-    background-color: #45a049;
+    background-color: #357abd;
+    transform: translateY(-1px);
 }
+
+#btn-acquista-figurine:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.5);
+}
+
 /* contenuto */
 .modal-content {
     background-color: #fefefe;
@@ -37,18 +50,23 @@
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    position: relative;
 }
+
 .modal-header {
     display: flex;
     flex-direction: column;
 }
-.modal-credit-container{
+
+.modal-credit-container {
     flex-direction: row;
     height: 25px;
 }
+
 .modal-credit-container .ncrediti {
     font-size: 1rem;
 }
+
 /* tasto chiudi */
 .close {
     color: #aaa;
