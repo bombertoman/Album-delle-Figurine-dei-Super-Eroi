@@ -1,94 +1,70 @@
 window.addEventListener("load", () => {
-    // Recupera la modale, il bottone di apertura e lo span di chiusura
     const modal = document.getElementById("modale-acquistopack");
     const btn = document.getElementById("btn-acquistopack");
     const span = document.getElementsByClassName("close")[0];
-
-    // Apre la modale al click sul bottone
-    btn.onclick = function () {
-        modal.style.display = "block";
-    };
-
-    // Chiude la modale al click sullo span "x"
-    span.onclick = function () {
-        modal.style.display = "none";
-    };
-
-    // Chiude la modale se si clicca al di fuori del contenuto
-    window.onclick = function (event) {
-        if (event.target === modal) {
-            modal.style.display = "none";
-        }
-    };
-
-    // Aggiunge event listener al bottone di acquisto
     const btnAcquista = document.getElementById('btn-acquista-figurine');
+
+    // Apertura modale
+    btn.onclick = () => modal.style.display = "block";
+
+    // Chiusura modale
+    span.onclick = () => modal.style.display = "none";
+    window.onclick = (event) => event.target === modal && (modal.style.display = "none");
+
+    // Gestione acquisto
     if (btnAcquista) {
-        btnAcquista.addEventListener('click', function() {
-            // Disabilita il bottone durante il caricamento
+        btnAcquista.addEventListener('click', async function() {
             this.disabled = true;
             this.textContent = 'Caricamento...';
 
-            // Recupera le chiavi API
-            const publicKey = '9de281f5f58435133e7b0803bf2727a2';
-            const privateKey = 'cf2a2657976eeb220c1a6a2a28e90100767bb137';
+            try {
+                const publicKey = '9de281f5f58435133e7b0803bf2727a2';
+                const privateKey = 'cf2a2657976eeb220c1a6a2a28e90100767bb137';
+                const crediti = parseInt(document.querySelector('.ncrediti').textContent);
 
-            // Controllo dei crediti
-            const creditiDisponibili = parseInt(document.querySelector('.ncrediti').textContent);
-            
-            if (creditiDisponibili >= 1) {
-                // Sottrazione di 1 credito
-                document.querySelector('.ncrediti').textContent = creditiDisponibili - 1;
-                
-                // Chiamata API con autenticazione
-                fetch('https://gateway.marvel.com/v1/public/characters', {
+                if (crediti < 1) {
+                    throw new Error('Crediti insufficienti');
+                }
+
+                // Aggiorna crediti
+                document.querySelector('.ncrediti').textContent = crediti - 1;
+
+                // Fetch API Marvel
+                const response = await fetch('https://gateway.marvel.com/v1/public/characters', {
                     headers: {
                         'Authorization': `Bearer ${publicKey}`,
                         'X-Private-Key': privateKey
                     }
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Errore nella richiesta');
-                    }
-                    return response.json();
-                })
-                .then(data => {
-                    // Verifica che i dati siano validi
-                    if (Array.isArray(data) && data.length > 0) {
-                        // Aggiornamento dell'album con le nuove figurine
-                        aggiornaAlbum(data);
-                        alert('Acquisto effettuato con successo!');
-                    } else {
-                        throw new Error('Dati non validi ricevuti dall\'API');
-                    }
-                })
-                .catch(error => {
-                    console.error('Errore nel recupero delle figurine:', error);
-                    alert('Si è verificato un errore durante l\'acquisto. Riprova più tardi.');
-                })
-                .finally(() => {
-                    // Riabilita il bottone
-                    btnAcquista.disabled = false;
-                    btnAcquista.textContent = 'Acquista Pacchetto';
                 });
-            } else {
-                alert('Non hai abbastanza crediti per acquistare un pacchetto!');
+
+                if (!response.ok) throw new Error('Errore API');
+                const data = await response.json();
+
+                if (data?.data?.results?.length > 0) {
+                    aggiornaAlbum(data.data.results);
+                    alert('Acquisto completato!');
+                }
+            } catch (error) {
+                console.error('Errore acquisto:', error);
+                alert(error.message.includes('Crediti') ? error.message : 'Errore durante l\'acquisto');
+            } finally {
+                this.disabled = false;
+                this.textContent = 'Acquista Pacchetto';
             }
         });
     }
 
-    // Funzione per aggiornare l'album con le nuove figurine
     function aggiornaAlbum(figurine) {
         const album = document.getElementById('album');
-        
-        figurine.forEach(figurina => {
+        album.innerHTML = ''; // Reset album
+
+        figurine.forEach(({ thumbnail, name, description }) => {
             const card = document.createElement('div');
             card.className = 'card';
             card.innerHTML = `
-                <img src="${figurina.immagine}" alt="${figurina.nome}">
-                <h3>${figurina.nome}</h3>
-                <p>${figurina.descrizione}</p>
+                <img src="${thumbnail.path}.${thumbnail.extension}" alt="${name}">
+                <h3>${name}</h3>
+                <p>${description || 'Descrizione non disponibile'}</p>
             `;
             album.appendChild(card);
         });
