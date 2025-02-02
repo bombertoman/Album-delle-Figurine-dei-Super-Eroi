@@ -1,19 +1,23 @@
 window.addEventListener("load", () => {
-    var modal = document.getElementById("modale-acquistopack");
-    var btn = document.getElementById("btn-acquistopack");
-    var span = document.getElementsByClassName("close")[0];
-    // apre la modale al click
+    // Recupera la modale, il bottone di apertura e lo span di chiusura
+    const modal = document.getElementById("modale-acquistopack");
+    const btn = document.getElementById("btn-acquistopack");
+    const span = document.getElementsByClassName("close")[0];
+
+    // Apre la modale al click sul bottone
     btn.onclick = function () {
         modal.style.display = "block";
     };
-    // chiude la modale
+
+    // Chiude la modale al click sullo span "x"
     span.onclick = function () {
         modal.style.display = "none";
     };
-    // chiude la modale quando si clicca al di fuori del contenuto
+
+    // Chiude la modale se si clicca al di fuori del contenuto
     window.onclick = function (event) {
-        if (event.target == modal) {
+        if (event.target === modal) {
             modal.style.display = "none";
         }
     };
-})
+});
