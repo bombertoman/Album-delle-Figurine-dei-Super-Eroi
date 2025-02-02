@@ -11,7 +11,45 @@
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+<!-- Modifiche all'HTML -->
+<div id="modale-acquistopack" class="modale">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <div class="modal-header">
+            <div>Acquista i pacchetti di figurine</div>
+            <div class="credit-container modal-credit-container">
+                <div>Crediti disponibili:</div>
+                <div class="credit-subcontainer">
+                    <i class="fa-solid fa-coins coin-icon"></i>
+                    <div class="ncrediti"></div>
+                    <i class="fa-solid fa-circle-plus buy-icon"></i>
+                </div>
+            </div>
+        </div>
+        <div class="modal-button-container">
+            <button id="btn-acquista-figurine" onclick="acquistaFigurine()">Acquista Figurine</button>
+        </div>
+    </div>
+</div>
 
+.modal-button-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+#btn-acquista-figurine {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+#btn-acquista-figurine:hover {
+    background-color: #45a049;
+}
 /* contenuto */
 .modal-content {
     background-color: #fefefe;
@@ -29,7 +67,7 @@
     height: 25px;
 }
 .modal-credit-container .ncrediti {
-    font-size: normal;
+    font-size: 1rem;
 }
 /* tasto chiudi */
 .close {
