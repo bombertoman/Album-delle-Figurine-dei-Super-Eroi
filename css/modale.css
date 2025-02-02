@@ -1,5 +1,6 @@
 /* Background modale */
 .modale {
+    display: none;
     position: fixed;
     z-index: 1;
     left: 0;
@@ -29,8 +30,7 @@
 #btn-acquista-figurine:hover {
     background-color: #45a049;
 }
-
-/* Contenuto */
+/* contenuto */
 .modal-content {
     background-color: #fefefe;
     margin: 15% auto;
@@ -38,22 +38,18 @@
     border: 1px solid #888;
     width: 80%;
 }
-
 .modal-header {
     display: flex;
     flex-direction: column;
 }
-
-.modal-credit-container {
+.modal-credit-container{
     flex-direction: row;
     height: 25px;
 }
-
 .modal-credit-container .ncrediti {
     font-size: 1rem;
 }
-
-/* Tasto chiudi */
+/* tasto chiudi */
 .close {
     color: #aaa;
     float: right;
