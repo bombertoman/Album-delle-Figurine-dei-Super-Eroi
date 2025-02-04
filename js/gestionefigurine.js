@@ -1,139 +1,138 @@
-/**
- * Esempio: Gestione figurine Marvel random
- * ----------------------------------------
- * Questo script mostra come:
- *  1) Generare l'hash richiesto da Marvel con generateMarvelHash.
- *  2) Effettuare una chiamata API a Marvel per recuperare personaggi.
- *  3) Estrarre 5 personaggi a caso dall'array di risultati.
- *  4) Salvare e rendere persistenti i personaggi con localStorage.
- *  5) Aggiornare la pagina (o un contenitore) con i personaggi estratti.
- *
- * Requisiti:
- *  - La libreria CryptoJS deve essere caricata prima di questo script.
- *  - generateMarvelHash(ts, privateKey, publicKey) deve essere definita.
- *  - Un elemento con id "figurines-container" per visualizzare i personaggi.
- *  - Un oggetto utente "currentUser" salvato in localStorage.
- */
+// ⚠️ Sostituisci con le tue chiavi Marvel API
+const PUBLIC_KEY = "9de281f5f58435133e7b0803bf2727a2";
+const PRIVATE_KEY = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
 
-// Recupera 5 personaggi Marvel e li salva per l'utente corrente
+// Importa la libreria CryptoJS per generare l'hash MD5
+if (typeof CryptoJS === "undefined") {
+const script = document.createElement("script");
+script.src = "https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js";
+document.head.appendChild(script);
+}
+
+/**
+ * Funzione per generare l'hash MD5 richiesto dall'API Marvel
+ */
 function generateMarvelHash(ts, privateKey, publicKey) {
 return CryptoJS.MD5(ts + privateKey + publicKey).toString();
 }
-async function eseguiAcquisto(publicKey, privateKey) {
+
+/**
+ * Effettua l'acquisto di 5 figurine casuali e le memorizza nel localStorage
+ */
+async function eseguiAcquisto() {
+const creditiElem = document.querySelector(".ncrediti");
+if (!creditiElem) {
+throw new Error("Elemento '.ncrediti' non trovato!");
+}
+
+let crediti = parseInt(creditiElem.textContent, 10);
+if (crediti < 1) {
+alert("Crediti insufficienti!");
+return;
+}
+
+// Deduzione temporanea dei crediti
+crediti -= 1;
+creditiElem.textContent = crediti.toString();
+
+// Generazione dell'hash per Marvel API
+const ts = new Date().getTime().toString();
+const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
+const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=5&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`;
+
 try {
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-if (!currentUser) {
-alert("Utente non loggato!");
-return;
-}
-
-// Esempio: verifichiamo se l'utente ha almeno 1 credito:
-if (currentUser.numberCredits < 1) {
-alert("Crediti insufficienti per acquistare!");
-return;
-}
-
-// Scala 1 credito
-currentUser.numberCredits -= 1;
-localStorage.setItem("currentUser", JSON.stringify(currentUser));
-
-// Genera parametri per la chiamata a Marvel
-const ts = Date.now().toString();
-const hash = generateMarvelHash(ts, privateKey, publicKey);
-
-// Puoi regolare i parametri di limit, offset, ecc. a piacere
-const url = `https://gateway.marvel.com/v1/public/characters?limit=100&ts=${ts}&apikey=${publicKey}&hash=${hash}`;
-
-// Chiamata fetch a Marvel
-const response = await fetch(url);
+const response = await fetch(marvelUrl);
 if (!response.ok) {
-throw new Error("Errore nella chiamata a Marvel API");
+    throw new Error("Errore API Marvel");
 }
 
 const data = await response.json();
-if (!data || !data.data || !data.data.results) {
-throw new Error("Risposta Marvel non valida");
+if (!data?.data?.results?.length) {
+    throw new Error("Nessun personaggio trovato!");
 }
 
-// Array di personaggi disponibili
-const marvelCharacters = data.data.results;
-// Se non ci sono abbastanza personaggi, esci
-if (marvelCharacters.length < 5) {
-alert("Non ci sono abbastanza personaggi per estrarne 5!");
-return;
-}
+// Ottieni le 5 figurine casuali
+const nuoveFigurine = data.data.results.map(character => ({
+    name: character.name,
+    image: `${character.thumbnail.path}.${character.thumbnail.extension}`
+}));
 
-// Recupera eventuali figurine già possedute
-const userFigurines = JSON.parse(localStorage.getItem("userFigurines")) || [];
+// Aggiorna l'album e memorizza le figurine nel localStorage
+aggiornaAlbum(nuoveFigurine);
+salvaFigurineLocalStorage(nuoveFigurine);
 
-// Seleziona 5 personaggi a caso, evitando duplicati
-const newFigurines = [];
-while (newFigurines.length < 5) {
-const randomIndex = Math.floor(Math.random() * marvelCharacters.length);
-const candidate = marvelCharacters[randomIndex];
+alert("Acquisto completato con successo!");
+aggiornaCrediti(crediti);
 
-if (!alreadyInUser && !alreadyInNew) {
-    const thumbnail = candidate.thumbnail;
-    const thumbnailUrl = thumbnail
-    ? `${thumbnail.path}.${thumbnail.extension}`
-    : "placeholder.png";
-
-    newFigurines.push({
-    id: candidate.id,
-    name: candidate.name || "Senza Nome",
-    image: thumbnailUrl
-    });
-}
-}
-
-// Aggiungi le nuove figurine all'utente e salva su localStorage
-const updatedFigurines = [...userFigurines, ...newFigurines];
-localStorage.setItem("userFigurines", JSON.stringify(updatedFigurines));
-
-// Aggiorna la visualizzazione
-renderFigurines(updatedFigurines);
-
-alert("Hai acquistato 5 nuove figurine Marvel!");
+return "Acquisto completato!";
 } catch (error) {
-console.error("Errore acquisto figurine Marvel:", error);
-alert("Qualcosa è andato storto nell'acquisto delle figurine!");
+// Ripristina il credito in caso di errore API
+crediti += 1;
+creditiElem.textContent = crediti.toString();
+console.error("Errore nell'acquisto:", error);
+alert("Errore durante l'acquisto. Riprova più tardi.");
 }
 }
 
 /**
- * Renderizza un array di figurine (id, name, image) dentro #figurines-container
+ * Salva le figurine acquisite nel localStorage per non perderle al refresh
  */
-function renderFigurines(figurineArray) {
-const container = document.getElementById("figurines-container");
-if (!container) return;
+function salvaFigurineLocalStorage(nuoveFigurine) {
+let figurineSalvate = JSON.parse(localStorage.getItem("figurine")) || [];
+figurineSalvate = [...figurineSalvate, ...nuoveFigurine];
+localStorage.setItem("figurine", JSON.stringify(figurineSalvate));
+}
 
-container.innerHTML = "";
-figurineArray.forEach(fig => {
-const cardEl = document.createElement("div");
-cardEl.classList.add("figurine-card");
-cardEl.innerHTML = `
-<img src="${fig.image}" alt="${fig.name}" />
-<h3>${fig.name}</h3>
-`;
-container.appendChild(cardEl);
+/**
+ * Carica le figurine salvate nel localStorage all'avvio della pagina
+ */
+function caricaFigurineSalvate() {
+const figurineSalvate = JSON.parse(localStorage.getItem("figurine")) || [];
+aggiornaAlbum(figurineSalvate);
+}
+
+/**
+ * Aggiorna il numero di crediti nel localStorage
+ */
+function aggiornaCrediti(crediti) {
+const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+if (currentUser) {
+currentUser.numberCredits = crediti;
+localStorage.setItem("currentUser", JSON.stringify(currentUser));
+}
+}
+
+/**
+ * Aggiorna l'album con le figurine all'interno delle card
+ */
+function aggiornaAlbum(figurine) {
+const albumContainer = document.getElementById("album-container");
+if (!albumContainer) return;
+
+figurine.forEach(fig => {
+const card = document.createElement("div");
+card.classList.add("figurina-card");
+
+const img = document.createElement("img");
+img.src = fig.image;
+img.alt = fig.name;
+img.classList.add("figurina-img");
+
+const name = document.createElement("p");
+name.textContent = fig.name;
+name.classList.add("figurina-name");
+
+card.appendChild(img);
+card.appendChild(name);
+albumContainer.appendChild(card);
 });
 }
 
-// Esempio di utilizzo al caricamento della pagina
+// Collega il pulsante di acquisto alla funzione `eseguiAcquisto`
 document.addEventListener("DOMContentLoaded", () => {
-// Se esistono già figurine in localStorage, le mostriamo
-const existingFigurines = JSON.parse(localStorage.getItem("userFigurines")) || [];
-renderFigurines(existingFigurines);
-
-// Esempio di bottone per acquistare figurine
-const btnAcquistaFigurine = document.getElementById("btn-acquista-5-figurine");
-if (btnAcquistaFigurine) {
-btnAcquistaFigurine.addEventListener("click", () => {
-
-    const publicKey = "9de281f5f58435133e7b0803bf2727a2";
-const privateKey = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
-eseguiAcquisto(publicKey, privateKey);
+const acquistaBtn = document.getElementById("acquista-btn");
+if (acquistaBtn) {
+acquistaBtn.addEventListener("click", eseguiAcquisto);
+}
+caricaFigurineSalvate(); // Carica le figurine salvate al caricamento della pagina
 });
-}
-}
-);
