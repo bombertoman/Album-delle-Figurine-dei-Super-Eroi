@@ -132,7 +132,7 @@ btnAcquistaFigurine.addEventListener("click", () => {
 
     const publicKey = "9de281f5f58435133e7b0803bf2727a2";
 const privateKey = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
-acquista5FigurineMarvel(publicKey, privateKey);
+eseguiAcquisto(publicKey, privateKey);
 });
 }
 }
