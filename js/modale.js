@@ -1,83 +1,68 @@
 document.addEventListener("DOMContentLoaded", () => {
-// Selezioniamo il pulsante che deve aprire la modale
-// In album.html è il pulsante con id="btn-acquistopack"
-const btnApriModale = document.getElementById("btn-acquistopack");
+const btnApriModale = document.getElementById("btn-acquistopack"); // Bottone per aprire la modale
+const btnConfermaAcquisto = document.getElementById("btn-acquista-figurine"); // Bottone per confermare acquisto
+const modaleAcquistopack = document.getElementById("modale-acquistopack"); // Div della modale
+const closeSpan = modaleAcquistopack
+? modaleAcquistopack.querySelector(".close")
+: null; // X per chiudere la modale
 
-// Selezioniamo il pulsante che conferma l'acquisto nella modale
-// In album.html è il pulsante con id="btn-acquista-figurine"
-const btnConfermaAcquisto = document.getElementById("btn-acquista-figurine");
-
-// Selezioniamo l'elemento modale
-// In album.html è <div id="modale-acquistopack" class="modale">
-const modaleAcquistopack = document.getElementById("modale-acquistopack");
-
-// Selezioniamo l'elemento <span class="close"> per chiudere la modale
-const closeSpan = modaleAcquistopack 
-? modaleAcquistopack.querySelector(".close") 
-: null;
-
-// Se uno di questi non esiste, mostriamo un avviso
-if (!btnApriModale) {
+// Controlli di sicurezza per verificare che gli elementi esistano
+if (!btnApriModale)
 console.warn("Bottone 'btn-acquistopack' non trovato in HTML.");
-}
-if (!btnConfermaAcquisto) {
+if (!btnConfermaAcquisto)
 console.warn("Bottone 'btn-acquista-figurine' non trovato in HTML.");
-}
-if (!modaleAcquistopack) {
+if (!modaleAcquistopack)
 console.warn("Elemento 'modale-acquistopack' non trovato in HTML.");
-}
 
-// FUNZIONE PER APRIRE LA MODALE
+/**
+ * Funzione per aprire la modale
+ */
 function apriModale() {
-if (!modaleAcquistopack) return;
-modaleAcquistopack.style.display = "block"; 
+if (modaleAcquistopack) modaleAcquistopack.style.display = "block";
 }
 
-// FUNZIONE PER CHIUDERE LA MODALE
+/**
+ * Funzione per chiudere la modale
+ */
 function chiudiModale() {
-if (!modaleAcquistopack) return;
-modaleAcquistopack.style.display = "none"; 
+if (modaleAcquistopack) modaleAcquistopack.style.display = "none";
 }
 
-// Quando clicco sul pulsante "Acquista pacchetti" (btnApriModale), apro la modale
+// Quando clicco sul pulsante "Acquista Pacchetti", apro la modale
 if (btnApriModale) {
-btnApriModale.addEventListener("click", () => {
-apriModale();
-});
+btnApriModale.addEventListener("click", apriModale);
 }
 
-// Quando clicco sullo span con class="close", chiudo la modale
+// Quando clicco sulla "X", chiudo la modale
 if (closeSpan) {
-closeSpan.addEventListener("click", () => {
-chiudiModale();
-});
+closeSpan.addEventListener("click", chiudiModale);
 }
 
-// Chiude la modale se clicco fuori dal contenuto
+// Quando clicco fuori dalla modale, chiudo la modale
 window.addEventListener("click", (event) => {
 if (event.target === modaleAcquistopack) {
-chiudiModale();
+    chiudiModale();
 }
 });
 
-// Quando clicco sul pulsante "Conferma Acquisto" dentro la modale
+// Quando clicco su "Conferma Acquisto" nella modale
 if (btnConfermaAcquisto) {
-btnConfermaAcquisto.addEventListener("click", () => {
-// Ad esempio richiamiamo la funzione "eseguiAcquisto" definita in gestionefigurine.js
-// Sostituisci con le tue chiavi Marvel e la tua logica
-if (typeof eseguiAcquisto === "function") {
-    eseguiAcquisto("9de281f5f58435133e7b0803bf2727a2", "cf2a2657976eeb220c1a6a2a28e90100767bb137").then((result) => {
-    if (result === "OK") {
+btnConfermaAcquisto.addEventListener("click", async () => {
+    try {
+    // Verifica se la funzione eseguiAcquisto() esiste
+    if (typeof eseguiAcquisto === "function") {
+        await eseguiAcquisto();
         alert("Acquisto effettuato con successo!");
         chiudiModale();
     } else {
-        alert("Errore durante l'acquisto del pacchetto!");
+        console.warn(
+        "eseguiAcquisto() non è definita. Assicurati che gestionefigurine.js sia caricato."
+        );
     }
-    });
-} else {
-    console.warn("eseguiAcquisto() non è definita. Assicurati che gestionefigurine.js sia caricato.");
-}
+    } catch (error) {
+    console.error("Errore durante l'acquisto:", error);
+    alert("Errore durante l'acquisto del pacchetto!");
+    }
 });
 }
-}
-);
+});
