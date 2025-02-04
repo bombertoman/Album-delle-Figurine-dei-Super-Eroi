@@ -16,7 +16,7 @@
  */
 
 // Recupera 5 personaggi Marvel e li salva per l'utente corrente
-async function acquista5FigurineMarvel(publicKey, privateKey) {
+async function eseguiAcquisto(publicKey, privateKey) {
 try {
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if (!currentUser) {
