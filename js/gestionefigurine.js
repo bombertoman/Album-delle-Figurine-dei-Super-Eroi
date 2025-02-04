@@ -53,7 +53,11 @@ function aggiornaAlbum(figurine) {
     albumContainer.appendChild(card);
   });
 }
-
+function getRandomIntInclusive(min, max) {
+    const minCeiled = Math.ceil(min);
+    const maxFloored = Math.floor(max);
+    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+}
 // Funzione per eseguire l'acquisto delle figurine
 async function eseguiAcquisto() {
   const creditiElem = document.querySelector(".ncrediti");
@@ -70,7 +74,9 @@ async function eseguiAcquisto() {
 
   const ts = new Date().getTime().toString();
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
-  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=5&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}`;
+  const limit = 92 // Limite scelto affinchè sia divisibile per il totale delle figurine presenti nel db (1564)
+  const offset = getRandomIntInclusive(0,16);
+  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}`;
 
   try {
     const response = await fetch(marvelUrl);
