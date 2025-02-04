@@ -1,22 +1,3 @@
-/**
- * gestionefigurine.js
- *
- * Questo file definisce:
- *  - generateMarvelHash(): per calcolare l'hash MD5 richiesto dalla Marvel API
- *  - aggiornaAlbum(): per popolare #album con i risultati ricevuti
- *  - eseguiAcquisto(): riduce i crediti, chiama Marvel, aggiorna l'album
- *
- * Espone l'oggetto 'acquistapacchetti' per essere richiamato in modale.js.
- * Assicurati di includere questo file PRIMA di modale.js nel tuo HTML, ad esempio:
- *
- *   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
- *   <script src="js/gestionefigurine.js"></script>
- *   <script src="js/modale.js"></script>
- *
- * Così modale.js vedrà 'window.acquistapacchetti'.
- */
-
-// Funzione: Calcolo Hash Marvel (MD5 di ts + privateKey + publicKey)
 function generateMarvelHash(ts, privateKey, publicKey) {
 return CryptoJS.MD5(ts + privateKey + publicKey).toString();
 }
@@ -84,9 +65,6 @@ creditiElem.textContent = crediti.toString();
 throw new Error("Nessun personaggio trovato");
 }
 }
-
-// Espone la logica per l'uso da parte di modale.js:
-// es: acquistapacchetti.eseguiAcquisto(publicKey, privateKey)
 window.acquistapacchetti = {
 eseguiAcquisto
 };
