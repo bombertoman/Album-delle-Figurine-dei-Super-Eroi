@@ -37,7 +37,7 @@ function aggiornaAlbum(figurine) {
 
   figurine.forEach((fig) => {
     const card = document.createElement("div");
-    card.classList.add("figurina-card");
+    card.classList.add("card");
 
     const img = document.createElement("img");
     img.src = fig.image;
