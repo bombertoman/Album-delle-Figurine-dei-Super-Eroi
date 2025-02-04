@@ -13,11 +13,6 @@ function aggiornaCreditiVisualizzati(crediti) {
   if (creditiElem) {
     creditiElem.textContent = crediti.toString();
   }
-
-  const creditiModaleElem = document.querySelector(".ncrediti-modale");
-  if (creditiModaleElem) {
-    creditiModaleElem.textContent = crediti.toString();
-  }
 }
 
 // Funzione per salvare le figurine nel localStorage
@@ -54,19 +49,15 @@ function aggiornaAlbum(figurine) {
   });
 }
 function getRandomIntInclusive(min, max) {
-    const minCeiled = Math.ceil(min);
-    const maxFloored = Math.floor(max);
-    return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
+  const minCeiled = Math.ceil(min);
+  const maxFloored = Math.floor(max);
+  return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
 }
 // Funzione per eseguire l'acquisto delle figurine
 async function eseguiAcquisto() {
-  const creditiElem = document.querySelector(".ncrediti");
-  if (!creditiElem) {
-    alert("Errore: elemento crediti non trovato!");
-    return;
-  }
-
-  let crediti = parseInt(creditiElem.textContent, 10);
+  const currentUserString = localStorage.getItem("currentUser");
+  const currentUser = JSON.parse(currentUserString);
+  let crediti = currentUser.numberCredits;
   if (crediti < 1) {
     alert("Crediti insufficienti!");
     return;
@@ -74,9 +65,9 @@ async function eseguiAcquisto() {
 
   const ts = new Date().getTime().toString();
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
-  const limit = 92 // Limite scelto affinchè sia divisibile per il totale delle figurine presenti nel db (1564)
-  const offset = getRandomIntInclusive(0,16);
-  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}`;
+  const limit = 92; // Limite scelto affinchè sia divisibile per il totale delle figurine presenti nel db (1564)
+  const offset = getRandomIntInclusive(0, 16);
+  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}&orderBy=modified`;
 
   try {
     const response = await fetch(marvelUrl);
@@ -91,8 +82,8 @@ async function eseguiAcquisto() {
     //prendiamo 5 figurine casuali dalle 92 fetchate
     const figurines = [];
     for (let i = 0; i < 5; i++) {
-        const figurineIndex = Math.floor(Math.random() * (limit - 1)); //numero casuale tra 0 e 91
-        figurines.push(responseJson.data.results[figurineIndex]);
+      const figurineIndex = Math.floor(Math.random() * (limit - 1)); //numero casuale tra 0 e 91
+      figurines.push(responseJson.data.results[figurineIndex]);
     }
 
     const nuoveFigurine = figurines.map((character) => ({
@@ -102,9 +93,10 @@ async function eseguiAcquisto() {
     }));
 
     // Aggiorna i crediti solo se la chiamata API ha successo
-    crediti -= 1;
+    crediti -= 1; // crediti = crediti - 1
     aggiornaCreditiVisualizzati(crediti);
-
+    currentUser.numberCredits = crediti; 
+    localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
     aggiornaAlbum(nuoveFigurine);
     salvaFigurineLocalStorage(nuoveFigurine);
