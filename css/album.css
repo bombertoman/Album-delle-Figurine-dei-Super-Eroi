@@ -1,62 +1,63 @@
-/* Reset di base */
-body, html {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+.album-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+padding: 20px;
 }
 
-/* Contenuto principale */
-#album-container {
-    margin: 100px auto; /* Aggiunge margine superiore per lasciare spazio alla navbar */
-    max-width: 800px;
-    text-align: center;
-    padding: 20px;
+#album {
+display: flex;
+flex-wrap: wrap;
+gap: 20px;
+justify-content: center;
+overflow-x: auto;
+padding: 20px 0;
 }
 
-#figurine-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 15px;
-    margin-top: 20px;
-}
-
-.figurina {
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 10px;
-    background: #fff;
-    text-align: center;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-/* Stile per le card delle figurine */
 .card {
-border: 1px solid #ccc;
-border-radius: 8px;
+background: white;
+border-radius: 10px;
 padding: 15px;
-margin: 10px;
-text-align: center;
-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-max-width: 200px;
+box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+min-width: 250px;
+max-width: 300px;
+flex: 1 1 calc(33.333% - 20px);
 }
 
-/* Immagine della figurina */
 .card img {
 width: 100%;
-height: auto;
-border-radius: 4px;
-margin-bottom: 10px;
+height: 200px;
+object-fit: cover;
+border-radius: 5px;
 }
 
-/* Nome della figurina */
 .card h3 {
-font-size: 1.2rem;
-margin-bottom: 5px;
 color: #333;
+margin: 10px 0;
+font-size: 1.2em;
 }
 
-/* Descrizione della figurina */
 .card p {
-font-size: 0.9rem;
 color: #666;
+font-size: 0.9em;
 line-height: 1.5;
+margin: 0;
+padding: 10px 0;
+}
+
+.main-btn {
+background-color: #4CAF50;
+color: white;
+padding: 15px 32px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+margin: 4px 2px;
+cursor: pointer;
+border-radius: 5px;
+}
+
+.main-btn:hover {
+background-color: #45a049;
 }
