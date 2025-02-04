@@ -1,21 +1,3 @@
-/**
- * gestionefigurine.js
- *
- * Questo file definisce:
- *  - generateMarvelHash(): per calcolare l'hash MD5 richiesto dalla Marvel API
- *  - aggiornaAlbum(): per popolare #album con i risultati ricevuti
- *  - eseguiAcquisto(): riduce i crediti, chiama Marvel, aggiorna l'album
- *
- * Espone l'oggetto 'acquistapacchetti' per essere richiamato in modale.js.
- * Assicurati di includere questo file PRIMA di modale.js nel tuo HTML, ad esempio:
- *
- *   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
- *   <script src="js/gestionefigurine.js"></script>
- *   <script src="js/modale.js"></script>
- *
- * Così modale.js vedrà 'window.acquistapacchetti'.
- */
-
 // Funzione: Calcolo Hash Marvel (MD5 di ts + privateKey + publicKey)
 function generateMarvelHash(ts, privateKey, publicKey) {
 return CryptoJS.MD5(ts + privateKey + publicKey).toString();
@@ -26,10 +8,8 @@ function aggiornaAlbum(figurine) {
 const album = document.getElementById("album");
 if (!album) return;
 
-// Svuota il contenuto precedente
-album.innerHTML = "";
+album.innerHTML = ""; // Reset album content
 
-// Costruisce e aggiunge le card
 figurine.forEach(({ thumbnail, name, description }) => {
     const card = document.createElement("div");
     card.className = "card";
@@ -74,8 +54,15 @@ if (!response.ok) {
 
 const data = await response.json();
 if (data?.data?.results?.length > 0) {
+    // Seleziona 5 figurine casuali
+    const figurineSelezionate = pickRandomFigurine(data.data.results, 5);
+    
     // Aggiorna l'album con i nuovi risultati
-    aggiornaAlbum(data.data.results);
+    aggiornaAlbum(figurineSelezionate);
+    
+    // Salva le figurine in localStorage
+    saveFigurine(figurineSelezionate);
+    
     return "Acquisto completato!";
 } else {
     // Ripristina i crediti se non arrivano personaggi
@@ -84,6 +71,39 @@ if (data?.data?.results?.length > 0) {
     throw new Error("Nessun personaggio trovato");
 }
 }
+
+// Funzione per selezionare figurine casuali
+function pickRandomFigurine(arr, count) {
+if (arr.length <= count) return arr;
+const shuffled = arr.slice();
+for (let i = shuffled.length - 1; i > 0; i--) {
+    const r = Math.floor(Math.random() * (i + 1));
+    [shuffled[i], shuffled[r]] = [shuffled[r], shuffled[i]];
+}
+return shuffled.slice(0, count);
+}
+
+// Funzione per salvare le figurine in localStorage
+function saveFigurine(figurine) {
+localStorage.setItem("figurine", JSON.stringify(figurine));
+}
+
+// Funzione per caricare le figurine da localStorage
+function loadFigurine() {
+const savedFigurine = localStorage.getItem("figurine");
+return savedFigurine ? JSON.parse(savedFigurine) : [];
+}
+
+// Inizializza l'album con le figurine salvate
+function init() {
+const figurine = loadFigurine();
+if (figurine.length > 0) {
+    aggiornaAlbum(figurine);
+}
+}
+
+// Avvia l'inizializzazione quando la pagina è caricata
+window.addEventListener("load", init);
 
 // Espone la logica per l'uso da parte di modale.js:
 // es: acquistapacchetti.eseguiAcquisto(publicKey, privateKey)
