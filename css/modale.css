@@ -1,119 +1,65 @@
-/* STILI GENERALI */
-button {
-    padding: 12px 20px;
-    border-radius: 10px;
-    font-size: 16px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-/* BACKGROUND MODALE */
+/* Background modale */
 .modale {
     display: none;
     position: fixed;
-    z-index: 1000;
+    z-index: 1;
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
-/* CONTENUTO MODALE */
-.modal-content {
-    background-color: #fefefe;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 40%;
-    min-width: 320px;
-    border-radius: 10px;
+.modal-button-container {
+    margin-top: 20px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* HEADER DELLA MODALE */
-.modal-header {
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 15px;
-}
-
-/* SEZIONE CREDITI NELLA MODALE */
-.modal-credit-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 30px;
-}
-
-.modal-credit-container .ncrediti {
-    font-size: 1.2rem;
-    font-weight: bold;
-    color: #009dff;
-}
-
-/* BOTTONE CHIUDI MODALE */
-.close {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-    cursor: pointer;
-}
-
-.close:hover {
-    color: black;
-}
-
-/* BOTTONE ACQUISTO FIGURINE */
 #btn-acquista-figurine {
+    padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
-    font-size: 14px;
+    cursor: pointer;
+    font-size: 10px;
 }
 
 #btn-acquista-figurine:hover {
     background-color: #45a049;
 }
-
-/* BOTTONE ACQUISTO PACCHETTI E CREDITI */
-.package-container {
+/* contenuto */
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+.modal-header {
     display: flex;
     flex-direction: column;
-    gap: 15px;
-    margin: 20px 0;
-    align-items: center;
+}
+.modal-credit-container{
+    flex-direction: row;
+    height: 25px;
+}
+.modal-credit-container .ncrediti {
+    font-size: 1rem;
+}
+/* tasto chiudi */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
 }
 
-.package-btn {
-    padding: 12px;
-    border: 2px solid #009dff;
-    border-radius: 10px;
-    background: transparent;
-    color: #009dff;
+.close:hover,
+.close:focus {
+    color: black;
+    text-decoration: none;
     cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.package-btn:hover {
-    background: #009dff;
-    color: white;
-}
-
-/* INPUT PER SELEZIONE CREDITI */
-#custom-crediti {
-    width: 90%;
-    max-width: 300px;
-    margin: 15px 0;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    text-align: center;
-    font-size: 16px;
 }
