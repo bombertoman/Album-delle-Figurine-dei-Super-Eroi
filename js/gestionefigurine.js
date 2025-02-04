@@ -84,15 +84,20 @@ async function eseguiAcquisto() {
       throw new Error(`Errore API Marvel: ${response.statusText}`);
     }
 
-    const data = await response.json();
-    if (!data?.data?.results?.length) {
+    const responseJson = await response.json();
+    if (!responseJson?.data?.results?.length) {
       throw new Error("Nessun personaggio trovato!");
     }
-    console.log(data) 
-    // Filtra i personaggi per ottenere solo quelli che hanno un'immagine
+    //prendiamo 5 figurine casuali dalle 92 fetchate
+    const figurines = [];
+    for (let i = 0; i < 5; i++) {
+        const figurineIndex = Math.floor(Math.random() * (limit - 1)); //numero casuale tra 0 e 91
+        figurines.push(responseJson.data.results[figurineIndex]);
+    }
 
-    const nuoveFigurine = data.data.results.map((character) => ({
+    const nuoveFigurine = figurines.map((character) => ({
       name: character.name,
+      description: character.description,
       image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
     }));
 
