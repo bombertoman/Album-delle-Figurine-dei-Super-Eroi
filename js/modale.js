@@ -1,58 +1,75 @@
-window.addEventListener("load", () => {
-const modal = document.getElementById("modale-acquistopack");
-const btn = document.getElementById("btn-acquistopack");
-const span = document.getElementsByClassName("close")[0];
-const btnAcquista = document.getElementById("btn-acquista-figurine");
+/**
+ * Esempio di file “modale.js” che:
+ * - Apre/chiude una modale per l'acquisto di pacchetti di figurine
+ * - Richiama la funzionalità “eseguiAcquisto” definita in “gestionefigurine.js”
+ * - Aggiorna il display di crediti e figurine di conseguenza
+ */
 
-// Apertura modale
-if (btn) {
-    btn.onclick = () => {
-    modal.style.display = "block";
-    };
+document.addEventListener("DOMContentLoaded", () => {
+// Seleziona i pulsanti/elementi necessari
+const btnApriModale = document.getElementById("open-modal-btn");     // Bottone per aprire la modale
+const btnChiudiModale = document.getElementById("close-modal-btn");  // Bottone/elemento per chiudere la modale
+const btnConfermaAcquisto = document.getElementById("confirm-purchase-btn"); // Bottone per confermare l'acquisto
+const modaleContainer = document.getElementById("modal-acquisto");   // Il contenitore della modale
+
+// Se non trovi la modale o i pulsanti, interrompi qui (eventuali errori di ID)
+if (!modaleContainer) {
+console.warn("Elemento modale non trovato. Controlla l'ID in HTML.");
+return;
 }
 
-// Chiusura modale con icona X
-if (span) {
-    span.onclick = () => {
-    modal.style.display = "none";
-    };
+// Apre la modale quando si clicca sul pulsante “Apri”
+if (btnApriModale) {
+btnApriModale.addEventListener("click", () => {
+modaleContainer.style.display = "block";
+});
 }
 
-// Chiusura modale cliccando sullo sfondo
-window.onclick = (event) => {
-    if (event.target === modal) {
-    modal.style.display = "none";
-    }
-};
+// Chiude la modale quando si clicca su “Chiudi”
+if (btnChiudiModale) {
+btnChiudiModale.addEventListener("click", () => {
+modaleContainer.style.display = "none";
+});
+}
 
-// Pulsante "Acquista" -> Chiama la nostra funzione separata in acquistapacchetti.js
-if (btnAcquista) {
-    btnAcquista.addEventListener("click", async function () {
-    this.disabled = true;
-    this.textContent = "Caricamento...";
+// Se clicchiamo fuori dal contenuto della modale, chiudiamo
+window.addEventListener("click", (event) => {
+if (event.target === modaleContainer) {
+modaleContainer.style.display = "none";
+}
+});
 
-    try {
-        // Chiavi Marvel per la funzione che acquista le figurine
-        const publicKey = "9de281f5f58435133e7b0803bf2727a2";
-        const privateKey = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
+// Funzione di acquisto pacchetti: richiama la logica in “gestionefigurine.js”
+async function acquistaPacchetti() {
+try {
+// Sostituisci con le tue chiavi Marvel
+const publicKey = "LA_TUA_CHIAVE_PUBBLICA";
+const privateKey = "LA_TUA_CHIAVE_PRIVATA";
 
-        // Invoca la funzione definita in acquistapacchetti.js
-        // Assicurati che il file acquistapacchetti.js sia incluso PRIMA di questo file
-        // e che window.acquistapacchetti.eseguiAcquisto sia definito
-        const message = await acquistapacchetti.eseguiAcquisto(publicKey, privateKey);
+// eseguiAcquisto è definita in “gestionefigurine.js”
+// Assicurati che <script src="js/gestionefigurine.js"> appaia PRIMA di modale.js
+// nel tuo HTML, così la funzione “eseguiAcquisto” è carica.
+const result = await eseguiAcquisto(publicKey, privateKey);
 
-        alert(message || "Acquisto completato!");
-    } catch (error) {
-        console.error("Errore acquisto:", error);
-        alert(
-        error.message.includes("Crediti")
-            ? error.message
-            : "Errore durante l'acquisto"
-        );
-    } finally {
-        this.disabled = false;
-        this.textContent = "Acquista Pacchetto";
-    }
-    });
+if (result === "OK") {
+    // Se non ci sono stati errori, puoi chiudere la modale o mostrare un messaggio
+    alert("Acquisto riuscito!");
+} else {
+    alert("Qualcosa è andato storto nell'acquisto.");
+}
+
+// Chiudi la modale dopo l'acquisto
+modaleContainer.style.display = "none";
+} catch (err) {
+console.error("Errore in acquistaPacchetti:", err);
+alert("Errore durante l'acquisto del pacchetto di figurine.");
+}
+}
+
+// Collegamento al click del pulsante “Conferma Acquisto” nella modale
+if (btnConfermaAcquisto) {
+btnConfermaAcquisto.addEventListener("click", () => {
+acquistaPacchetti();
+});
 }
 });
