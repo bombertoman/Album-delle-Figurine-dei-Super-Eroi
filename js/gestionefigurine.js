@@ -16,6 +16,9 @@
  */
 
 // Recupera 5 personaggi Marvel e li salva per l'utente corrente
+function generateMarvelHash(ts, privateKey, publicKey) {
+return CryptoJS.MD5(ts + privateKey + publicKey).toString();
+}
 async function eseguiAcquisto(publicKey, privateKey) {
 try {
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
