@@ -82,6 +82,8 @@ async function eseguiAcquisto() {
     if (!data?.data?.results?.length) {
       throw new Error("Nessun personaggio trovato!");
     }
+    console.log(data) 
+    // Filtra i personaggi per ottenere solo quelli che hanno un'immagine
 
     const nuoveFigurine = data.data.results.map((character) => ({
       name: character.name,
