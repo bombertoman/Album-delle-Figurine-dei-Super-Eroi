@@ -18,8 +18,8 @@ function aggiornaCreditiVisualizzati(crediti) {
 // Funzione per salvare le figurine nel localStorage
 function salvaFigurineLocalStorage(nuoveFigurine) {
   // Recupera la stringa JSON dell'utente dal localStorage
-  const currentUserString = localStorage.getItem("currentUser");
-  const currentUser =  JSON.parse(currentUserString);
+  let currentUserString = localStorage.getItem("currentUser");
+  let currentUser =  JSON.parse(currentUserString);
   // Aggiorna la proprietà "figurines" (o "nuoveFigurine" a seconda della struttura attesa) con le nuove figurine
   currentUser.figurines = nuoveFigurine;
    // Salva l'oggetto aggiornato nel localStorage con la chiave "currentUser"
