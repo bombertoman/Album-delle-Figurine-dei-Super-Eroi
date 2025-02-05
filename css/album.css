@@ -1,19 +1,18 @@
 /* File: css/album.css */
 
-/* Contenitore principale per l'album (aggiornato per layout orizzontale) */
+/* Contenitore principale per l'album (aggiornato per adattarsi alla larghezza della pagina) */
 .album-container {
     display: flex;
-    flex-direction: row;
-    /* Dispone gli elementi in orizzontale */
+    flex-direction: row;   /* Dispone gli elementi in orizzontale */
     align-items: center;
+    justify-content: center; /* Centra i contenuti orizzontalmente */
     padding: 20px;
-    overflow-x: auto;
-    /* Abilita lo scroll orizzontale se i contenuti eccedono */
-    overflow-y: hidden;
-    /* Nasconde lo scroll verticale */
+    overflow-x: auto;      /* Abilita lo scroll orizzontale se i contenuti eccedono */
+    overflow-y: hidden;    /* Nasconde lo scroll verticale */
     width: 100%;
-    background-color: #f7f9fc;
-    /* Sfondo delicato */
+    max-width: 100vw;      /* Limita la larghezza massima alla larghezza della viewport */
+    box-sizing: border-box; /* Include padding e bordi nel calcolo della larghezza */
+    background-color: #f7f9fc; /* Sfondo delicato */
 }
 
 /* Utilizza una griglia responsive per disporre le card e farle adattare alla larghezza dello schermo */
@@ -24,8 +23,7 @@
     width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
-    background: #f0f8ff;
-    /* Leggero sfondo azzurro */
+    background: #f0f8ff;  /* Leggero sfondo azzurro */
     border-radius: 10px;
 }
 
@@ -82,15 +80,15 @@
         grid-template-columns: 1fr;
         gap: 15px;
     }
-
+  
     .card img {
         height: 150px;
     }
-
+  
     .card .figurina-name {
         font-size: 1em;
     }
-
+  
     .card .figurina-description {
         font-size: 0.8em;
     }
