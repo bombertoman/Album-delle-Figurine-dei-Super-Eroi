@@ -18,32 +18,22 @@ function aggiornaCreditiVisualizzati(crediti) {
 // Funzione per salvare le figurine nel localStorage
 function salvaFigurineLocalStorage(nuoveFigurine) {
   // Recupera la stringa JSON dell'utente dal localStorage
-  let currentUserString = localStorage.getItem("currentUser");
-  let currentUser;
-  
-  if (currentUserString) {
-    try {
-      currentUser = JSON.parse(currentUserString);
-    } catch (error) {
-      console.error("Errore nel parsing di currentUser:", error);
-      currentUser = { figurines: [] };
-    }
-  } else {
-    // Se non esiste currentUser, inizializza l'oggetto con la proprietà figurines
-    currentUser = { figurines: [] };
-  }
-  
-  // Aggiorna la proprietà "figurines" con le nuove figurine
+  const currentUserString = localStorage.getItem("currentUser");
+  const currentUser =  JSON.parse(currentUserString);
+  // Aggiorna la proprietà "figurines" (o "nuoveFigurine" a seconda della struttura attesa) con le nuove figurine
   currentUser.figurines = nuoveFigurine;
-  
-  // Salva l'oggetto aggiornato nel localStorage
+   // Salva l'oggetto aggiornato nel localStorage con la chiave "currentUser"
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
 // Funzione per aggiornare l'album con le nuove figurine
-function aggiornaAlbum() {
+function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
+  if (!albumContainer) {
+    console.error("Elemento 'album' non trovato!");
+    return;
+  }
 
-  currentUser.figurines.forEach((fig) => {
+  figurine.forEach((fig) => {
     const card = document.createElement("div");
     card.classList.add("card");
 
@@ -66,10 +56,6 @@ function aggiornaAlbum() {
     albumContainer.appendChild(card);
   });
 }
-// Questo listener carica le figurine salvate e le mostra nell'album quando la pagina è pronta
-document.addEventListener("DOMContentLoaded", function () {
-  aggiornaAlbum();
-});
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -120,8 +106,8 @@ async function eseguiAcquisto() {
     currentUser.numberCredits = crediti; 
     localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
-    aggiornaAlbum(nuoveFigurine);
-    salvaFigurineLocalStorage(nuoveFigurine);
+    aggiornaAlbum(currentUser);
+    salvaFigurineLocalStorage(currentUser.figurines);
 
     alert("Acquisto completato con successo!");
   } catch (error) {
