@@ -71,9 +71,10 @@ function aggiornaAlbum(figurine) {
     name.textContent = fig.name;
     name.classList.add("figurina-name");
   
-    // Aggiunge sempre la descrizione, senza effettuare alcun controllo
+    // Sempre crea l'elemento per la descrizione.
+    // Se la descrizione è vuota, utilizza il testo di fallback.
     const description = document.createElement("p");
-    description.textContent = fig.description;
+    description.textContent = fig.description.trim() !== "" ? fig.description : "Nessuna descrizione disponibile";
     description.classList.add("figurina-description");
   
     card.appendChild(img);
@@ -82,7 +83,6 @@ function aggiornaAlbum(figurine) {
     albumContainer.appendChild(card);
   });
 }
-
 /**
  * Funzione per caricare le figurine salvate dalla chiave "figurines" e visualizzarle nell'album.
  */
