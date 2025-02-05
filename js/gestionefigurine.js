@@ -17,13 +17,18 @@ function aggiornaCreditiVisualizzati(crediti) {
 
 // Funzione per salvare le figurine nel localStorage
 function salvaFigurineLocalStorage(nuoveFigurine) {
-  const nuoveFigurine = localStorage.getItem("currenUser") || [];
-  const currentUser = JSON.parse(figurines);
-  const tutteLeFigurine = currentUser.nuoveFigurine;
-  localStorage.setItem("figurines", JSON.stringify(tutteLeFigurine));
+  // Recupera la stringa JSON dell'utente dal localStorage
+  const currentUserString = localStorage.getItem("currentUser");
+  const currentUser = JSON.parse(currentUserString);
+  ; 
+  // Aggiorna la proprietà "figurines" (o "nuoveFigurine" a seconda della struttura attesa) con le nuove figurine
+  currentUser.figurines = nuoveFigurine;
+   // Salva l'oggetto aggiornato nel localStorage con la chiave "currentUser"
+  localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
+salvaFigurineLocalStorage(nuoveFigurine);
 
-// Funzione per aggiornare l'album con le nuove figurine
+// Funzione per popolare l'album con le nuove figurine
 function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
   if (!albumContainer) {
@@ -44,8 +49,13 @@ function aggiornaAlbum(figurine) {
     name.textContent = fig.name;
     name.classList.add("figurina-name");
 
+    const description = document.createElement("p");
+    description.textContent = fig.description;
+    description.classList.add("figurina-description");
     card.appendChild(img);
     card.appendChild(name);
+    card.appendChild(description);
+
     albumContainer.appendChild(card);
   });
 }
@@ -70,16 +80,6 @@ async function eseguiAcquisto() {
   const offset = getRandomIntInclusive(0, 16);
   const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}&orderBy=modified`;
 
-  try {
-    const response = await fetch(marvelUrl);
-    if (!response.ok) {
-      throw new Error(`Errore API Marvel: ${response.statusText}`);
-    }
-
-    const responseJson = await response.json();
-    if (!responseJson?.data?.results?.length) {
-      throw new Error("Nessun personaggio trovato!");
-    }
     //prendiamo 5 figurine casuali dalle 92 fetchate
     const figurines = [];
     for (let i = 0; i < 5; i++) {
@@ -100,11 +100,5 @@ async function eseguiAcquisto() {
     localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
     aggiornaAlbum(nuoveFigurine);
-    salvaFigurineLocalStorage(nuoveFigurine);
-
     alert("Acquisto completato con successo!");
-  } catch (error) {
-    console.error("Errore durante l'acquisto del pacchetto:", error);
-    alert("Errore durante l'acquisto del pacchetto. Riprova più tardi.");
-  }
 }
