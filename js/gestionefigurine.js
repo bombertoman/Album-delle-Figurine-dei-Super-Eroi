@@ -17,14 +17,12 @@ function aggiornaCreditiVisualizzati(crediti) {
 
 // Funzione per salvare le figurine nel localStorage
 function salvaFigurineLocalStorage(nuoveFigurine) {
-  // Recupera la stringa JSON dell'utente dal localStorage
-  let currentUserString = localStorage.getItem("currentUser");
-  let currentUser =  JSON.parse(currentUserString);
-  // Aggiorna la proprietà "figurines" (o "nuoveFigurine" a seconda della struttura attesa) con le nuove figurine
-  currentUser.figurines = nuoveFigurine;
-   // Salva l'oggetto aggiornato nel localStorage con la chiave "currentUser"
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  const figurineSalvate = localStorage.getItem("currentUser") || [];
+  const figurines = JSON.parse(figurineSalvate);
+  const tutteLeFigurine = figurines.nuoveFigurine;
+  localStorage.setItem("figurines", JSON.stringify(tutteLeFigurine));
 }
+
 // Funzione per aggiornare l'album con le nuove figurine
 function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
@@ -46,13 +44,8 @@ function aggiornaAlbum(figurine) {
     name.textContent = fig.name;
     name.classList.add("figurina-name");
 
-    const description = document.createElement("p");
-    description.textContent = fig.description;
-    description.classList.add("figurina-description");
-
     card.appendChild(img);
     card.appendChild(name);
-    card.appendChild(description);
     albumContainer.appendChild(card);
   });
 }
@@ -106,8 +99,8 @@ async function eseguiAcquisto() {
     currentUser.numberCredits = crediti; 
     localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
-    aggiornaAlbum(currentUser);
-    salvaFigurineLocalStorage(currentUser.figurines);
+    aggiornaAlbum(nuoveFigurine);
+    salvaFigurineLocalStorage(nuoveFigurine);
 
     alert("Acquisto completato con successo!");
   } catch (error) {
