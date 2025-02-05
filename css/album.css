@@ -72,23 +72,3 @@ body {
     color: #7f8c8d;
     line-height: 1.4;
   }
-  
-  /* Media query per schermi piccoli */
-  @media (max-width: 480px) {
-    #album {
-      grid-template-columns: 1fr;
-      gap: 15px;
-    }
-    
-    .card img {
-      height: 150px;
-    }
-    
-    .card .figurina-name {
-      font-size: 1em;
-    }
-    
-    .card .figurina-description {
-      font-size: 0.8em;
-    }
-  }
