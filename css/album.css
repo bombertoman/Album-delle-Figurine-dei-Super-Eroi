@@ -1,74 +1,98 @@
+
 /* updated album.css */
 
 /* Ripristina margini e padding di default del body */
 body {
     margin: 0;
     padding: 0;
-  }
-  
-  /* Se hai un header fisso, ad esempio con altezza 70px, aggiungi margine superiore al container principale */
-  .album-container {
+}
+
+/* Se hai un header fisso, con altezza 70px, assicurati che l'album-container venga visualizzato sotto */
+.album-container {
     width: 100%;
     padding: 20px;
-    margin-top: 70px;   /* Aggiusta questo valore in base all'altezza effettiva del tuo header */
+    margin-top: 70px;   /* Regola questo valore in base all'altezza reale della navbar */
     background-color: #f7f9fc;
     box-sizing: border-box;
-  }
-  
-  /* Layout a griglia responsive per le card delle figurine */
-  #album {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+}
+
+/* Layout orizzontale per le card delle figurine */
+/* Utilizza il flexbox per allinearle in fila e abilita lo scrolling orizzontale se necessario */
+#album {
+    display: flex;
+    flex-direction: row;
     gap: 20px;
     width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
     background: #f0f8ff;
     border-radius: 10px;
-  }
-  
-  /* Stili per le card delle figurine */
-  .card {
+    overflow-x: auto;    /* Abilita lo scrolling orizzontale in caso di contenuto in eccesso */
+}
+
+/* Stili per le card delle figurine */
+.card {
     background: linear-gradient(135deg, #ffffff, #e9f4fb);
     border: 1px solid #dce4ec;
     border-radius: 10px;
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .card:hover {
+    min-width: 250px;    /* Garanzia che ogni card abbia una larghezza minima per una visualizzazione consistente */
+}
+
+.card:hover {
     transform: translateY(-5px);
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
-  }
-  
-  /* Stili per l'immagine della figurina */
-  .card img {
+}
+
+/* Stili per l'immagine della figurina */
+.card img {
     width: 100%;
     height: 200px;
     object-fit: cover;
     display: block;
     transition: transform 0.3s ease;
-  }
-  
-  .card img:hover {
+}
+
+.card img:hover {
     transform: scale(1.05);
-  }
-  
-  /* Stili per il nome della figurina */
-  .card .figurina-name {
+}
+
+/* Stili per il nome della figurina */
+.card .figurina-name {
     font-size: 1.2em;
     font-weight: bold;
     margin: 10px;
     text-align: center;
     color: #2c3e50;
-  }
-  
-  /* Stili per la descrizione della figurina */
-  .card .figurina-description {
+}
+
+/* Stili per la descrizione della figurina */
+.card .figurina-description {
     font-size: 0.9em;
     margin: 0 10px 10px;
     text-align: center;
     color: #7f8c8d;
     line-height: 1.4;
-  }
+}
+
+/* Media query per schermi piccoli: passa a una disposizione verticale */
+@media (max-width: 480px) {
+    #album {
+        flex-direction: column;
+        overflow-x: unset;
+    }
+    
+    .card img {
+        height: 150px;
+    }
+    
+    .card .figurina-name {
+        font-size: 1em;
+    }
+    
+    .card .figurina-description {
+        font-size: 0.8em;
+    }
+}
