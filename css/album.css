@@ -1,33 +1,33 @@
-
 /* updated album.css */
 
-/* Ripristina margini e padding di default del body */
+/* Ripristina i margini e padding di default del body */
 body {
     margin: 0;
     padding: 0;
 }
 
-/* Se hai un header fisso, con altezza 70px, assicurati che l'album-container venga visualizzato sotto */
+/* Se hai un header fisso, ad esempio con altezza 70px, posiziona l'album-container subito sotto */
 .album-container {
     width: 100%;
     padding: 20px;
-    margin-top: 70px;   /* Regola questo valore in base all'altezza reale della navbar */
+    margin-top: 70px;  /* Regola in base all'altezza reale della tua navbar */
     background-color: #f7f9fc;
     box-sizing: border-box;
 }
 
-/* Layout orizzontale per le card delle figurine */
-/* Utilizza il flexbox per allinearle in fila e abilita lo scrolling orizzontale se necessario */
+/* Layout a griglia per le card delle figurine */
+/* Imposta esattamente 6 colonne, ciascuna con larghezza minima di 150px, 
+   in modo che se la viewport è troppo piccola venga abilitato lo scrolling orizzontale */
 #album {
-    display: flex;
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: repeat(6, minmax(150px, 1fr));
     gap: 20px;
     width: 100%;
     padding: 20px 0;
     box-sizing: border-box;
     background: #f0f8ff;
     border-radius: 10px;
-    overflow-x: auto;    /* Abilita lo scrolling orizzontale in caso di contenuto in eccesso */
+    overflow-x: auto;  /* Abilita lo scrolling orizzontale se la larghezza totale supera quella del contenitore */
 }
 
 /* Stili per le card delle figurine */
@@ -38,7 +38,7 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    min-width: 250px;    /* Garanzia che ogni card abbia una larghezza minima per una visualizzazione consistente */
+    /* La larghezza viene controllata dalla griglia, non è necessario impostare min-width */
 }
 
 .card:hover {
@@ -77,10 +77,11 @@ body {
     line-height: 1.4;
 }
 
-/* Media query per schermi piccoli: passa a una disposizione verticale */
-@media (max-width: 480px) {
+/* Media query per schermi più piccoli */
+/* In caso la viewport si restringa tanto da non permettere 6 colonne, si adatta mostrando un numero minore di figurine per riga */
+@media (max-width: 950px) {
     #album {
-        flex-direction: column;
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         overflow-x: unset;
     }
     
