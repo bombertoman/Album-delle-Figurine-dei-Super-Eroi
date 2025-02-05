@@ -35,38 +35,35 @@
     </div>
 </div>
 </header>
-
-<main>     
-<!-- modale -->
-<div id="modale-acquistopack" class="modale">
-
-<div class="modal-content">
-    <span class="close">&times;</span>
-    <div class="modal-header">
-        <div>Acquista i pacchetti di figurine</div>
-        <div class="credit-container modal-credit-container">
-            <div>Crediti disponibili:</div>
-            <div class="credit-subcontainer">
+<main>
+    <div class="album-container">
+      <h1>Le mie Figurine</h1>
+      <button id="btn-acquistopack" class="main-btn">Acquista pacchetti</button>
+      <div id="album">
+        <!-- Le figurine verranno aggiunte dinamicamente qui -->
+      </div>
+    </div>
+  </main>
+  <!-- Sposta la modale fuori dal <main> per evitare che il contenitore limiti la sua visualizzazione -->
+    <div id="modale-acquistopack" class="modale">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-header">
+            <div>Acquista i pacchetti di figurine</div>
+            <div class="credit-container modal-credit-container">
+              <div>Crediti disponibili:</div>
+              <div class="credit-subcontainer">
                 <i class="fa-solid fa-coins coin-icon"></i>
                 <div class="ncrediti"></div>
-                <i class="fa-solid fa-circle-plus buy-icon"></i> <!--icona + cliccabile con rimando-->
+                <i class="fa-solid fa-circle-plus buy-icon"></i>
+              </div>
+              <div class="modal-button-container">
+                <button id="btn-acquista-figurine" class="main-btn"></button> 
+              </div>
             </div>
-                <div class="modal-button-container">
-                    <button id="btn-acquista-figurine" class="main-btn">
-                    </button> 
-                </div>
-    </div>
-</div>
-
-</div>
-<div class="album-container">
-    <h1>Le mie Figurine</h1>
-    <button id="btn-acquistopack" class="main-btn">Acquista pacchetti</button>
-    <div id="album">
-        <!-- Le figurine verranno aggiunte dinamicamente qui -->
-    </div>
-</div>
-</main>
+          </div>
+        </div>
+      </div>
 
 <footer>
 <p>©️ 2025 Album Figurine Supereroi</p>
