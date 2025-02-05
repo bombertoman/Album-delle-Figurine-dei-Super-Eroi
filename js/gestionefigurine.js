@@ -17,7 +17,8 @@ function aggiornaCreditiVisualizzati(crediti) {
 
 // Funzione per salvare le figurine nel localStorage
 function salvaFigurineLocalStorage(nuoveFigurine) {
-  const figurineSalvate = JSON.parse(localStorage.getItem("figurines")) || [];
+  const figurineSalvate = localStorage.getItem("figurines") || [];
+  const figurines = JSON.parse(figurineSalvate);
   const tutteLeFigurine = figurines.nuoveFigurine;
   localStorage.setItem("figurines", JSON.stringify(tutteLeFigurine));
 }
