@@ -1,24 +1,28 @@
-/* Background modale */
+
+/* File: css/modale.css */
+
+/* Modale intera, nascosta per default */
 .modale {
-    display: none;
+    display: none; /* La modale viene mostrata solo quando attiva */
     position: fixed;
-    z-index: 1;
+    z-index: 9999; /* Assicura che la modale sia sopra a tutti gli altri elementi */
     left: 0;
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
-    background-color: rgb(0, 0, 0);
-    background-color: rgba(0, 0, 0, 0.4);
+    overflow: auto;  /* Permette lo scorrimento se il contenuto della modale è troppo lungo */
+    background-color: rgba(0, 0, 0, 0.4); /* Sfondo semi-trasparente */
 }
 
+/* Contenitore dei bottoni all'interno della modale */
 .modal-button-container {
     margin-top: 20px;
     text-align: center;
 }
 
+/* Stili per il bottone di acquisto all'interno della modale */
 #btn-acquista-figurine {
-    padding: 10px 20px;
+    padding: 5px 20px;
     background-color: #4CAF50;
     color: white;
     border: none;
@@ -30,26 +34,36 @@
 #btn-acquista-figurine:hover {
     background-color: #45a049;
 }
-/* contenuto */
+
+/* Contenuto principale della modale */
 .modal-content {
     background-color: #fefefe;
-    margin: 15% auto;
+    margin: 15% auto; /* Centra verticalmente la modale (approssimativamente) */
     padding: 20px;
     border: 1px solid #888;
     width: 80%;
+    position: relative;
+    z-index: 10000; /* Ulteriore protezione per farla stare sopra */
 }
+
+/* Stili per l'header della modale */
 .modal-header {
     display: flex;
     flex-direction: column;
 }
-.modal-credit-container{
+
+/* Configurazione per il container dei crediti nella modale */
+.modal-credit-container {
     flex-direction: row;
     height: 25px;
 }
+
+/* Stile per il testo dei crediti nella modale */
 .modal-credit-container .ncrediti {
     font-size: 1rem;
 }
-/* tasto chiudi */
+
+/* Stile per il bottone di chiusura della modale */
 .close {
     color: #aaa;
     float: right;
