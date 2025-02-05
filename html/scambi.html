@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scambi Doppioni - Album Figurine</title>
+    <link rel="stylesheet" href="../css/scambi.css">
+    <!-- Inclusione degli script necessari se presenti, ad es. per autenticazione e navbar -->
+    <script src="../js/auth.js"></script>
+    <script src="../js/navbar.js"></script>
+    <script src="https://kit.fontawesome.com/a9b2079c05.js" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">Album Supereroi</div>
+            <nav>
+                <a href="modifica.html">Profilo</a>
+                <a href="crediti.html">Acquista Crediti</a>
+                <a onclick="logout()">Logout</a>
+            </nav>
+            <div class="credit-container">
+                <div>Crediti disponibili:</div>
+                <div class="credit-subcontainer">
+                    <i class="fa-solid fa-coins coin-icon"></i>
+                    <div class="ncrediti"></div>
+                    <i class="fa-solid fa-circle-plus buy-icon"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+    <main>
+        <!-- Contenitore principale della pagina scambi, posizionato tra navbar e footer -->
+        <div class="scambi-container">
+            <h1>I miei Doppioni</h1>
+            <!-- Sezione dove verranno visualizzati i doppioni -->
+            <div id="scambi">
+                <!-- Esempio di card per una figurina doppione -->
+                <div class="card">
+                    <img src="/api/placeholder/250/200" alt="Figurina Doppione">
+                    <div class="figurina-name">Nome Figurina</div>
+                    <div class="figurina-description">Descrizione breve della figurina.</div>
+                    <!-- Pulsante per avviare lo scambio -->
+                    <button class="scambio-btn">Proponi Scambio</button>
+                </div>
+                <!-- Altre card verranno aggiunte dinamicamente o tramite server-side -->
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>©️ 2025 Album Figurine Supereroi</p>
+    </footer>
+    <!-- Inclusione di eventuali script per la gestione degli scambi -->
+    <script src="../js/scambi.js"></script>
+</body>
+
+</html>
