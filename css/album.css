@@ -1,13 +1,17 @@
 /* File: css/album.css */
 
-/* Contenitore principale per l'album */
+/* Contenitore principale per l'album (aggiornato per layout orizzontale) */
 .album-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    /* Dispone gli elementi in orizzontale */
     align-items: center;
     padding: 20px;
-    overflow: visible;
-    position: relative;
+    overflow-x: auto;
+    /* Abilita lo scroll orizzontale se i contenuti eccedono */
+    overflow-y: hidden;
+    /* Nasconde lo scroll verticale */
+    width: 100%;
     background-color: #f7f9fc;
     /* Sfondo delicato */
 }
