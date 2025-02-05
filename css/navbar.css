@@ -1,34 +1,33 @@
-
-/* Navbar */
+/* Navbar aggiornato per rimanere fissa e in cima */
 .navbar {
     background-color: #71181f;
-    color: whitesmoke; /* Testo*/
-    position: absolute; /* Posizionamento assoluto */
-    top: 0; /* Allinea in alto */
-    left: 0; /* Allinea a sinistra */
-    width: 100%; /* Copre tutta la larghezza */
+    color: whitesmoke;
+    position: fixed;  /* Usa fixed per fissare la navbar in cima */
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;    /* Maggiore dei container sottostanti */
     display: flex;
-    justify-content: space-between; /*ripartizione orizzontale lasciando lo spazio in mezzo */
+    justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
     box-shadow: 0 4px 6px whitesmoke;
-
 }
 
 .navbar .logo {
     font-size: 1.5rem;
     font-weight: bold;
-    margin-right: 20px; /* Spazio tra logo e link */
+    margin-right: 20px;
     text-transform: uppercase;
 }
 
 .navbar nav {
     display: flex;
-    gap: 20px; /* Spaziatura tra i link */
+    gap: 20px;
 }
 
 .navbar nav a {
-    color: whitesmoke; /* Testo profilo, logout */
+    color: whitesmoke;
     text-decoration: none;
     font-weight: bold;
     transition: color 0.3s ease;
@@ -36,5 +35,5 @@
 }
 
 .navbar nav a:hover {
-    color: #009dff; /* Cambia colore al passaggio del mouse */
+    color: #009dff;
 }

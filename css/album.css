@@ -1,23 +1,19 @@
-/* updated album.css */
 
-/* Ripristina i margini e padding di default del body */
-body {
-    margin: 0;
-    padding: 0;
-}
-
-/* Se hai un header fisso, ad esempio con altezza 70px, posiziona l'album-container subito sotto */
+/* Posiziona l'album-container in maniera fissa tra navbar e footer */
 .album-container {
-    width: 100%;
+    position: fixed;
+    top: 70px;     /* Altezza della navbar; regola questo valore se necessario */
+    bottom: 50px;  /* Altezza del footer; regola questo valore in base al tuo footer */
+    left: 0;
+    right: 0;
     padding: 20px;
-    margin-top: 70px;  /* Regola in base all'altezza reale della tua navbar */
-    background-color: #f7f9fc;
     box-sizing: border-box;
+    background-color: #f7f9fc;
+    overflow-y: auto;  /* Abilita lo scrolling verticale se il contenuto supera lo spazio disponibile */
 }
 
-/* Layout a griglia per le card delle figurine */
-/* Imposta esattamente 6 colonne, ciascuna con larghezza minima di 150px, 
-   in modo che se la viewport è troppo piccola venga abilitato lo scrolling orizzontale */
+/* Layout a griglia per visualizzare esattamente 6 figurine per riga
+   con adattamento responsive in caso di zoom o viewport ridotta */
 #album {
     display: grid;
     grid-template-columns: repeat(6, minmax(150px, 1fr));
@@ -27,7 +23,7 @@ body {
     box-sizing: border-box;
     background: #f0f8ff;
     border-radius: 10px;
-    overflow-x: auto;  /* Abilita lo scrolling orizzontale se la larghezza totale supera quella del contenitore */
+    overflow-x: auto;  /* Scroll orizzontale se necessario */
 }
 
 /* Stili per le card delle figurine */
@@ -38,7 +34,6 @@ body {
     overflow: hidden;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    /* La larghezza viene controllata dalla griglia, non è necessario impostare min-width */
 }
 
 .card:hover {
@@ -46,7 +41,6 @@ body {
     box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
 }
 
-/* Stili per l'immagine della figurina */
 .card img {
     width: 100%;
     height: 200px;
@@ -59,7 +53,6 @@ body {
     transform: scale(1.05);
 }
 
-/* Stili per il nome della figurina */
 .card .figurina-name {
     font-size: 1.2em;
     font-weight: bold;
@@ -68,7 +61,6 @@ body {
     color: #2c3e50;
 }
 
-/* Stili per la descrizione della figurina */
 .card .figurina-description {
     font-size: 0.9em;
     margin: 0 10px 10px;
@@ -77,8 +69,7 @@ body {
     line-height: 1.4;
 }
 
-/* Media query per schermi più piccoli */
-/* In caso la viewport si restringa tanto da non permettere 6 colonne, si adatta mostrando un numero minore di figurine per riga */
+/* Media query: se la viewport è ristretta il layout si adatta automaticamente */
 @media (max-width: 950px) {
     #album {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
