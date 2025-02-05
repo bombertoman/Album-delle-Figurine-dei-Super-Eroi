@@ -1,4 +1,4 @@
-function acquistaFigurineRandom(count) {
+/*function acquistaFigurineRandom(count) {
 if (currentUser.numberCredits < 1) {
 alert("Crediti insufficienti!");
 return;
@@ -23,4 +23,4 @@ currentUser.figurines.push(...newFigs);
 // Salva l'utente aggiornato nel localStorage
 salvaUtente(currentUser);
 aggiornaAlbum(currentUser.figurines);
-}
+} */
