@@ -26,7 +26,6 @@ function salvaFigurineLocalStorage(nuoveFigurine) {
    // Salva l'oggetto aggiornato nel localStorage con la chiave "currentUser"
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
-salvaFigurineLocalStorage(nuoveFigurine);
 
 // Funzione per popolare l'album con le nuove figurine
 function aggiornaAlbum(figurine) {
@@ -100,5 +99,6 @@ async function eseguiAcquisto() {
     localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
     aggiornaAlbum(nuoveFigurine);
+    salvaFigurineLocalStorage(nuoveFigurine);
     alert("Acquisto completato con successo!");
 }
