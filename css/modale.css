@@ -32,12 +32,16 @@
 }
 /* contenuto */
 .modal-content {
-    background-color: #fefefe;
-    margin: 15% auto;
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-}
+    background-color: #700808f0;
+        margin: 15% auto;
+        padding: 20px;
+        border: 5px solid whitesmoke;
+        width: 80%;
+        height: fit-content;
+        color: whitesmoke;
+        border-radius: 10px;
+        box-shadow: 10px 10px 3px black;
+    }
 .modal-header {
     display: flex;
     flex-direction: column;
