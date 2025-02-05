@@ -1,19 +1,14 @@
-
-/* Navbar */
+/* Navbar fissa migliorata */
 .navbar {
-    background-color: #71181f;
-    color: whitesmoke; /* Testo*/
-    position: absolute; /* Posizionamento assoluto */
-    top: 0; /* Allinea in alto */
-    left: 0; /* Allinea a sinistra */
-    width: 100%; /* Copre tutta la larghezza */
-    display: flex;
-    justify-content: space-between; /*ripartizione orizzontale lasciando lo spazio in mezzo */
-    align-items: center;
-    padding: 10px 20px;
-    box-shadow: 0 4px 6px whitesmoke;
-
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    background: #8B0000;
+    padding: 10px 0;
+    z-index: 1000;
 }
+
 
 .navbar .logo {
     font-size: 1.5rem;
