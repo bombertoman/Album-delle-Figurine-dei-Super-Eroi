@@ -19,20 +19,20 @@
     grid-template-columns: repeat(6, minmax(150px, 1fr));
     gap: 20px;
     width: 100%;
-    padding: 20px 0;
+    padding: 15px;
     box-sizing: border-box;
-    background: #f0f8ff;
+    background: #4817179e;
     border-radius: 10px;
-    overflow-x: auto;  /* Scroll orizzontale se necessario */
+    overflow-x: auto;
 }
 
 /* Stili per le card delle figurine */
 .card {
     background: linear-gradient(135deg, #ffffff, #e9f4fb);
-    border: 1px solid #dce4ec;
+    border: 5px solid #dce4ec;
     border-radius: 10px;
     overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    box-shadow: 10px 2px 8px black;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
