@@ -1,21 +1,24 @@
 /**********************
  * File: js/gestionefigurine.js
  * Descrizione: 
- *  - All'avvio della pagina, legge le figurine salvate nel localStorage e le visualizza.
- *  - All'acquisto del pacchetto, legge le figurine esistenti e ci "pusha" le 5 nuove figurine ottenute dall'API.
- *  - Aggiorna l'oggetto currentUser nel localStorage, mantenendo persistenti sia i dati dell'utente che le figurine.
+ *  - All'avvio della pagina, legge le figurine salvate nella chiave "figurines" e le visualizza.
+ *  - All'acquisto del pacchetto, pusha le 5 nuove figurine ottenute dall'API nell'array già presente in "figurines".
+ *  - currentUser viene usato per gestire dati utente (es. crediti) e, se eliminato (es. cancellazione account),
+ *    si può decidere di eliminare anche le figurine.
+ *  - Se invece si effettua solo il logout, currentUser non viene cancellato in toto e le figurine (chiave "figurines")
+ *    rimangono persistenti per il prossimo login, garantendo che l'album non si resetti.
  **********************/
 
-// Sostituisci con le tue chiavi pubblica e privata dell'API Marvel
+// Sostituisci con le tue chiavi API Marvel
 const PUBLIC_KEY = "9de281f5f58435133e7b0803bf2727a2";
 const PRIVATE_KEY = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
 
 /**
- * Funzione per generare l'hash richiesto dall'API Marvel
- * @param {string} ts - Timestamp
- * @param {string} privateKey - Chiave privata
- * @param {string} publicKey - Chiave pubblica
- * @returns {string} - Hash MD5
+ * Funzione per generare l'hash richiesto dall'API Marvel.
+ * @param {string} ts - Timestamp.
+ * @param {string} privateKey - Chiave privata.
+ * @param {string} publicKey - Chiave pubblica.
+ * @returns {string} - Hash MD5.
  */
 function generateMarvelHash(ts, privateKey, publicKey) {
   return CryptoJS.MD5(ts + privateKey + publicKey).toString();
@@ -33,44 +36,38 @@ function aggiornaCreditiVisualizzati(crediti) {
 }
 
 /**
- * Funzione per salvare le figurine nel localStorage.
- * Durante l'acquisto, si recupera currentUser dal localStorage,
- * si pushano le nuove 5 figurine nell'array esistente e si salva l'oggetto aggiornato.
+ * Funzione per salvare le nuove figurine in localStorage.
+ * Utilizza la chiave separata "figurines" per mantenere l'album persistente anche al logout.
  *
  * @param {Array} nuoveFigurine - Array contenente le 5 nuove figurine ottenute dall'API.
  */
 function salvaFigurineLocalStorage(nuoveFigurine) {
-  // Recupera la stringa JSON dell'utente dal localStorage
-  const currentUserString = localStorage.getItem("currentUser");
-  let currentUser;
-  if (currentUserString) {
+  // Recupera l'array di figurine salvate dalla chiave separata "figurines"
+  const savedFigurinesString = localStorage.getItem("figurines");
+  let savedFigurines;
+  
+  if (savedFigurinesString) {
     try {
-      currentUser = JSON.parse(currentUserString);
+      savedFigurines = JSON.parse(savedFigurinesString);
     } catch (error) {
-      console.error("Errore nel parsing di currentUser:", error);
-      currentUser = { figurines: [] };
+      console.error("Errore nel parsing delle figurine salvate:", error);
+      savedFigurines = [];
     }
   } else {
-    currentUser = { figurines: [] };
-  }
-
-  // Assicurati che la proprietà "figurines" sia un array
-  if (!Array.isArray(currentUser.figurines)) {
-    currentUser.figurines = [];
+    savedFigurines = [];
   }
   
-  // Aggiungi le nuove figurine all'array già presente (pusha 5 elementi)
-  currentUser.figurines.push(...nuoveFigurine);
+  // Aggiunge le nuove figurine all'array esistente
+  savedFigurines.push(...nuoveFigurine);
   
-  // Salva l'oggetto aggiornato nel localStorage
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
+  // Salva l'array aggiornato nella chiave "figurines"
+  localStorage.setItem("figurines", JSON.stringify(savedFigurines));
 }
 
 /**
  * Funzione per aggiornare l'album nella pagina con le figurine salvate.
- * Prende spunto da come viene aggiornato il numero di crediti per scriverle in HTML.
  *
- * @param {Array} figurine - Array contenente le figurine da visualizzare.
+ * @param {Array} figurine - Array di figurine da visualizzare.
  */
 function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
@@ -79,7 +76,7 @@ function aggiornaAlbum(figurine) {
     return;
   }
   
-  // Prima pulisce il container
+  // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   
   figurine.forEach((fig) => {
@@ -102,20 +99,19 @@ function aggiornaAlbum(figurine) {
 }
 
 /**
- * Funzione per leggere le figurine salvate nel localStorage e visualizzarle.
- * Si ispira alle funzioni che leggono e scrivono il numero di crediti.
+ * Funzione per caricare le figurine salvate dalla chiave "figurines" e visualizzarle nell'album.
  */
 function caricaFigurineDallLocalStorage() {
-  const currentUserString = localStorage.getItem("currentUser");
-  if (!currentUserString) return;
+  const savedFigurinesString = localStorage.getItem("figurines");
+  if (!savedFigurinesString) return;
   
   try {
-    const currentUser = JSON.parse(currentUserString);
-    if (currentUser.figurines && currentUser.figurines.length > 0) {
-      aggiornaAlbum(currentUser.figurines);
+    const savedFigurines = JSON.parse(savedFigurinesString);
+    if (Array.isArray(savedFigurines) && savedFigurines.length > 0) {
+      aggiornaAlbum(savedFigurines);
     }
   } catch (error) {
-    console.error("Errore nel parsing di currentUser durante il caricamento delle figurine:", error);
+    console.error("Errore nel parsing delle figurine durante il caricamento:", error);
   }
 }
 
@@ -133,10 +129,11 @@ function getRandomIntInclusive(min, max) {
 
 /**
  * Funzione per eseguire l'acquisto delle figurine.
- * Legge currentUser dal localStorage, controlla i crediti, ottiene 5 figurine dall'API Marvel,
- * aggiorna i crediti, push le nuove figurine nell'array preesistente e aggiorna l'album.
+ * Gestisce l'aggiornamento dei crediti in currentUser e il salvataggio delle nuove figurine
+ * nella chiave "figurines"; l'album viene aggiornato per mostrare le nuove aggiunte.
  */
 async function eseguiAcquisto() {
+  // Recupera currentUser dal localStorage (usato per gestire i crediti e altri dati utente)
   const currentUserString = localStorage.getItem("currentUser");
   if (!currentUserString) {
     alert("Utente non trovato!");
@@ -144,6 +141,7 @@ async function eseguiAcquisto() {
   }
   const currentUser = JSON.parse(currentUserString);
   let crediti = currentUser.numberCredits;
+  
   if (crediti < 1) {
     alert("Crediti insufficienti!");
     return;
@@ -151,7 +149,7 @@ async function eseguiAcquisto() {
   
   const ts = new Date().getTime().toString();
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
-  const limit = 92; // Limite scelto
+  const limit = 92; // Limite scelto per la chiamata API
   const offset = getRandomIntInclusive(0, 16);
   const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}&orderBy=modified`;
   
@@ -165,7 +163,8 @@ async function eseguiAcquisto() {
     if (!responseJson?.data?.results?.length) {
       throw new Error("Nessun personaggio trovato!");
     }
-    // Prende 5 figurine casuali dalle 92 ottenute
+  
+    // Seleziona 5 figurine casuali dalle 92 ottenute
     const figurines = [];
     for (let i = 0; i < 5; i++) {
       const figurineIndex = Math.floor(Math.random() * (limit - 1));
@@ -178,13 +177,13 @@ async function eseguiAcquisto() {
       image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
     }));
   
-    // Aggiorna i crediti solo se la chiamata API ha successo
+    // Aggiorna i crediti e salva in currentUser
     crediti -= 1; 
     aggiornaCreditiVisualizzati(crediti);
-    currentUser.numberCredits = crediti; 
+    currentUser.numberCredits = crediti;
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   
-    // Visualizza le nuove figurine nell'album e salva le 5 nuove figurine pushandole nell'array esistente nel localStorage
+    // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
     aggiornaAlbum(nuoveFigurine);
     salvaFigurineLocalStorage(nuoveFigurine);
   
@@ -195,7 +194,7 @@ async function eseguiAcquisto() {
   }
 }
 
-// Al caricamento della pagina, carica e visualizza le figurine salvate in localStorage
+// Al caricamento della pagina, carica e visualizza le figurine salvate (chiave "figurines")
 document.addEventListener("DOMContentLoaded", function () {
   caricaFigurineDallLocalStorage();
 });
