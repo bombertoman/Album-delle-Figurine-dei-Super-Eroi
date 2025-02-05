@@ -12,34 +12,19 @@
 // Sostituisci con le tue chiavi API Marvel
 const PUBLIC_KEY = "9de281f5f58435133e7b0803bf2727a2";
 const PRIVATE_KEY = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
-
-/**
- * Funzione per generare l'hash richiesto dall'API Marvel.
- * @param {string} ts - Timestamp.
- * @param {string} privateKey - Chiave privata.
- * @param {string} publicKey - Chiave pubblica.
- * @returns {string} - Hash MD5.
- */
 function generateMarvelHash(ts, privateKey, publicKey) {
   return CryptoJS.MD5(ts + privateKey + publicKey).toString();
 }
-
-/**
- * Funzione per aggiornare la visualizzazione dei crediti.
- * @param {number} crediti - Crediti rimanenti.
- */
 function aggiornaCreditiVisualizzati(crediti) {
   const creditiElem = document.querySelector(".ncrediti");
   if (creditiElem) {
     creditiElem.textContent = crediti.toString();
   }
 }
-
 /**
  * Funzione per salvare le nuove figurine in localStorage.
  * Utilizza la chiave separata "figurines" per mantenere l'album persistente anche al logout.
- *
- * @param {Array} nuoveFigurine - Array contenente le 5 nuove figurine ottenute dall'API.
+ * nuoveFigurine - Array contenente le 5 nuove figurine ottenute dall'API.
  */
 function salvaFigurineLocalStorage(nuoveFigurine) {
   // Recupera l'array di figurine salvate dalla chiave separata "figurines"
@@ -63,12 +48,6 @@ function salvaFigurineLocalStorage(nuoveFigurine) {
   // Salva l'array aggiornato nella chiave "figurines"
   localStorage.setItem("figurines", JSON.stringify(savedFigurines));
 }
-
-/**
- * Funzione per aggiornare l'album nella pagina con le figurine salvate.
- *
- * @param {Array} figurine - Array di figurine da visualizzare.
- */
 function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
   if (!albumContainer) {
@@ -92,8 +71,14 @@ function aggiornaAlbum(figurine) {
     name.textContent = fig.name;
     name.classList.add("figurina-name");
   
+    // Aggiunge sempre la descrizione, senza effettuare alcun controllo
+    const description = document.createElement("p");
+    description.textContent = fig.description;
+    description.classList.add("figurina-description");
+  
     card.appendChild(img);
     card.appendChild(name);
+    card.appendChild(description);
     albumContainer.appendChild(card);
   });
 }
@@ -114,13 +99,6 @@ function caricaFigurineDallLocalStorage() {
     console.error("Errore nel parsing delle figurine durante il caricamento:", error);
   }
 }
-
-/**
- * Funzione per ottenere un intero casuale tra min e max (inclusi).
- * @param {number} min - Valore minimo.
- * @param {number} max - Valore massimo.
- * @returns {number} - Numero casuale.
- */
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
@@ -199,6 +177,3 @@ document.addEventListener("DOMContentLoaded", function () {
   caricaFigurineDallLocalStorage();
 });
   
-/*******************
- * Fine file
- *******************/
