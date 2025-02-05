@@ -52,7 +52,6 @@ btnConfermaAcquisto.addEventListener("click", async () => {
     // Verifica se la funzione eseguiAcquisto() esiste
     if (typeof eseguiAcquisto === "function") {
         await eseguiAcquisto();
-        alert("Acquisto effettuato con successo!");
         chiudiModale();
     } else {
         console.warn(
