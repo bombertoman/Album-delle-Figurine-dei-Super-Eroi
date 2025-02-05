@@ -28,10 +28,6 @@ function salvaFigurineLocalStorage(nuoveFigurine) {
 // Funzione per aggiornare l'album con le nuove figurine
 function aggiornaAlbum(figurine) {
   const albumContainer = document.getElementById("album");
-  if (!albumContainer) {
-    console.error("Elemento 'album' non trovato!");
-    return;
-  }
 
   figurine.forEach((fig) => {
     const card = document.createElement("div");
@@ -107,7 +103,7 @@ async function eseguiAcquisto() {
     localStorage.setItem("currentUser", JSON.stringify(currentUser) );
     // Aggiorna l'album e salva le figurine
     aggiornaAlbum(nuoveFigurine);
-    salvaFigurineLocalStorage(nuoveFigurine);
+    salvaFigurineLocalStorage(currentUser.figurines);
 
     alert("Acquisto completato con successo!");
   } catch (error) {
