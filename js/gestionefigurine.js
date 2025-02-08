@@ -26,7 +26,7 @@ function salvaFigurineLocalStorage(nuoveFigurine) {
   // Salva l'array aggiornato nella chiave "currentUser"
   localStorage.setItem("currentUser", JSON.stringify(currentUser));
 }
-function aggiornaAlbum(figurine) {
+function aggiornaAlbumInHtml(figurines) {
   const albumContainer = document.getElementById("album");
   if (!albumContainer) {
     console.error("Elemento 'album' non trovato!");
@@ -36,7 +36,7 @@ function aggiornaAlbum(figurine) {
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   
-  figurine.forEach((fig) => {
+  figurines.forEach((fig) => {
     const card = document.createElement("div");
     card.classList.add("card");
   
@@ -60,22 +60,6 @@ function aggiornaAlbum(figurine) {
     card.appendChild(description);
     albumContainer.appendChild(card);
   });
-}
-/**
- * Funzione per caricare le figurine salvate dalla chiave "figurines" e visualizzarle nell'album.
- */
-function caricaFigurineDallLocalStorage() {
-  const savedFigurinesString = localStorage.getItem("figurines");
-  if (!savedFigurinesString) return;
-  
-  try {
-    const savedFigurines = JSON.parse(savedFigurinesString);
-    if (Array.isArray(savedFigurines) && savedFigurines.length > 0) {
-      aggiornaAlbum(savedFigurines);
-    }
-  } catch (error) {
-    console.error("Errore nel parsing delle figurine durante il caricamento:", error);
-  }
 }
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);
@@ -140,7 +124,7 @@ async function eseguiAcquisto() {
     localStorage.setItem("currentUser", JSON.stringify(currentUser));
   
     // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
-    aggiornaAlbum(nuoveFigurine);
+    aggiornaAlbumInHtml(nuoveFigurine);
     salvaFigurineLocalStorage(nuoveFigurine);
   
     alert("Acquisto completato con successo!");
@@ -150,8 +134,9 @@ async function eseguiAcquisto() {
   }
 }
 
-// Al caricamento della pagina, carica e visualizza le figurine salvate (chiave "figurines")
+// Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
-  caricaFigurineDallLocalStorage();
+  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  aggiornaAlbumInHtml(currentUser.figurines);
 });
   

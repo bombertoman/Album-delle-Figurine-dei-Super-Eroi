@@ -22,5 +22,5 @@ currentUser.figurines.push(...newFigs);
 
 // Salva l'utente aggiornato nel localStorage
 salvaUtente(currentUser);
-aggiornaAlbum(currentUser.figurines);
+aggiornaAlbumInHtml(currentUser.figurines);
 } */
