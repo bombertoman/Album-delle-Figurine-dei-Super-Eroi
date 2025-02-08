@@ -3,29 +3,7 @@ const PRIVATE_KEY = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
 function generateMarvelHash(ts, privateKey, publicKey) {
   return CryptoJS.MD5(ts + privateKey + publicKey).toString();
 }
-function aggiornaCreditiVisualizzati(crediti) {
-  const creditiElem = document.querySelector(".ncrediti");
-  if (creditiElem) {
-    creditiElem.textContent = crediti.toString();
-  }
-}
-/**
- * Funzione per salvare le nuove figurine in localStorage.
- * Utilizza la chiave "users" per mantenere l'album persistente anche al logout.
- * nuoveFigurine - Array contenente le 5 nuove figurine ottenute dall'API.
- */
-function salvaFigurineLocalStorage(nuoveFigurine) {
-  // Recupera l'array di figurine salvate dall'oggetto nella chiave "currentUser"
-  const currentUser = getCurrentUser();
-  const savedFigurines = currentUser.figurines;
-  // Aggiunge le nuove figurine all'array esistente
-  savedFigurines.push(...nuoveFigurine);
-  //assegnamo l'array di nuovo nell'oggetto currentUser, ora che abbiamo aggiunto le nuove figurine
-  currentUser.figurines = savedFigurines;
-  
-  // Salva l'array aggiornato nella chiave "currentUser"
-  localStorage.setItem("currentUser", JSON.stringify(currentUser));
-}
+
 function aggiornaAlbumInHtml(figurines) {
   const albumContainer = document.getElementById("album");
   if (!albumContainer) {
@@ -73,14 +51,7 @@ function getRandomIntInclusive(min, max) {
  * nella chiave "figurines"; l'album viene aggiornato per mostrare le nuove aggiunte.
  */
 async function eseguiAcquisto() {
-  // Recupera currentUser dal localStorage (usato per gestire i crediti e altri dati utente)
-  const currentUserString = localStorage.getItem("currentUser");
-  if (!currentUserString) {
-    alert("Utente non trovato!");
-    return;
-  }
-  const currentUser = JSON.parse(currentUserString);
-  let crediti = currentUser.numberCredits;
+  let crediti = parseInt(getCurrentUserItem("numberCredits"));
   
   if (crediti < 1) {
     alert("Crediti insufficienti!");
@@ -120,20 +91,16 @@ async function eseguiAcquisto() {
     // Aggiorna i crediti e salva in currentUser
     crediti -= 1; 
     aggiornaCreditiVisualizzati(crediti);
-    currentUser.numberCredits = crediti;
-    localStorage.setItem("currentUser", JSON.stringify(currentUser));
-  
+    setCurrentUserItem("numberCredits", crediti);
     // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
     aggiornaAlbumInHtml(nuoveFigurine);
-    salvaFigurineLocalStorage(nuoveFigurine);
-  
+    setCurrentUserItem("figurines", nuoveFigurine);  
     alert("Acquisto completato con successo!");
   } catch (error) {
     console.error("Errore durante l'acquisto del pacchetto:", error);
     alert("Errore durante l'acquisto del pacchetto. Riprova più tardi.");
   }
 }
-
 // Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
   const currentUser = getCurrentUser();

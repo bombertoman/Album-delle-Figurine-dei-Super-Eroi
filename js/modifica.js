@@ -1,12 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const currentUser = localStorage.getItem('currentUser');
-    if (!currentUser) {
+    const auth = verificaAuth();
+    if (!auth) {
         alert('Errore: nessun utente autenticato. Reindirizzamento al login.');
         window.location.href = '../html/login.html';
         return;
     }
 
-    const user = JSON.parse(currentUser);
+    const user = getCurrentUser();
 
     // Precompila i campi del modulo
     const usernameField = document.getElementById('username');
@@ -41,15 +41,7 @@ document.addEventListener('DOMContentLoaded', function () {
         };
 
         // Salva i dati aggiornati nel localStorage
-        localStorage.setItem('currentUser', JSON.stringify(updatedUser));
-
-        const users = JSON.parse(localStorage.getItem('users')) || [];
-        const userIndex = users.findIndex(u => u.email === user.email);
-        if (userIndex !== -1) {
-            users[userIndex] = updatedUser;
-            localStorage.setItem('users', JSON.stringify(users));
-        }
-
+        updateCurrentUser(updatedUser);
         alert('Profilo aggiornato con successo!');
         window.location.href = '../html/login.html';
     });
@@ -59,11 +51,12 @@ document.addEventListener('DOMContentLoaded', function () {
         if (confirm('Sei sicuro di voler eliminare il tuo account?')) {
             // Rimuove l'utente dalla lista degli utenti
             const users = JSON.parse(localStorage.getItem('users')) || [];
-            const updatedUsers = users.filter(u => u.email !== user.email);
-            localStorage.setItem('users', JSON.stringify(updatedUsers));
+            const currentUserIndex = getCurrentUserIndex();
+            users.splice(currentUserIndex, 1);
+            localStorage.setItem('users', JSON.stringify(users));
 
             // Rimuove l'utente attualmente loggato
-            localStorage.removeItem('currentUser');
+            localStorage.removeItem('currentUserIndex');
 
             alert('Account eliminato con successo!');
             window.location.href = '../html/login.html'; // Reindirizza al login

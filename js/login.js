@@ -35,13 +35,14 @@ window.onload = function() {
             const users = JSON.parse(localStorage.getItem("users")) || [];
 
             // Controlla se esiste un utente con email e password corrispondenti
-            const user = users.find(user => user.email === email && user.password === password);
+            const userIndex = users.findIndex(user => user.email === email && user.password === password);
 
-            if (user) {
+            if (userIndex) {
+                const user = users[userIndex];
                 alert(`Benvenuto, ${user.username}!`);
                 // Salva l'utente attivo nel localStorage
-                localStorage.setItem("currentUser", JSON.stringify(user));
-                window.location.href = "album.html"; // Cambia il percorso
+                localStorage.setItem("currentUserIndex", userIndex);
+                window.location.href = "album.html";
             } else {
                 alert("Credenziali non valide.");
             }
