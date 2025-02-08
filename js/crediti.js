@@ -15,14 +15,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     document.getElementById("crediti-form").addEventListener("submit", (e) => {
         e.preventDefault();
-        const crediti = parseInt(document.getElementById("custom-crediti").value);
+        const numeroCreditiDaComprare = parseInt(document.getElementById("custom-crediti").value);
 
-        if (isNaN(crediti) || crediti <= 0) {
+        if (isNaN(numeroCreditiDaComprare) || numeroCreditiDaComprare <= 0) {
             alert("Inserisci un numero valido!");
             return;
         }
-
-        const newTotal = currentUser.numberCredits + crediti;
+        const creditiPreAcquisto = getCurrentUserItem("numberCredits")
+        const newTotal = parseInt(creditiPreAcquisto) + numeroCreditiDaComprare;
 
         // Correzione template literal (usa backticks ``)
         if (newTotal > maxCredits) {
@@ -33,6 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
         setCurrentUserItem("numberCredits", newTotal);
         
         aggiornaCreditiVisualizzati(newTotal);
-        alert(`${crediti} crediti acquistati con successo!`);
+        alert(`${numeroCreditiDaComprare} crediti acquistati con successo!`);
     });
 });
