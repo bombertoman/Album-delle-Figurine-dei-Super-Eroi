@@ -31,7 +31,6 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         setCurrentUserItem("numberCredits", newTotal);
-        console.log(newTotal);
         alert(`${numeroCreditiDaComprare} crediti acquistati con successo!`);
         location.href = "album.html";
     });
