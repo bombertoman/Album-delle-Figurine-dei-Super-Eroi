@@ -103,7 +103,6 @@ async function eseguiAcquisto() {
 }
 // Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
-  const currentUser = getCurrentUser();
-  aggiornaAlbumInHtml(currentUser.figurines);
+  aggiornaAlbumInHtml(getCurrentUserItem("figurines"));
 });
   
