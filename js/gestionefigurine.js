@@ -94,6 +94,8 @@ async function eseguiAcquisto() {
     setCurrentUserItem("numberCredits", crediti);
     // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
     aggiornaAlbumInHtml(nuoveFigurine);
+    const figurinePreAcquisto = getCurrentUserItem("figurines");
+    figurinePreAcquisto.push(nuoveFigurine);
     setCurrentUserItem("figurines", nuoveFigurine);  
     alert("Acquisto completato con successo!");
   } catch (error) {
