@@ -96,7 +96,8 @@ async function eseguiAcquisto() {
     aggiornaAlbumInHtml(nuoveFigurine);
     const figurines = getCurrentUserItem("figurines");
     figurines.push(nuoveFigurine);
-    setCurrentUserItem("figurines", figurines);  
+    setCurrentUserItem("figurines", figurines); 
+    console.log(figurines);
     alert("Acquisto completato con successo!");
   } catch (error) {
     console.error("Errore durante l'acquisto del pacchetto:", error);
