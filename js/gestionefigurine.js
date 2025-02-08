@@ -81,12 +81,16 @@ async function eseguiAcquisto() {
       const figurineIndex = Math.floor(Math.random() * (limit - 1));
       randomfigurines.push(responseJson.data.results[figurineIndex]);
     }
-  
-    const nuoveFigurine = randomfigurines.map((character) => ({
-      name: character.name,
-      description: character.description,
-      image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-    }));
+    const figurines = getCurrentUserItem("figurines");
+    const nuoveFigurine = randomfigurines.map((character) => {
+      const nuovaFigurina = {
+        name: character.name,
+        description: character.description,
+        image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+      }
+      figurines.push(nuovaFigurina);
+      return nuovaFigurina;
+    });
   
     // Aggiorna i crediti e salva in currentUser
     crediti -= 1; 
@@ -94,10 +98,7 @@ async function eseguiAcquisto() {
     setCurrentUserItem("numberCredits", crediti);
     // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
     aggiornaAlbumInHtml(nuoveFigurine);
-    const figurines = getCurrentUserItem("figurines");
-    figurines.push(nuoveFigurine);
     setCurrentUserItem("figurines", figurines); 
-    console.log(figurines);
     alert("Acquisto completato con successo!");
   } catch (error) {
     console.error("Errore durante l'acquisto del pacchetto:", error);
