@@ -25,6 +25,7 @@ function updateCurrentUser(updatedUser){
 function setCurrentUserItem(key, value) {
     const currentUser = getCurrentUser();
     currentUser[key] = value;
+    const users = JSON.parse(localStorage.getItem("users"));
     localStorage.setItem("users", JSON.stringify(users));
 }
 
