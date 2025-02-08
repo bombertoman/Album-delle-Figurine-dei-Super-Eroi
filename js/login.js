@@ -35,7 +35,7 @@ window.onload = function() {
             const users = JSON.parse(localStorage.getItem("users")) || [];
             // Controlla se esiste un utente con email e password corrispondenti
             const userIndex = users.findIndex(user => {
-            console.log(user, email, password);
+            console.log(user.email, email, user.password, password);
             return user.email === email && user.password === password    
             });
 
