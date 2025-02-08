@@ -35,10 +35,9 @@ window.onload = function() {
             const users = JSON.parse(localStorage.getItem("users")) || [];
             // Controlla se esiste un utente con email e password corrispondenti
             const userIndex = users.findIndex(user => {
-            return user.email === email && user.password === password    
+                return user.email === email && user.password === password    
             });
-            console.log(userIndex)
-            if (userIndex) {
+            if (userIndex !== -1) {
                 const user = users[userIndex];
                 alert(`Benvenuto, ${user.username}!`);
                 // Salva l'utente attivo nel localStorage
