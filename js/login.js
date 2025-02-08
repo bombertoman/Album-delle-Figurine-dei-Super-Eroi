@@ -33,9 +33,11 @@ window.onload = function() {
             // try-catch per gestire errori durante il recupero dei dati in local storage
             // Recupera la lista degli utenti dal localStorage
             const users = JSON.parse(localStorage.getItem("users")) || [];
-            console.log(users);
             // Controlla se esiste un utente con email e password corrispondenti
-            const userIndex = users.findIndex(user => user.email === email && user.password === password);
+            const userIndex = users.findIndex(user => {
+            console.log(user, email, password);
+            return user.email === email && user.password === password    
+            });
 
             if (userIndex) {
                 const user = users[userIndex];
