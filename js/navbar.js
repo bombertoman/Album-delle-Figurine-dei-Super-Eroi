@@ -2,7 +2,7 @@
 console.log("caricamento js")
 window.addEventListener("load", () => { 
     console.log("window.onload funziona")
-    const currentUser = JSON.parse(localStorage.getItem("currentUser")); //recupero dei dati dell'utente corrente
+    const currentUser = getCurrentUser(); //recupero dei dati dell'utente corrente
     const numberCredits = currentUser.numberCredits // quanti crediti il currentUser ha a disposizione
     const divCrediti = document.getElementsByClassName("ncrediti"); //div che contiene il numero dei cr
     Array.prototype.forEach.call(divCrediti, element => {

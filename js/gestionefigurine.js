@@ -16,7 +16,7 @@ function aggiornaCreditiVisualizzati(crediti) {
  */
 function salvaFigurineLocalStorage(nuoveFigurine) {
   // Recupera l'array di figurine salvate dall'oggetto nella chiave "currentUser"
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = getCurrentUser();
   const savedFigurines = currentUser.figurines;
   // Aggiunge le nuove figurine all'array esistente
   savedFigurines.push(...nuoveFigurine);
@@ -136,7 +136,7 @@ async function eseguiAcquisto() {
 
 // Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
-  const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+  const currentUser = getCurrentUser();
   aggiornaAlbumInHtml(currentUser.figurines);
 });
   

@@ -1,7 +1,7 @@
 const maxCredits = 1000; //limite massimo crediti cumulabili
 
 document.addEventListener("DOMContentLoaded", () => {
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 if (!currentUser) {
 alert("Devi effettuare il login!");
 window.location.href = "login.html";
@@ -18,7 +18,7 @@ btn.addEventListener("click", (e) => {
 document.getElementById("crediti-form").addEventListener("submit", (e) => {
 e.preventDefault();
 const crediti = parseInt(document.getElementById("custom-crediti").value);
-const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+const currentUser = getCurrentUser();
 
 if (isNaN(crediti) || crediti <= 0) {
     alert("Inserisci un numero valido!");
