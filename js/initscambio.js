@@ -1,3 +1,3 @@
-const figurineClickHandler = event => {
-    console.log(event);
+const figurineClickHandler = card => {
+    console.log(card);
 }
