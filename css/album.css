@@ -14,7 +14,7 @@
 
 /* Layout a griglia per visualizzare esattamente 6 figurine per riga
    con adattamento responsive in caso di zoom o viewport ridotta */
-#album {
+.figurines-container {
     display: grid;
     grid-template-columns: repeat(6, minmax(150px, 1fr));
     gap: 20px;
@@ -71,7 +71,7 @@
 
 /* Media query: se la viewport è ristretta il layout si adatta automaticamente */
 @media (max-width: 950px) {
-    #album {
+    .figurines-container {
         grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
         overflow-x: unset;
     }
