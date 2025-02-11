@@ -23,8 +23,30 @@ document.addEventListener ("DOMContentLoaded", function(){
     window.addEventListener("click", (event) => {
         if (event.target === modale) {
             chiudiModale();
-        }
+        }    
     });
-    
+    const button = document.getElementById("btn-proponi");
+    button.addEventListener("click", event => {
+        event.preventDefault();
+        const users = JSON.parse(localStorage.getItem("users"));
+        const usernameInput = document.getElementById("user-scambio");
+        const userIndex = users.findIndex(user => {
+            return user.username === usernameInput.value;
+        });
+        if (userIndex === -1) {
+            alert ("Lo username digitato non è valido!");
+            return;
+        }
+        if (!users[userIndex]?.scambi) {
+            users[userIndex].scambi = [];
+        }
+        const nomeUtente = getCurrentUserItem("username");
+        users[userIndex].scambi.push({
+            nomeFigurinaProposta: modale.dataset.name, 
+            offerenteScambio: nomeUtente
+        });
+        chiudiModale();
+        alert("La proposta di scambio è stata inviata all'utente inserito!");
+    })
 
 })

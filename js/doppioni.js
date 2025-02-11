@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const nomiFigurineUnivoche = [];
     figurines.forEach(figurina => {
         if (nomiFigurineUnivoche.includes(figurina.name)){
-            const doppioneTrovato = doppioni.some(doppione => {
+            const doppioneTrovato = doppioni.find(doppione => {
                 return doppione.figurina.name === figurina.name;
             })
             if (doppioneTrovato) {
