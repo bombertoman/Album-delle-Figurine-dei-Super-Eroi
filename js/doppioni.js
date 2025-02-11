@@ -17,5 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         nomiFigurineUnivoche.push(figurina.name); 
     });
-    doppioni.forEach(doppione => visualizzaFigurina(doppione, divDoppioni))
+    doppioni.forEach(doppione => visualizzaFigurina(doppione.figurina, divDoppioni))
 })
