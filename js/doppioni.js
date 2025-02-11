@@ -6,13 +6,13 @@ document.addEventListener('DOMContentLoaded', function() {
     figurines.forEach(figurina => {
         if (nomiFigurineUnivoche.includes(figurina.name)){
             const doppioneTrovato = doppioni.some(doppione => {
-                return doppione.name === figurina.name;
+                return doppione.figurina.name === figurina.name;
             })
             if (doppioneTrovato) {
                 doppioneTrovato.count = doppioneTrovato.count + 1;
                 return; 
             }
-            doppioni.push({count: 1, name: figurina.name});
+            doppioni.push({count: 1, figurina: figurina});
             return;
         }
         nomiFigurineUnivoche.push(figurina.name); 
