@@ -3,6 +3,7 @@
 const visualizzaFigurina = (fig, albumContainer) => {
     const card = document.createElement("div");
     card.classList.add("card");
+    card.dataset.name = fig.name;
   
     const img = document.createElement("img");
     img.src = fig.image;

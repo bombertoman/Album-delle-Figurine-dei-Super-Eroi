@@ -2,8 +2,8 @@
 /* Posiziona l'album-container in maniera fissa tra navbar e footer */
 .album-container {
     position: fixed;
-    top: 70px;     /* Altezza della navbar; regola questo valore se necessario */
-    bottom: 50px;  /* Altezza del footer; regola questo valore in base al tuo footer */
+    top: 70px;     /* Altezza della navbar;  */
+    bottom: 50px;  
     left: 0;
     right: 0;
     padding: 20px;
