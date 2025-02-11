@@ -45,6 +45,7 @@ document.addEventListener ("DOMContentLoaded", function(){
             nomeFigurinaProposta: modale.dataset.name, 
             offerenteScambio: nomeUtente
         });
+        localStorage.setItem("users", JSON.stringify(users));
         chiudiModale();
         alert("La proposta di scambio è stata inviata all'utente inserito!");
     })
