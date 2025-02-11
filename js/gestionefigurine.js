@@ -14,30 +14,7 @@ function aggiornaAlbumInHtml(figurines) {
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   
-  figurines.forEach((fig) => {
-    const card = document.createElement("div");
-    card.classList.add("card");
-  
-    const img = document.createElement("img");
-    img.src = fig.image;
-    img.alt = fig.name;
-    img.classList.add("figurina-img");
-  
-    const name = document.createElement("p");
-    name.textContent = fig.name;
-    name.classList.add("figurina-name");
-  
-    // Sempre crea l'elemento per la descrizione.
-    // Se la descrizione è vuota, utilizza il testo di fallback.
-    const description = document.createElement("p");
-    description.textContent = fig.description.trim() !== "" ? fig.description : "Nessuna descrizione disponibile";
-    description.classList.add("figurina-description");
-  
-    card.appendChild(img);
-    card.appendChild(name);
-    card.appendChild(description);
-    albumContainer.appendChild(card);
-  });
+  figurines.forEach(fig => visualizzaFigurina(fig, albumContainer));
 }
 function getRandomIntInclusive(min, max) {
   const minCeiled = Math.ceil(min);

@@ -17,5 +17,5 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         nomiFigurineUnivoche.push(figurina.name); 
     });
-    console.log(doppioni);
+    
 })
