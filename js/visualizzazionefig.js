@@ -24,4 +24,5 @@ const visualizzaFigurina = (fig, albumContainer) => {
     card.appendChild(name);
     card.appendChild(description);
     albumContainer.appendChild(card);
+    return card;
   }
