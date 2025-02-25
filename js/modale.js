@@ -51,7 +51,9 @@ document.addEventListener("DOMContentLoaded", () => {
             try {
                 // Verifica se la funzione eseguiAcquisto() esiste
                 if (typeof eseguiAcquisto === "function") {
+                    btnConfermaAcquisto.style.display = "none";
                     await eseguiAcquisto();
+                    btnConfermaAcquisto.style.display = "block";
                     chiudiModale();
                 } else {
                     console.warn(
