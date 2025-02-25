@@ -39,7 +39,7 @@ async function eseguiAcquisto() {
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
   const limit = 5; // Limite scelto per la chiamata API
   const offset = getRandomIntInclusive(0, 0);
-  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}&orderBy=modified`;
+  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}`;
   
   try {
     const response = await fetch(marvelUrl);
