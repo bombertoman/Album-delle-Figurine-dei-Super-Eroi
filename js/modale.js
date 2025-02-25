@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
     const btnApriModale = document.getElementById("btn-acquistopack"); // Bottone per aprire la modale
     const btnConfermaAcquisto = document.getElementById("btn-acquista-figurine"); // Bottone per confermare acquisto
+    const loader = document.getElementsByClassName("loader")[0]; 
     const modaleAcquistopack = document.getElementById("modale-acquistopack"); // Div della modale
     const closeSpan = modaleAcquistopack
         ? modaleAcquistopack.querySelector(".close")
@@ -52,8 +53,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 // Verifica se la funzione eseguiAcquisto() esiste
                 if (typeof eseguiAcquisto === "function") {
                     btnConfermaAcquisto.style.display = "none";
+                    loader.style.display = "block";
                     await eseguiAcquisto();
                     btnConfermaAcquisto.style.display = "block";
+                    loader.style.display = "none";
                     chiudiModale();
                 } else {
                     console.warn(
