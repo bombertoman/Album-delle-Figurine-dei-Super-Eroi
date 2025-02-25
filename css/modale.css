@@ -30,29 +30,35 @@
 #btn-acquista-figurine:hover {
     background-color: #45a049;
 }
+
 /* contenuto */
 .modal-content {
+    min-width: 360px;
     background-color: #700808f0;
-        margin: 15% auto;
-        padding: 20px;
-        border: 5px solid whitesmoke;
-        width: 80%;
-        height: fit-content;
-        color: whitesmoke;
-        border-radius: 10px;
-        box-shadow: 10px 10px 3px black;
-    }
+    margin: 15% auto;
+    padding: 20px;
+    border: 5px solid whitesmoke;
+    width: 25%;
+    height: fit-content;
+    color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 10px 10px 3px black;
+}
+
 .modal-header {
     display: flex;
     flex-direction: column;
 }
-.modal-credit-container{
+
+.modal-credit-container {
     flex-direction: row;
     height: 25px;
 }
+
 .modal-credit-container .ncrediti {
     font-size: 1rem;
 }
+
 /* tasto chiudi */
 .close {
     color: #aaa;
