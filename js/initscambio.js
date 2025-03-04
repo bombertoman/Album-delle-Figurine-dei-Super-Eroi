@@ -71,7 +71,5 @@ document.addEventListener ("DOMContentLoaded", function(){
             return figurina.name === proposta.nomeFigurinaProposta;
         })
         visualizzaFigurina(figurinaProposta, divScambiProposti);
-
-        console.log(figurinaProposta)
     });
 })
