@@ -4,13 +4,18 @@ const figurineClickHandler = card => {
     modale.style.display = "block";
 }
 document.addEventListener ("DOMContentLoaded", function(){
+    const users = JSON.parse(localStorage.getItem("users"));
+    
+    /*
+    * --------------------------------------
+    * Modale per proporre scambio
+    * --------------------------------------
+    */
     const modale = document.getElementById("modale-sceltauser"); 
     const closeSpan = modale ? modale.querySelector(".close") : null; 
     // X per chiudere la modale
 
-    /**
-     * Funzione per chiudere la modale
-     */
+    
     function chiudiModale() {
         if (modale) modale.style.display = "none";
     }
@@ -28,7 +33,6 @@ document.addEventListener ("DOMContentLoaded", function(){
     const button = document.getElementById("btn-proponi");
     button.addEventListener("click", event => {
         event.preventDefault();
-        const users = JSON.parse(localStorage.getItem("users"));
         const usernameInput = document.getElementById("user-scambio");
         const userIndex = users.findIndex(user => {
             return user.username === usernameInput.value;
@@ -50,4 +54,24 @@ document.addEventListener ("DOMContentLoaded", function(){
         alert("La proposta di scambio è stata inviata all'utente inserito!");
     })
 
+    /*
+    * --------------------------------------
+    * Caricamento dinamico scambi proposti
+    * --------------------------------------
+    */
+    const divScambiProposti = document.getElementById("scambi-proposti");
+    const scambiProposti = getCurrentUserItem("scambi"); //array con tutti gli scambi proposti dagli altri utenti a noi
+    scambiProposti.forEach(proposta => {
+
+        const nomeOfferenteScambio = proposta.offerenteScambio;
+        const utenteOfferente = users.find(user => {
+            return user.username === nomeOfferenteScambio;
+        })
+        const figurinaProposta = utenteOfferente.figurines.find(figurina => {
+            return figurina.name === proposta.nomeFigurinaProposta;
+        })
+        visualizzaFigurina(figurinaProposta, divScambiProposti);
+
+        
+    });
 })
