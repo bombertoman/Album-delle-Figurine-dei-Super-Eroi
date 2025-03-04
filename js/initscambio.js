@@ -61,6 +61,7 @@ document.addEventListener ("DOMContentLoaded", function(){
     */
     const divScambiProposti = document.getElementById("scambi-proposti");
     const scambiProposti = getCurrentUserItem("scambi"); //array con tutti gli scambi proposti dagli altri utenti a noi
+    console.log(scambiProposti)
     scambiProposti.forEach(proposta => {
 
         const nomeOfferenteScambio = proposta.offerenteScambio;
