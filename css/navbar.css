@@ -1,12 +1,11 @@
-/* Navbar aggiornato per rimanere fissa e in cima */
 .navbar {
     background-color: #71181f;
     color: whitesmoke;
-    position: fixed;  /* Usa fixed per fissare la navbar in cima */
+    position: fixed; 
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000;    /* Maggiore dei container sottostanti */
+    z-index: 1000; 
     display: flex;
     justify-content: space-between;
     align-items: center;
