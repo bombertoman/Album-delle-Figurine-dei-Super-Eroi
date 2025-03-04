@@ -61,7 +61,8 @@ body {
 }
 
 /* Titolo della pagina */
-.scambi-container h1 {
+.scambi-container h1, 
+.scambi-container h3 {
     margin-top: 0;
     text-align: center;
     color: #333;
