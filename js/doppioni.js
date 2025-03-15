@@ -19,7 +19,13 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     doppioni.forEach(doppione => {
         const card = visualizzaFigurina(doppione.figurina, divDoppioni);
-        card.addEventListener("click", event => figurineClickHandler(card, "modale-sceltauser"));
+        card.addEventListener("click", event => {
+            if (indexScambioSelezionato === null) {
+                figurineClickHandler(card, "modale-sceltauser");
+                return;
+            }
+            figurineClickHandler(card, "modale-confermascambio");
+        });
     })
 
 })
