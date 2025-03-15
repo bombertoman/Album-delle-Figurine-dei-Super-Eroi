@@ -64,7 +64,7 @@ document.addEventListener ("DOMContentLoaded", function(){
     */
     const divScambiProposti = document.getElementById("scambi-proposti");
     const scambiProposti = getCurrentUserItem("scambi"); //array con tutti gli scambi proposti dagli altri utenti a noi
-    scambiProposti.forEach(proposta => {
+    scambiProposti.forEach((proposta, indexScambio) => {
 
         const nomeOfferenteScambio = proposta.offerenteScambio;
         const utenteOfferente = users.find(user => {
@@ -75,7 +75,7 @@ document.addEventListener ("DOMContentLoaded", function(){
         })
         const card = visualizzaFigurina(figurinaProposta, divScambiProposti);
         card.addEventListener("click", event => {
-            console.log(event) 
+            indexScambioSelezionato = indexScambio;
         });
     });
 })
