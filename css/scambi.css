@@ -168,5 +168,7 @@ body {
 }
 
 .card.scambio-selezionato{
-    background: rgba(255, 255, 0, 0.5);
+    background: yellow;
+    border-color: yellow;
+    color: #71181f;
 }
