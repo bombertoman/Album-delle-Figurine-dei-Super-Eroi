@@ -8,16 +8,9 @@ let indexScambioSelezionato = null;
 
 document.addEventListener ("DOMContentLoaded", function(){
     const users = JSON.parse(localStorage.getItem("users"));
-    
-    /*
-    * --------------------------------------
-    * Modale per proporre scambio
-    * --------------------------------------
-    */
     const modali = document.getElementsByClassName("modale"); 
     // X per chiudere la modale
 
-    
     function chiudiModale(elementoModale) {
         elementoModale.style.display = "none";    
     }
