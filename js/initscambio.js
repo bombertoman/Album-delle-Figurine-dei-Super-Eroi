@@ -16,11 +16,11 @@ document.addEventListener ("DOMContentLoaded", function(){
     }
     // Quando clicco sulla "X", chiudo la modale
     
-    modali.forEach(elementModale => {
+    for (let i = 0; i<modali.length; i++) {
+        const elementModale = modali[i];
         const closeSpan = elementModale.getElementsByClassName("close")[0];
         closeSpan.addEventListener("click", () => chiudiModale(elementModale));
-    })
-    
+    }
     // Quando clicco fuori dalla modale, chiudo la modale
     window.addEventListener("click", (event) => {
         if (event.target.classList.contains("modale")) {
