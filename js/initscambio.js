@@ -81,7 +81,7 @@ document.addEventListener ("DOMContentLoaded", function(){
                 figurinaSelezionataInPrecedenza.classList.remove("scambio-selezionato");
             } 
             indexScambioSelezionato = indexScambio;
-            event.target.classList.add("scambio-selezionato");
+            card.classList.add("scambio-selezionato");
         });
     });
 })
