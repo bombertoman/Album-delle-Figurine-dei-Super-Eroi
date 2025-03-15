@@ -14,23 +14,24 @@ document.addEventListener ("DOMContentLoaded", function(){
     * Modale per proporre scambio
     * --------------------------------------
     */
-    const modale = document.getElementById("modale-sceltauser"); 
-    const closeSpan = modale ? modale.querySelector(".close") : null; 
+    const modali = document.getElementsByClassName("modale"); 
     // X per chiudere la modale
 
     
-    function chiudiModale() {
-        if (modale) modale.style.display = "none";
+    function chiudiModale(elementoModale) {
+        elementoModale.style.display = "none";    
     }
     // Quando clicco sulla "X", chiudo la modale
-    if (closeSpan) {
-        closeSpan.addEventListener("click", chiudiModale);
-    }
+    
+    modali.forEach(elementModale => {
+        const closeSpan = elementModale.getElementsByClassName("close")[0];
+        closeSpan.addEventListener("click", () => chiudiModale(elementModale));
+    })
     
     // Quando clicco fuori dalla modale, chiudo la modale
     window.addEventListener("click", (event) => {
-        if (event.target === modale) {
-            chiudiModale();
+        if (event.target.classList.contains("modale")) {
+            chiudiModale(event.target);
         }    
     });
     const button = document.getElementById("btn-proponi");
@@ -47,13 +48,14 @@ document.addEventListener ("DOMContentLoaded", function(){
         if (!users[userIndex]?.scambi) {
             users[userIndex].scambi = [];
         }
+        const modale = document.getElementById("modale-sceltauser")
         const nomeUtente = getCurrentUserItem("username");
         users[userIndex].scambi.push({
             nomeFigurinaProposta: modale.dataset.name, 
             offerenteScambio: nomeUtente
         });
         localStorage.setItem("users", JSON.stringify(users));
-        chiudiModale();
+        chiudiModale(modale);
         alert("La proposta di scambio è stata inviata all'utente inserito!");
     })
 
@@ -80,7 +82,7 @@ document.addEventListener ("DOMContentLoaded", function(){
                 const figurinaSelezionataInPrecedenza = document.getElementById(indexScambioSelezionato);
                 figurinaSelezionataInPrecedenza.classList.remove("scambio-selezionato");
             } 
-            
+
             //deselezione della figurina selezionata in precedenza se è stata cliccata di nuovo 
             if (indexScambioSelezionato === indexScambio){
                 indexScambioSelezionato = null;
