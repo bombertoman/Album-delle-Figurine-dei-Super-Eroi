@@ -74,8 +74,14 @@ document.addEventListener ("DOMContentLoaded", function(){
             return figurina.name === proposta.nomeFigurinaProposta;
         })
         const card = visualizzaFigurina(figurinaProposta, divScambiProposti);
+        card.id = indexScambio;
         card.addEventListener("click", event => {
+            if (indexScambioSelezionato !== null){
+                const figurinaSelezionataInPrecedenza = document.getElementById(indexScambioSelezionato);
+                figurinaSelezionataInPrecedenza.classList.remove("scambio-selezionato");
+            } 
             indexScambioSelezionato = indexScambio;
+            event.target.classList.add("scambio-selezionato");
         });
     });
 })
