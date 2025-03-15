@@ -80,6 +80,13 @@ document.addEventListener ("DOMContentLoaded", function(){
                 const figurinaSelezionataInPrecedenza = document.getElementById(indexScambioSelezionato);
                 figurinaSelezionataInPrecedenza.classList.remove("scambio-selezionato");
             } 
+            
+            //deselezione della figurina selezionata in precedenza se è stata cliccata di nuovo 
+            if (indexScambioSelezionato === indexScambio){
+                indexScambioSelezionato = null;
+                return;
+            }
+
             indexScambioSelezionato = indexScambio;
             card.classList.add("scambio-selezionato");
         });
