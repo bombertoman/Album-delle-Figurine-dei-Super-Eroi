@@ -167,6 +167,6 @@ body {
     background-color: #88abc1;
 }
 
-.scambio-selezionato{
+.card.scambio-selezionato{
     background: rgba(255, 255, 0, 0.5);
 }
