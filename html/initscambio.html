@@ -42,9 +42,7 @@
   </header>
 
   <main>
-    <div class="scambi-container">
-      
-
+    <div class="scambi-container">  
       <button class="accordion">Scambi in arrivo <span class="icon">▾</span></button>
       <div class="panel">
         <div class="figurines-container" id="scambi-proposti">
@@ -53,12 +51,24 @@
 
       <h1>I miei Doppioni</h1>
       <h3>Clicca sulla figurina che vuoi scambiare</h3>
-      <!-- Qui compariranno i doppioni caricati da doppioni.js -->
+      <!-- Qui compariranno i doppioni caricati da doppioni.js --> 
       <div id="doppioni" class="figurines-container"></div>
     </div>
 
-    <div id="modale-sceltauser" class="modale">
+    <div id="modale-confermascambio" class="modale">
+      <div class="modal-content">
+          <span class="close">&times;</span>
+          <div class="modal-header">
+              <div>Confermi lo scambio di questo doppione per la figurina in arrivo selezionata?</div>
+              <div class="modal-button-container">
+                  <button id="btn-conferma" class="main-btn">Conferma e procedi!
+                  </button>
+              </div>
+          </div>
+      </div>
+    </div>
 
+    <div id="modale-sceltauser" class="modale">
       <div class="modal-content">
           <span class="close">&times;</span>
           <div class="modal-header">
@@ -69,10 +79,9 @@
                   </button>
               </div>
           </div>
-
       </div>
+    </div>
   </main>
-
   <footer>
     <p>© 2025 Album Figurine Supereroi</p>
   </footer>

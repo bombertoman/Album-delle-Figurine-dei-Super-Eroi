@@ -1,8 +1,11 @@
-const figurineClickHandler = card => {
-    const modale = document.getElementById("modale-sceltauser"); 
+const figurineClickHandler = (card, nomeModale) => {
+    const modale = document.getElementById(nomeModale); 
     modale.dataset.name = card.dataset.name;
     modale.style.display = "block";
 }
+let indexScambioSelezionato = null;
+
+
 document.addEventListener ("DOMContentLoaded", function(){
     const users = JSON.parse(localStorage.getItem("users"));
     
@@ -70,6 +73,9 @@ document.addEventListener ("DOMContentLoaded", function(){
         const figurinaProposta = utenteOfferente.figurines.find(figurina => {
             return figurina.name === proposta.nomeFigurinaProposta;
         })
-        visualizzaFigurina(figurinaProposta, divScambiProposti);
+        const card = visualizzaFigurina(figurinaProposta, divScambiProposti);
+        card.addEventListener("click", event => {
+            console.log(event) 
+        });
     });
 })
