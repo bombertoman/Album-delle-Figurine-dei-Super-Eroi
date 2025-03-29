@@ -44,11 +44,11 @@ document.addEventListener('DOMContentLoaded', function() {
         const offerenteUser = users.find(user => {
             return user.name === nomeOfferenteScambio    
         });
-        console.log({...users}, {...figurineOfferente}); 
         const figurineOfferente = offerenteUser.figurines;
         const indexFigurinaDaRicevere = figurineOfferente.findIndex(figurina => {
             return figurina.name === nomeFigurinaDaRicevere;
         })
+        console.log({...users}, {...figurineOfferente}); 
         const figurinaDaRicevere = figurineOfferente[indexFigurinaDaRicevere];
         figurines.push(figurinaDaRicevere); 
         const indexFigurinaDaCedere = figurines.findIndex(figurina => {
