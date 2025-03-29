@@ -36,6 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
         const scambiProposti = getCurrentUserItem("scambi");
-        console.log(scambiProposti[indexScambioSelezionato])
+        const scambioAccettato = scambiProposti[indexScambioSelezionato];
+        console.log(figurines);
     })
 })
