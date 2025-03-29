@@ -27,5 +27,15 @@ document.addEventListener('DOMContentLoaded', function() {
             figurineClickHandler(card, "modale-confermascambio");
         });
     })
-
+    const buttonConfermaScambio = document.getElementById("btn-conferma");
+    buttonConfermaScambio.addEventListener("click", event => {
+        if (indexScambioSelezionato === null) {
+            alert("Seleziona una figurina negli scambi in arrivo prima di procedere con lo scambio.");
+            const modaleConfermaScambio = document.getElementById("modale-confermascambio");
+            modaleConfermaScambio.style.display = "none";
+            return;
+        }
+        const scambiProposti = getCurrentUserItem("scambi");
+        console.log(scambiProposti[indexScambioSelezionato])
+    })
 })

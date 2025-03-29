@@ -5,9 +5,7 @@ function aggiornaCreditiVisualizzati(crediti) {
         creditiElem.textContent = crediti.toString();
     }
 }
-console.log("caricamento js")
 window.addEventListener("load", () => { 
-    console.log("window.onload funziona")
     //prendiamo i crediti dell'utente e li scriviamo subito nella pagina
     const crediti = getCurrentUserItem("numberCredits");
     aggiornaCreditiVisualizzati(crediti);
