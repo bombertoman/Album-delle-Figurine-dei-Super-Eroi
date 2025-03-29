@@ -35,11 +35,12 @@ document.addEventListener('DOMContentLoaded', function() {
             modaleConfermaScambio.style.display = "none";
             return;
         }
-        const scambiProposti = getCurrentUserItem("scambi"); //preso gli scambi proposti
+        const users = JSON.parse(localStorage.getItem("users"));
+        const currentUser = users[getCurrentUserIndex()]; //prendiamo l'utente dalla variabile users che sarà usata per modificare entrambi gli utenti dello scambio
+        const scambiProposti = currentUser.scambi; //preso gli scambi proposti
         const scambioAccettato = scambiProposti[indexScambioSelezionato]; //preso lo scambio proposto selezionato
         const nomeFigurinaDaRicevere = scambioAccettato.nomeFigurinaProposta; // preso il nome della figurina dello scambio proposto selezionato, cioè la fig. da ricevere (propone l'utente)
         const nomeFigurinaDaCedere = modaleConfermaScambio.dataset.name // preso il nome del doppione con cui scambiare (scelgo lato mio)
-        const users = JSON.parse(localStorage.getItem("users"));
         const nomeOfferenteScambio = scambioAccettato.offerenteScambio;
         const offerenteUser = users.find(user => {
             return user.username === nomeOfferenteScambio    
@@ -53,7 +54,6 @@ document.addEventListener('DOMContentLoaded', function() {
             return figurina.name === nomeFigurinaDaRicevere;
         })
         const figurinaDaRicevere = figurineOfferente[indexFigurinaDaRicevere];
-        const currentUser = users[getCurrentUserIndex()]; //prendiamo l'utente dalla variabile users che sarà usata per modificare entrambi gli utenti dello scambio
         const currentUserFigurines = currentUser.figurines
         currentUserFigurines.push(figurinaDaRicevere); 
         const indexFigurinaDaCedere = currentUserFigurines.findIndex(figurina => {
@@ -64,7 +64,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
         figurineOfferente.splice(indexFigurinaDaRicevere, 1); // rimuove la figurina dall'offerente dello scambio
         figurineOfferente.push(figurinaDaCedere);
+        scambiProposti.splice(indexScambioSelezionato, 1);
         localStorage.setItem("users", JSON.stringify(users));
+
     })
 
 
