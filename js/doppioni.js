@@ -42,8 +42,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const users = JSON.parse(localStorage.getItem("users"));
         const nomeOfferenteScambio = scambioAccettato.offerenteScambio;
         const offerenteUser = users.find(user => {
-            return user.name === nomeOfferenteScambio    
+            return user.username === nomeOfferenteScambio    
         });
+        if (offerenteUser === undefined) {
+            alert("L'offerente dello scambio non è stato trovato");
+            return;
+        }
         const figurineOfferente = offerenteUser.figurines;
         const indexFigurinaDaRicevere = figurineOfferente.findIndex(figurina => {
             return figurina.name === nomeFigurinaDaRicevere;
