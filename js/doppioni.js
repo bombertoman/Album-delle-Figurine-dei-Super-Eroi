@@ -66,6 +66,8 @@ document.addEventListener('DOMContentLoaded', function() {
         figurineOfferente.push(figurinaDaCedere);
         scambiProposti.splice(indexScambioSelezionato, 1);
         localStorage.setItem("users", JSON.stringify(users));
+        alert("Scambio avvenuto con successo");
+        location.reload();
 
     })
 
