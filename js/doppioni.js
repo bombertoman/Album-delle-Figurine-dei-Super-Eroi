@@ -52,19 +52,19 @@ document.addEventListener('DOMContentLoaded', function() {
         const indexFigurinaDaRicevere = figurineOfferente.findIndex(figurina => {
             return figurina.name === nomeFigurinaDaRicevere;
         })
-        console.log({...users}, {...figurineOfferente}); 
         const figurinaDaRicevere = figurineOfferente[indexFigurinaDaRicevere];
-        figurines.push(figurinaDaRicevere); 
-        const indexFigurinaDaCedere = figurines.findIndex(figurina => {
+        const currentUser = users[getCurrentUserIndex()]; //prendiamo l'utente dalla variabile users che sarà usata per modificare entrambi gli utenti dello scambio
+        const currentUserFigurines = currentUser.figurines
+        currentUserFigurines.push(figurinaDaRicevere); 
+        const indexFigurinaDaCedere = currentUserFigurines.findIndex(figurina => {
             return figurina.name === nomeFigurinaDaCedere;
         })
-        const figurinaDaCedere = figurines[indexFigurinaDaCedere]; // ci siamo presi la figurina da cedere  
-        figurines.splice(indexFigurinaDaCedere, 1); // rimuove dall'array la figurina da cedere
-        setCurrentUserItem("figurines", figurines);
+        const figurinaDaCedere = currentUserFigurines[indexFigurinaDaCedere]; // ci siamo presi la figurina da cedere  
+        currentUserFigurines.splice(indexFigurinaDaCedere, 1); // rimuove dall'array la figurina da cedere
+
         figurineOfferente.splice(indexFigurinaDaRicevere, 1); // rimuove la figurina dall'offerente dello scambio
         figurineOfferente.push(figurinaDaCedere);
-        console.log(users, figurineOfferente);
-        
+        localStorage.setItem("users", JSON.stringify(users));
     })
 
 
