@@ -29,14 +29,39 @@ document.addEventListener('DOMContentLoaded', function() {
     })
     const buttonConfermaScambio = document.getElementById("btn-conferma");
     buttonConfermaScambio.addEventListener("click", event => {
+        const modaleConfermaScambio = document.getElementById("modale-confermascambio");
         if (indexScambioSelezionato === null) {
             alert("Seleziona una figurina negli scambi in arrivo prima di procedere con lo scambio.");
-            const modaleConfermaScambio = document.getElementById("modale-confermascambio");
             modaleConfermaScambio.style.display = "none";
             return;
         }
-        const scambiProposti = getCurrentUserItem("scambi");
-        const scambioAccettato = scambiProposti[indexScambioSelezionato];
-        console.log(figurines);
+        const scambiProposti = getCurrentUserItem("scambi"); //preso gli scambi proposti
+        const scambioAccettato = scambiProposti[indexScambioSelezionato]; //preso lo scambio proposto selezionato
+        const nomeFigurinaDaRicevere = scambioAccettato.nomeFigurinaProposta; // preso il nome della figurina dello scambio proposto selezionato, cioè la fig. da ricevere (propone l'utente)
+        const nomeFigurinaDaCedere = modaleConfermaScambio.dataset.name // preso il nome del doppione con cui scambiare (scelgo lato mio)
+        const users = JSON.parse(localStorage.getItem("users"));
+        const nomeOfferenteScambio = scambioAccettato.offerenteScambio;
+        const offerenteUser = users.find(user => {
+            return user.name === nomeOfferenteScambio    
+        });
+        console.log({...users}, {...figurineOfferente}); 
+        const figurineOfferente = offerenteUser.figurines;
+        const indexFigurinaDaRicevere = figurineOfferente.findIndex(figurina => {
+            return figurina.name === nomeFigurinaDaRicevere;
+        })
+        const figurinaDaRicevere = figurineOfferente[indexFigurinaDaRicevere];
+        figurines.push(figurinaDaRicevere); 
+        const indexFigurinaDaCedere = figurines.findIndex(figurina => {
+            return figurina.name === nomeFigurinaDaCedere;
+        })
+        const figurinaDaCedere = figurines[indexFigurinaDaCedere]; // ci siamo presi la figurina da cedere  
+        figurines.splice(indexFigurinaDaCedere, 1); // rimuove dall'array la figurina da cedere
+        setCurrentUserItem("figurines", figurines);
+        figurineOfferente.splice(indexFigurinaDaRicevere, 1); // rimuove la figurina dall'offerente dello scambio
+        figurineOfferente.push(figurinaDaCedere);
+        console.log(users, figurineOfferente);
+        
     })
+
+
 })
