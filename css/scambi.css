@@ -164,7 +164,7 @@ body {
     }
 }
 #scambi-proposti{
-    background-color: #88abc1;
+    background-color: rgba(136, 171, 193, .5);
 }
 
 .card.scambio-selezionato{
