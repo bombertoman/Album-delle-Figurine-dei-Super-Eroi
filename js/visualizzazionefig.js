@@ -17,7 +17,6 @@ const visualizzaFigurina = (fig, albumContainer) => {
     // Sempre crea l'elemento per la descrizione.
     // Se la descrizione è vuota, utilizza il testo di fallback.
     const description = document.createElement("p");
-    console.log(fig)
     description.textContent = fig.description.trim() !== "" ? fig.description : "Nessuna descrizione disponibile";
     description.classList.add("figurina-description");
   
