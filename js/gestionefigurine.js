@@ -60,23 +60,27 @@ async function eseguiAcquisto() {
       randomfigurines.push(responseJson.data.results[figurineIndex]);
     }
     const figurines = getCurrentUserItem("figurines");
-    const nuoveFigurine = randomfigurines.map(character => {
-      const nuovaFigurina = {
-        name: character.name,
-        description: character.description,
-        image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
-        comics: character.comics
-      }
-      figurines.push(nuovaFigurina);
-      return nuovaFigurina;
-    });
-    for(let character of nuoveFigurine){
+    const nuoveFigurine = [];
+    for(let character of randomfigurines){
       const responseComics= await fetch(`${character.comics.collectionURI}?${getAuth()}`);
       if (!responseComics.ok) {
         throw new Error(`Errore API Marvel: ${responseComics.statusText}`);
       }
       const responseJsonComics = await responseComics.json();
-      console.log(responseJsonComics);
+      const nuovaFigurina = {
+        name: character.name,
+        description: character.description,
+        image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
+        comics: responseJsonComics.data.results.map(comic => {
+          return {
+            title: comic.title,
+            image: `${comic.thumbnail.path}.${comic.thumbnail.extension}`,
+            series: comic.series.name
+          }
+        })
+      }
+      figurines.push(nuovaFigurina);
+      nuoveFigurine.push(nuovaFigurina);
     }
     // Aggiorna i crediti e salva in currentUser
     crediti -= 1; 
