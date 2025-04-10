@@ -3,7 +3,11 @@ const PRIVATE_KEY = "cf2a2657976eeb220c1a6a2a28e90100767bb137";
 function generateMarvelHash(ts, privateKey, publicKey) {
   return CryptoJS.MD5(ts + privateKey + publicKey).toString();
 }
-
+function getAuth(){
+  const ts = new Date().getTime().toString();
+  const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
+  return `apikey=${PUBLIC_KEY}&ts=${ts}&hash=${hash}`;
+}
 function aggiornaAlbumInHtml(figurines) {
   const albumContainer = document.getElementById("album");
   if (!albumContainer) {
@@ -34,13 +38,9 @@ async function eseguiAcquisto() {
     alert("Crediti insufficienti!");
     return;
   }
-  
-  const ts = new Date().getTime().toString();
-  const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
   const limit = 92; // Limite scelto per la chiamata API
   const offset = getRandomIntInclusive(0, 16);
-  const auth = `apikey=${PUBLIC_KEY}&hash=${hash}`;
-  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&offset=${offset}&orderBy=modified&${auth}`;
+  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&offset=${offset}&orderBy=modified&${getAuth()}`;
   
   try {
     const response = await fetch(marvelUrl);
@@ -66,7 +66,7 @@ async function eseguiAcquisto() {
         description: character.description,
         image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
       }
-      const responseComics= await fetch(`${character.comics.collectionURI}?${auth}`);
+      const responseComics= await fetch(`${character.comics.collectionURI}?${getAuth()}`);
       if (!responseComics.ok) {
         throw new Error(`Errore API Marvel: ${responseComics.statusText}`);
       }
