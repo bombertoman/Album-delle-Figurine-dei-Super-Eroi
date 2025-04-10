@@ -39,7 +39,8 @@ async function eseguiAcquisto() {
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
   const limit = 92; // Limite scelto per la chiamata API
   const offset = getRandomIntInclusive(0, 16);
-  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&apikey=${PUBLIC_KEY}&hash=${hash}&offset=${offset}&orderBy=modified`;
+  const auth = `apikey=${PUBLIC_KEY}&hash=${hash}`;
+  const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&ts=${ts}&offset=${offset}&orderBy=modified&${auth}`;
   
   try {
     const response = await fetch(marvelUrl);
@@ -59,12 +60,18 @@ async function eseguiAcquisto() {
       randomfigurines.push(responseJson.data.results[figurineIndex]);
     }
     const figurines = getCurrentUserItem("figurines");
-    const nuoveFigurine = randomfigurines.map((character) => {
+    const nuoveFigurine = randomfigurines.map(async (character) => {
       const nuovaFigurina = {
         name: character.name,
         description: character.description,
         image: `${character.thumbnail.path}.${character.thumbnail.extension}`,
       }
+      const responseComics= await fetch(`${character.comics.collectionURI}?${auth}`);
+      if (!responseComics.ok) {
+        throw new Error(`Errore API Marvel: ${responseComics.statusText}`);
+      }
+      const responseJsonComics = await responseComics.json();
+      console.log(responseJsonComics);
       figurines.push(nuovaFigurina);
       return nuovaFigurina;
     });
