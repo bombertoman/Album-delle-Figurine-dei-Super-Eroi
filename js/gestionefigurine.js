@@ -18,10 +18,21 @@ function aggiornaAlbumInHtml(figurines) {
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   
+  const dettagliFigurina = document.getElementById("dettagli-figurina")
+  const nomeFigurina = document.getElementById("nome-figurina")
+  const immagineFigurina = document.getElementById("immagine-figurina")
+  const descrizioneFigurina = document.getElementById("descrizione-figurina")
+  const fumettiFigurina = document.getElementById("fumetti-figurina")
   figurines.forEach(fig => {
     const card = visualizzaFigurina(fig, albumContainer)
-    card.addEventListener("click", () => console.log(fig))
-    
+    card.addEventListener("click", () => {
+      dettagliFigurina.display = "block"
+      nomeFigurina.innerText = fig.name
+      immagineFigurina.src = fig.image
+      descrizioneFigurina.innerText = fig.description
+      //fumettifig
+    })
+
   });
 
 }
