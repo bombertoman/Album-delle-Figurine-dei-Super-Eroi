@@ -18,9 +18,13 @@ function aggiornaAlbumInHtml(figurines) {
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   
-  figurines.forEach(fig => visualizzaFigurina(fig, albumContainer));
+  figurines.forEach(fig => {
+    const card = visualizzaFigurina(fig, albumContainer)
+    card.addEventListener("click", () => console.log(fig))
+  });
+
 }
-function getRandomIntInclusive(min, max) {
+const getRandomIntInclusive = (min, max) => {
   const minCeiled = Math.ceil(min);
   const maxFloored = Math.floor(max);
   return Math.floor(Math.random() * (maxFloored - minCeiled + 1) + minCeiled);
