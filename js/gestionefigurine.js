@@ -27,7 +27,7 @@ function aggiornaAlbumInHtml(figurines) {
     const card = visualizzaFigurina(fig, albumContainer)
     card.addEventListener("click", () => {
       console.log(dettagliFigurina)
-      dettagliFigurina.display = "block"
+      dettagliFigurina.style.display = "block"
       nomeFigurina.innerText = fig.name
       immagineFigurina.src = fig.image
       descrizioneFigurina.innerText = fig.description
