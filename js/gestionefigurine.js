@@ -17,16 +17,9 @@ function aggiornaAlbumInHtml(figurines) {
   
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
-  
-  const dettagliFigurina = document.getElementById("dettagli-figurina")
-  const nomeFigurina = document.getElementById("nome-figurina")
-  const immagineFigurina = document.getElementById("immagine-figurina")
-  const descrizioneFigurina = document.getElementById("descrizione-figurina")
-  const fumettiFigurina = document.getElementById("fumetti-figurina")
   figurines.forEach(fig => {
     const card = visualizzaFigurina(fig, albumContainer)
     card.addEventListener("click", () => {
-      console.log(dettagliFigurina)
       dettagliFigurina.style.display = "block"
       nomeFigurina.innerText = fig.name
       immagineFigurina.src = fig.image
@@ -114,6 +107,13 @@ async function eseguiAcquisto() {
 }
 // Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
+  const dettagliFigurina = document.getElementById("dettagli-figurina")
+  const nomeFigurina = document.getElementById("nome-figurina")
+  const immagineFigurina = document.getElementById("immagine-figurina")
+  const descrizioneFigurina = document.getElementById("descrizione-figurina")
+  const fumettiFigurina = document.getElementById("fumetti-figurina")
+  const chiusuraDettagliFigurina = document.getElementById("chiudi-dettagli-figurina")
+  chiusuraDettagliFigurina.addEventListener("click", () => dettagliFigurina.style.display = "none")
   aggiornaAlbumInHtml(getCurrentUserItem("figurines"));
 });
   
