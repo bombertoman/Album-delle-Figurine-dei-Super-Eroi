@@ -118,6 +118,7 @@
 .contenitore-img-figurina {
     display: flex;
     justify-content: center;
+    padding: 10px;
 }
 
 #nome-figurina {
