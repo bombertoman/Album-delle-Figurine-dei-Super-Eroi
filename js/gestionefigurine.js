@@ -62,7 +62,8 @@ async function eseguiAcquisto() {
     if (!responseJson?.data?.results?.length) {
       throw new Error("Nessun personaggio trovato!");
     }
-    const randomFigurines = responseJson.data.results
+    const randomfigurines = responseJson.data.results
+    
     // Seleziona 5 figurine casuali dalle 92 ottenute
     /*const randomfigurines = [];
     for (let i = 0; i < 5; i++) {
