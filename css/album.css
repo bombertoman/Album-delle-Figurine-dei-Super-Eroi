@@ -115,3 +115,7 @@
     object-fit: contain;
     max-width: 100%;
 }
+.contenitore-img-figurina {
+    display: flex;
+    justify-content: center;
+}
