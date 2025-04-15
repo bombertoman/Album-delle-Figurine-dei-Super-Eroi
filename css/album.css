@@ -136,3 +136,9 @@
     line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.intestazione-figurina {
+    font-size: 1.1em;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
