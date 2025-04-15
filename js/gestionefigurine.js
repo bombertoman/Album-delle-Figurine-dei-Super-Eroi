@@ -105,6 +105,10 @@ async function eseguiAcquisto() {
     alert("Errore durante l'acquisto del pacchetto. Riprova più tardi.");
   }
 }
+const chiudiDettagliFigurina = () => dettagliFigurina.style.display = "none";
+
+
+
 let dettagliFigurina, nomeFigurina, immagineFigurina, descrizioneFigurina, fumettiFigurina, chiusuraDettagliFigurina = null;
 // Al caricamento della pagina, visualizza le figurine salvate (proprietà nell'oggetto alla chiave "currentUser")
 document.addEventListener("DOMContentLoaded", function () {
@@ -113,8 +117,11 @@ document.addEventListener("DOMContentLoaded", function () {
   immagineFigurina = document.getElementById("immagine-figurina")
   descrizioneFigurina = document.getElementById("descrizione-figurina")
   fumettiFigurina = document.getElementById("fumetti-figurina")
-  chiusuraDettagliFigurina = document.getElementById("chiudi-dettagli-figurina")
-  chiusuraDettagliFigurina.addEventListener("click", () => dettagliFigurina.style.display = "none")
+  window.addEventListener("click", (event) => {
+    if (event.target === dettagliFigurina) {
+        chiudiDettagliFigurina();
+    }
+});
   aggiornaAlbumInHtml(getCurrentUserItem("figurines"));
 });
   
