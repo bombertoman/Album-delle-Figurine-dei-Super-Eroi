@@ -49,7 +49,7 @@ async function eseguiAcquisto() {
     return;
   }
   const limit = 92; // Limite scelto per la chiamata API
-  const offset = getRandomIntInclusive(0, 16);
+  const offset = 1 // getRandomIntInclusive(0, 16); 
   const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&offset=${offset}&orderBy=modified&${getAuth()}`;
   
   try {
@@ -62,13 +62,13 @@ async function eseguiAcquisto() {
     if (!responseJson?.data?.results?.length) {
       throw new Error("Nessun personaggio trovato!");
     }
-  
+    const randomFigurines = responseJson.data.results
     // Seleziona 5 figurine casuali dalle 92 ottenute
-    const randomfigurines = [];
+    /*const randomfigurines = [];
     for (let i = 0; i < 5; i++) {
       const figurineIndex = Math.floor(Math.random() * (limit - 1));
       randomfigurines.push(responseJson.data.results[figurineIndex]);
-    }
+    }*/
     const figurines = getCurrentUserItem("figurines");
     const nuoveFigurine = [];
     for(let character of randomfigurines){
@@ -121,7 +121,7 @@ document.addEventListener("DOMContentLoaded", function () {
     if (event.target === dettagliFigurina) {
         chiudiDettagliFigurina();
     }
-});
+  });
   aggiornaAlbumInHtml(getCurrentUserItem("figurines"));
 });
   
