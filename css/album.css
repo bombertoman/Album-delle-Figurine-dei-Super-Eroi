@@ -108,3 +108,10 @@
     background:whitesmoke;
     color: black;
 }
+
+#immagine-figurina {
+    height: 540px;
+    background:#575757;
+    object-fit: contain;
+    max-width: 100%;
+}
