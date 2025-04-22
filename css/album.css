@@ -15,8 +15,9 @@
 /* Layout a griglia per visualizzare esattamente 6 figurine per riga
    con adattamento responsive in caso di zoom o viewport ridotta */
 .figurines-container {
-    display: grid;
-    grid-template-columns: repeat(6, minmax(150px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     gap: 20px;
     width: 100%;
     padding: 15px;
@@ -34,6 +35,7 @@
     overflow: hidden;
     box-shadow: 10px 2px 8px black;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 200px;
 }
 
 .card:hover {
@@ -71,12 +73,7 @@
 }
 
 /* Media query: se la viewport è ristretta il layout si adatta automaticamente */
-@media (max-width: 950px) {
-    .figurines-container {
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        overflow-x: unset;
-    }
-    
+@media (max-width: 950px) {    
     .card img {
         height: 150px;
     }
