@@ -35,10 +35,10 @@
 .modal-content {
     min-width: 360px;
     background-color: #700808f0;
-    margin: 15% auto;
+    margin: auto;
     padding: 20px;
     border: 5px solid whitesmoke;
-    width: 25%;
+    width: 5%;
     height: fit-content;
     color: whitesmoke;
     border-radius: 10px;

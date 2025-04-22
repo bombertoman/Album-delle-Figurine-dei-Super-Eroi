@@ -20,7 +20,7 @@ function aggiornaAlbumInHtml(figurines) {
   figurines.forEach(fig => {
     const card = visualizzaFigurina(fig, albumContainer)
     card.addEventListener("click", () => {
-      dettagliFigurina.style.display = "block"
+      dettagliFigurina.style.display = "flex"
       nomeFigurina.innerText = fig.name
       immagineFigurina.src = fig.image
       descrizioneFigurina.innerText = fig.description

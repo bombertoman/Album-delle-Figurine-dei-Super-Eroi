@@ -107,7 +107,8 @@
 }
 
 #immagine-figurina {
-    height: 540px;
+    max-height: 540px;
+    height: 55vh;
     background:#575757;
     object-fit: contain;
     max-width: 100%;
