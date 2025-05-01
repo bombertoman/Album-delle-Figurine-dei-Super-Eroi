@@ -7,7 +7,8 @@ body {
     /* in questo caso lo sfondo del <body> */
     background-image: url(../img/marvelbkg.jpg);
     /* regola la dimensione dello sfondo relativamente al dispositivo senza distorcerlo */
-    background-size: contain;
+    background-size: cover;
+    background-position: center;
     background-repeat: no-repeat;
     /* flexbox: serve a disporre in riga e colonna gli elementi figli (in questo caso figli di body) */
     display: flex;
