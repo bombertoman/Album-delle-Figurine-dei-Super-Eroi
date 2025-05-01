@@ -14,10 +14,7 @@
 }
 
 .navbar .logo {
-    font-size: 1.5rem;
-    font-weight: bold;
     margin-right: 20px;
-    text-transform: uppercase;
 }
 
 .navbar nav {
