@@ -1,11 +1,7 @@
 
 /* Posiziona l'album-container in maniera fissa tra navbar e footer */
 .album-container {
-    position: fixed;
-    top: 70px;     /* Altezza della navbar;  */
-    bottom: 50px;  
-    left: 0;
-    right: 0;
+    width: 100%;
     padding: 20px;
     box-sizing: border-box;
     background-color: #5a0f0a51;
