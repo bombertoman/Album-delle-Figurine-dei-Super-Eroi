@@ -15,7 +15,8 @@ function aggiornaAlbumInHtml(figurines) {
     return;
   }
   if (figurines.length === 0) {
-    albumContainer.innerText = "L'album è vuoto, premi il pulsante \"Acquista pacchetti\" per acquistare le figurine. "
+    albumContainer.innerText = "L'album è vuoto, premi il pulsante \"Acquista pacchetti\" per acquistare le figurine.";
+    return;
   }
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
