@@ -14,7 +14,9 @@ function aggiornaAlbumInHtml(figurines) {
     console.error("Elemento 'album' non trovato!");
     return;
   }
-  
+  if (figurines.length === 0) {
+    albumContainer.innerText = "L'album è vuoto, premi il pulsante \"Acquista pacchetti\" per acquistare le figurine. "
+  }
   // Pulisce il container dell'album
   albumContainer.innerHTML = "";
   figurines.forEach(fig => {
