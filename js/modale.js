@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * Funzione per aprire la modale
      */
     function apriModale() {
-        if (modaleAcquistopack) modaleAcquistopack.style.display = "block";
+        if (modaleAcquistopack) modaleAcquistopack.style.display = "flex";
     }
 
     /**
