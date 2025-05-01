@@ -10,11 +10,12 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 20px;
-    box-shadow: 0 4px 6px whitesmoke;
+    box-shadow: 0 4px 6px whitesmoke;   
 }
 
 .navbar .logo {
     margin-right: 20px;
+    height: 100px;
 }
 
 .navbar nav {
