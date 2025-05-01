@@ -34,3 +34,6 @@
 .navbar nav a:hover {
     color: #009dff;
 }
+.logo img {
+    height: 100%;
+}
