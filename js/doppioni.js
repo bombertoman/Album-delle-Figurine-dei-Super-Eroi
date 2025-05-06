@@ -17,6 +17,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         nomiFigurineUnivoche.push(figurina.name); 
     });
+    if (doppioni.length === 0){
+        divDoppioni.textContent = "Non puoi effettuare gli scambi. Nessun doppione disponibile."
+        return;
+    }
     doppioni.forEach(doppione => {
         const card = visualizzaFigurina(doppione.figurina, divDoppioni);
         card.addEventListener("click", event => {
