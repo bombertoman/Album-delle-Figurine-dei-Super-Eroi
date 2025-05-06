@@ -27,5 +27,6 @@
 }
 .accordion-container {
     background-color: #71181f;
-    padding: 12px;
+    padding: 5px;
+    border-radius: 10px;
 }

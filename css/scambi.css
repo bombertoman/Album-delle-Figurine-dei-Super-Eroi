@@ -49,7 +49,7 @@ body {
 /* Layout del container per i doppioni: posizionato tra navbar e footer */
 .scambi-container {
     position: fixed;
-    top: 70px;
+    top: 120px;
     /* Altezza della navbar */
     bottom: 50px;
     /* Altezza del footer (regola se necessario) */
