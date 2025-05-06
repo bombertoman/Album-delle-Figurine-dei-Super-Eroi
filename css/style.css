@@ -13,12 +13,14 @@ body {
     /* flexbox: serve a disporre in riga e colonna gli elementi figli (in questo caso figli di body) */
     display: flex;
     height: 100vh;
-    justify-content: center;
-    align-items: center;
+    justify-content: flex-start;
+    align-items: stretch;
     font-family: "Roboto", sans-serif;
     font-weight: 400;
     font-style: normal;
     color: whitesmoke;
+    flex-direction: column;
+    width: 100%;
     
 }
 button {
