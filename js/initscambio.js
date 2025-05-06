@@ -59,8 +59,8 @@ document.addEventListener ("DOMContentLoaded", function(){
     */
     const divScambiProposti = document.getElementById("scambi-proposti");
     const scambiProposti = getCurrentUserItem("scambi"); //array con tutti gli scambi proposti dagli altri utenti a noi
-    if (scambiProposti.length === 0){
-        divScambiProposti.textContent = "Non sono presenti richieste di scambi da accettare."
+    if (scambiProposti && scambiProposti.length === 0){
+        divScambiProposti.textContent = "Non sono presenti richieste di scambi da accettare.";
         return;
     }
     scambiProposti.forEach((proposta, indexScambio) => {
