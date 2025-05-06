@@ -63,7 +63,8 @@ body {
 /* Titolo della pagina */
 .scambi-container h1, 
 .scambi-container h3 {
-    margin-top: 0;
+    padding: 12px;
+    margin-top: 15px;
     text-align: center;
     color: whitesmoke;
 }
