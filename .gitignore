@@ -1,3 +1,4 @@
 .vscode/*
 .qodo/history.sqlite
 .qodo
+.DS_Store

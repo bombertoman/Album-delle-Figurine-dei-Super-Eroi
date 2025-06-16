@@ -52,7 +52,7 @@ async function eseguiAcquisto() {
     return;
   }
   const limit = 92; // Limite scelto per la chiamata API
-  const offset = 184 // getRandomIntInclusive(0, 16); 
+  const offset = 1473 // getRandomIntInclusive(0, 16); 
   const marvelUrl = `https://gateway.marvel.com/v1/public/characters?limit=${limit}&offset=${offset}&orderBy=modified&${getAuth()}`;
   
   try {
