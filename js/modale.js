@@ -27,6 +27,11 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function chiudiModale() {
         if (modaleAcquistopack) modaleAcquistopack.style.display = "none";
+        if (modaleAcquistopack.dataset.figurineCaricate === true){
+            aggiornaAlbumInHtml([], "nuove-figurine");
+            modaleAcquistopack.dataset.figurineCaricate = false;
+            btnConfermaAcquisto.style.display = "block";
+        }
     }
 
     // Quando clicco sul pulsante "Acquista Pacchetti", apro la modale
@@ -55,9 +60,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     btnConfermaAcquisto.style.display = "none";
                     loader.style.display = "block";
                     const nuoveFigurine = await eseguiAcquisto();
-                    btnConfermaAcquisto.style.display = "block";
                     loader.style.display = "none";
-                    aggiornaAlbumInHtml(nuoveFigurine, "nuove-figurine")
+                    aggiornaAlbumInHtml(nuoveFigurine, "nuove-figurine");
+                    modaleAcquistopack.dataset.figurineCaricate = true;
+
+
                 } else {
                     console.warn(
                         "eseguiAcquisto() non è definita. Assicurati che gestionefigurine.js sia caricato."
