@@ -27,9 +27,9 @@ document.addEventListener("DOMContentLoaded", () => {
      */
     function chiudiModale() {
         if (modaleAcquistopack) modaleAcquistopack.style.display = "none";
-        if (modaleAcquistopack.dataset.figurineCaricate === true){
+        if (modaleAcquistopack.dataset.figurineCaricate === "yes"){
             aggiornaAlbumInHtml([], "nuove-figurine");
-            modaleAcquistopack.dataset.figurineCaricate = false;
+            modaleAcquistopack.dataset.figurineCaricate = "no";
             btnConfermaAcquisto.style.display = "block";
         }
     }
@@ -62,7 +62,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const nuoveFigurine = await eseguiAcquisto();
                     loader.style.display = "none";
                     aggiornaAlbumInHtml(nuoveFigurine, "nuove-figurine");
-                    modaleAcquistopack.dataset.figurineCaricate = true;
+                    modaleAcquistopack.dataset.figurineCaricate = "yes";
 
 
                 } else {
