@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     const nuoveFigurine = await eseguiAcquisto();
                     btnConfermaAcquisto.style.display = "block";
                     loader.style.display = "none";
-                    aggiornaAlbumInHtml(nuoveFigurine, "modale-acquistopack")
+                    aggiornaAlbumInHtml(nuoveFigurine, "nuove-figurine")
                 } else {
                     console.warn(
                         "eseguiAcquisto() non è definita. Assicurati che gestionefigurine.js sia caricato."
