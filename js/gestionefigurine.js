@@ -8,8 +8,8 @@ function getAuth(){
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
   return `apikey=${PUBLIC_KEY}&ts=${ts}&hash=${hash}`;
 }
-function aggiornaAlbumInHtml(figurines) {
-  const albumContainer = document.getElementById("album");
+function aggiornaAlbumInHtml(figurines, idAlbumContainer = "album") {
+  const albumContainer = document.getElementById(idAlbumContainer);
   if (!albumContainer) {
     console.error("Elemento 'album' non trovato!");
     return;
@@ -99,9 +99,10 @@ async function eseguiAcquisto() {
     aggiornaCreditiVisualizzati(crediti);
     setCurrentUserItem("numberCredits", crediti);
     // Visualizza le nuove figurine nell'album e salvale nella chiave "figurines"
-    aggiornaAlbumInHtml(nuoveFigurine);
+    aggiornaAlbumInHtml(figurines);
     setCurrentUserItem("figurines", figurines); 
     alert("Acquisto completato con successo!");
+    return nuoveFigurine;
   } catch (error) {
     console.error("Errore durante l'acquisto del pacchetto:", error);
     alert("Errore durante l'acquisto del pacchetto. Riprova più tardi.");
