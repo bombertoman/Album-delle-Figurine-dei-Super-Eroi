@@ -9,7 +9,6 @@ body {
     /* regola la dimensione dello sfondo relativamente al dispositivo senza distorcerlo */
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
     /* flexbox: serve a disporre in riga e colonna gli elementi figli (in questo caso figli di body) */
     display: flex;
     height: 100vh;
@@ -22,6 +21,7 @@ body {
     flex-direction: column;
     width: 100%;
     margin: 0;
+    background-repeat: repeat-y;
     
 }
 button {
