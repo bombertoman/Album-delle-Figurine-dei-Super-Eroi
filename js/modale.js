@@ -28,7 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function chiudiModale() {
         if (modaleAcquistopack) modaleAcquistopack.style.display = "none";
         if (modaleAcquistopack.dataset.figurineCaricate === "yes"){
-            aggiornaAlbumInHtml([], "nuove-figurine");
+            aggiornaAlbumInHtml([], "nuove-figurine", false);
             modaleAcquistopack.dataset.figurineCaricate = "no";
             btnConfermaAcquisto.style.display = "block";
         }

@@ -8,13 +8,13 @@ function getAuth(){
   const hash = generateMarvelHash(ts, PRIVATE_KEY, PUBLIC_KEY);
   return `apikey=${PUBLIC_KEY}&ts=${ts}&hash=${hash}`;
 }
-function aggiornaAlbumInHtml(figurines, idAlbumContainer = "album") {
+function aggiornaAlbumInHtml(figurines, idAlbumContainer = "album", stampaScrittaAlbumVuoto = true) {
   const albumContainer = document.getElementById(idAlbumContainer);
   if (!albumContainer) {
     console.error("Elemento 'album' non trovato!");
     return;
-  }
-  if (figurines.length === 0) {
+  } 
+  if (figurines.length === 0 && stampaScrittaAlbumVuoto) {
     albumContainer.innerText = "L'album è vuoto, premi il pulsante \"Acquista pacchetti\" per acquistare le figurine.";
     return;
   }
