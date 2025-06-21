@@ -140,7 +140,7 @@
 #descrizione-figurina {
   max-width: 360px;
 }
-#fumetti-figurina {
+#fumetti-figurina ul {
    margin: 0;
    padding: 0 20px;
 }
