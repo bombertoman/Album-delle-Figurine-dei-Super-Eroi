@@ -28,9 +28,15 @@ function aggiornaAlbumInHtml(figurines, idAlbumContainer = "album", stampaScritt
       immagineFigurina.src = fig.image
       descrizioneFigurina.innerText = fig.description
       //fumettifig
-      fumettiFigurina.innerHTML = fig.comics.map(fumetto => {
+      const fumettiList = fig.comics.map(fumetto => {
         return `${fumetto.title} (${fumetto.series})`;
-      }).join("<br>");
+      })
+      
+      fumettiFigurina.innerHTML = "<ul>";
+      fumettiList.forEach(fumettoTesto => {
+        fumettiFigurina.innerHTML += `<li>${fumettoTesto}</li>`;
+      });
+      fumettiFigurina.innerHTML += "</ul>";
     })
 
   });
