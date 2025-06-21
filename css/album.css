@@ -137,3 +137,7 @@
     font-weight: bold;
     margin-bottom: 5px;
 }
+
+#descrizione-figurina {
+  max-width: 360px;
+}
