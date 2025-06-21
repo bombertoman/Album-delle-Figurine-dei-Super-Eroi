@@ -32,11 +32,12 @@ function aggiornaAlbumInHtml(figurines, idAlbumContainer = "album", stampaScritt
         return `${fumetto.title} (${fumetto.series})`;
       })
       
-      fumettiFigurina.innerHTML = "<ul>";
+      let fumettiFigurinaInnerHTML = "<ul>";
       fumettiList.forEach(fumettoTesto => {
-        fumettiFigurina.innerHTML += `<li>${fumettoTesto}</li>`;
+        fumettiFigurinaInnerHTML += `<li>${fumettoTesto}</li>`;
       });
-      fumettiFigurina.innerHTML += "</ul>";
+      fumettiFigurinaInnerHTML += "</ul>";
+      fumettiFigurina.innerHTML = fumettiFigurinaInnerHTML;
     })
 
   });
