@@ -33,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
+        // Controllo della password
+        if (!isValidPassword(updatedPassword)) {
+            alert("La password deve essere lunga almeno 8 caratteri.");
+            return;
+        }
+
         const updatedUser = {
             ...user,
             username: updatedUsername,

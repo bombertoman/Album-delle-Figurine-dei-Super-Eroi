@@ -65,9 +65,3 @@ window.onload = function() {
         window.location.href = "login.html"; // Reindirizza al login
     });
 };
-
-// Funzione per verificare la validità della password
-function isValidPassword(password) {
-    const minLength = 8;
-    return password.length >= minLength;
-}
