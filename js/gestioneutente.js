@@ -28,3 +28,10 @@ function setCurrentUserItem(key, value) {
     updateCurrentUser(currentUser);
 }
 
+function deleteCurrentUser() {
+    const users = JSON.parse(localStorage.getItem("users"));
+    const currentUserIndex = getCurrentUserIndex();
+    users.splice(currentUserIndex, 1);
+    localStorage.setItem("users", JSON.stringify(users));
+    localStorage.removeItem("currentUserIndex");
+}

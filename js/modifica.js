@@ -53,17 +53,10 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // Gestisce l'eliminazione dell'account
-    document.getElementById('delete-account-btn').addEventListener('click', function () {
-        if (confirm('Sei sicuro di voler eliminare il tuo account?')) {
+    document.getElementById('delete-account-btn').addEventListener('click', function () {        
+        if (prompt('Per eliminare il tuo account, digita la password') === getCurrentUserItem('password')) {
             // Rimuove l'utente dalla lista degli utenti
-            const users = JSON.parse(localStorage.getItem('users')) || [];
-            const currentUserIndex = getCurrentUserIndex();
-            users.splice(currentUserIndex, 1);
-            localStorage.setItem('users', JSON.stringify(users));
-
-            // Rimuove l'utente attualmente loggato
-            localStorage.removeItem('currentUserIndex');
-
+            deleteCurrentUser()
             alert('Account eliminato con successo!');
             window.location.href = '../html/login.html'; // Reindirizza al login
         }
