@@ -1,5 +1,5 @@
 function logout() {
-    if ( prompt("Sei sicuro di voler uscire?") ) {
+    if ( confirm("Sei sicuro di voler uscire?") ) {
         localStorage.removeItem("currentUserIndex");
         location.href = "login.html";
     }
