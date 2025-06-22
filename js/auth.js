@@ -1,6 +1,8 @@
 function logout() {
-    localStorage.removeItem("currentUserIndex");
-    location.href = "login.html";
+    if ( prompt("Sei sicuro di voler uscire?") ) {
+        localStorage.removeItem("currentUserIndex");
+        location.href = "login.html";
+    }
 }
 function verificaAuth() {
     const currentUser = getCurrentUser(); //recupero dei dati dell'utente
